@@ -1,0 +1,58 @@
+/* hero */
+.hero-main {
+  /* Auto layout */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 38px;
+
+  width: 855px;
+  height: 932px;
+  left: 292px;
+  top: 92px;
+}
+
+/* header */
+.hero-header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    order: 0;
+
+    font-family: 'Pretendard', sans-serif;
+    text-align: center;
+    font-style: normal;
+    color: #FFFFFF;
+}
+
+.hero-h1 {
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 38px;
+    margin: 24px;
+}
+
+.hero-p {
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 38px;
+}
+
+
+/* image */
+.hero-image {
+  width: 855px;
+  height: 769px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+
+  background: url(../../public/image.png);
+  background-size: cover;
+  background-position: center;
+}
