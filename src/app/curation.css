@@ -1,33 +1,24 @@
 /* main */
 .curation-main {
-    display: flex;
-    flex: none;
-    flex-grow: 0;
-    flex-direction: column;
-    align-items: center;
-    padding: 0px;
-    gap: 49px;
-    position: relative;
-    width: 1273px;
-    height: 772px;
-    left: 84px;
-    top: 126px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 38px;
+  margin-top: 90px;
 }
 
 /* header */
 .curation-header {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     order: 0;
 
     font-family: 'Pretendard', sans-serif;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 32px;
-    line-height: 38px;
-    color: #FFFFFF;
     text-align: center;
+    font-style: normal;
+    color: #FFFFFF;
+    opacity: 70%;
+    font-size: 24px;
+    line-height: 38px;
 }
 
 /* button */
@@ -38,8 +29,6 @@
     border-radius: 30px;
     order: 1;
 
-    left: 25.5px;
-    top: 15.5px;
     font-family: 'Pretendard', sans-serif;
     font-style: normal;
     font-weight: 800;
@@ -48,47 +37,85 @@
     color: #FFFFFF;
 }
 
-
 /* template */
 .curation-template {
+    /* Auto layout */
     display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0px;
+    gap: 43px;
+
+    /* Inside auto layout */
     flex: none;
-    flex-grow: 0;
     order: 2;
-    justify-content: space-between; /* 이미지 사이에 공간을 고르게 배분 */
-    width: 1273px;
-    height: 580px;
+    flex-grow: 0;
 }
 
-/* image */
-.curation-image1 {
-    width: 282px;
-    height: 568px;
-    background: url(../../public/image1.png);
-    background-size: cover;
-    background-position: center;
+.curation-container {
+    /* container */
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
 }
 
-.curation-image2 {
-    width: 282px;
-    height: 568px;
-    background: url(../../public/image2.png);
-    background-size: cover;
-    background-position: center;
+/* 복제된 이미지는 기본적으로 숨김 */
+.curation-inner-container .clone {
+  display: none;
 }
 
-.curation-image3 {
-    width: 282px;
+.curation-inner-container {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 24px;
+
+    position: relative;
+    width: 1200px;
     height: 568px;
-    background: url(../../public/image3.png);
-    background-size: cover;
-    background-position: center;
+    left: 0px;
+    top: 0px;
+
+
 }
 
-.curation-image4 {
-    width: 282px;
-    height: 568px;
-    background: url(../../public/image4.png);
-    background-size: cover;
-    background-position: center;
+@media (max-width: 480px) {
+    .curation-template {
+        width: 100%;
+    }
+    .curation-container {
+        /* container */
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .curation-inner-container .clone {
+        display: flex; /* 480px 이하일 때 복제 이미지 표시 */
+    }
+
+    .curation-inner-container {
+        /* Auto layout */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0px;
+        gap: 24px;
+        width: 2400px;
+        animation: scrollAnimation 10s linear infinite; /* 10초 동안 무한 애니메이션 */
+    }
+
+    /* 애니메이션 정의 */
+    @keyframes scrollAnimation {
+        0% {
+            transform: translateX(0%); /* 시작 위치 */
+        }
+        100% {
+            transform: translateX(-50.5%); /* 끝 위치, /* 각 이미지의 너비에 비례해 전체 너비만큼 이동 */
+        }
+    }
 }
