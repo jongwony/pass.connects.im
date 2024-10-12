@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react';
+import Image from 'next/image';
 import CroppieComponent from './CroppieComponent';
 
 
@@ -31,7 +32,7 @@ const Crop: React.FC = () => {
       {croppedImage && (
         <div>
           <h2>자른 이미지:</h2>
-          <img src={croppedImage} alt="Cropped" />
+          <Image src={croppedImage} alt="Cropped" width={180} height={180}/>
         </div>
       )}
     </div>
