@@ -1,5 +1,5 @@
 /* hero */
-.hero-main {
+.main {
   /* Auto layout */
   position: relative;
   display: flex;
@@ -10,7 +10,7 @@
 }
 
 /* header */
-.hero-header {
+.header {
     order: 0;
 
     font-family: 'Pretendard', sans-serif;
@@ -19,32 +19,32 @@
     color: #FFFFFF;
 }
 
-.hero-h1 {
+.title {
     font-weight: 800;
     font-size: 48px;
     line-height: 38px;
     margin: 24px;
 }
 
-.hero-p {
+.subtitle {
     opacity: 70%;
     font-size: 24px;
     line-height: 38px;
 }
 
 @media (max-width: 480px) {
-  .hero-main {
+  .main {
     gap: 16px;
     margin-top: 30px;
   }
 
-  .hero-h1 {
+  .title {
     font-size: 24px;
     line-height: 32px;
     margin: 12px;
   }
 
-  .hero-p {
+  .subtitle {
     font-size: 16px;
     line-height: 28px;
   }

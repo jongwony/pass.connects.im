@@ -1,5 +1,5 @@
 /* main */
-.curation-main {
+.main {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -9,20 +9,19 @@
 }
 
 /* header */
-.curation-header {
+.header {
     order: 0;
 
     font-family: 'Pretendard', sans-serif;
     text-align: center;
     font-style: normal;
     color: #FFFFFF;
-    opacity: 70%;
     font-size: 24px;
     line-height: 38px;
 }
 
 /* button */
-.curation-button {
+.button {
     width: 92px;
     height: 50px;
     background: #306FDB;
@@ -38,7 +37,7 @@
 }
 
 /* template */
-.curation-template {
+.template {
     /* Auto layout */
     display: flex;
     justify-content: center;
@@ -52,22 +51,19 @@
     flex-grow: 0;
 }
 
-.curation-container {
-    /* container */
-
+.container {
     /* Inside auto layout */
     flex: none;
     order: 0;
     flex-grow: 0;
-
 }
 
 /* 복제된 이미지는 기본적으로 숨김 */
-.curation-inner-container .clone {
+.innerContainer .clone {
   display: none;
 }
 
-.curation-inner-container {
+.innerContainer {
     /* Auto layout */
     display: flex;
     flex-direction: row;
@@ -80,25 +76,27 @@
     height: 568px;
     left: 0px;
     top: 0px;
-
-
 }
 
 @media (max-width: 480px) {
-    .curation-template {
+    .header {
+        font-size: 16px;
+        line-height: 28px;
+    }
+    .template {
         width: 100%;
     }
-    .curation-container {
+    .container {
         /* container */
         overflow: hidden;
         width: 100%;
     }
 
-    .curation-inner-container .clone {
+    .innerContainer .clone {
         display: flex; /* 480px 이하일 때 복제 이미지 표시 */
     }
 
-    .curation-inner-container {
+    .innerContainer {
         /* Auto layout */
         display: flex;
         flex-direction: row;
