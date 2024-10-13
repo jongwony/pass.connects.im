@@ -11,7 +11,7 @@ interface FormData {
   name: string;
   role: string;
   company: string;
-  join_date: string;
+  joinDate: string;
   code: string;
 }
 
@@ -44,7 +44,7 @@ const FormPage: React.FC = () => {
     name: "",
     role: "",
     company: "",
-    join_date: "",
+    joinDate: "",
     code: "",
   })
 
@@ -126,11 +126,11 @@ const FormPage: React.FC = () => {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="join_date" className="m-2 text-sm font-medium">기간</label>
+              <label htmlFor="joinDate" className="m-2 text-sm font-medium">기간</label>
               <input
-                id="join_date"
-                name="join_date"
-                value={formData.join_date}
+                id="joinDate"
+                name="joinDate"
+                value={formData.joinDate}
                 onChange={handleChange}
                 className="p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
               />
