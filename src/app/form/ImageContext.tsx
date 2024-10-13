@@ -1,18 +1,26 @@
-// import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react'
 
-// interface ImageContextProps {
-//   value: string;
-//   setValue: React.Dispatch<React.SetStateAction<string>>;
-// }
+type ImageContextType = {
+  croppedImage: string | null
+  setCroppedImage: (image: string | null) => void
+}
 
-// export const ImageContext = createContext<ImageContextProps | undefined>(undefined);
+const ImageContext = createContext<ImageContextType | undefined>(undefined)
 
-// export const ImageContextProvider: React.FC = ({ children }) => {
-//   const [value, setValue] = useState('');
+export const ImageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [croppedImage, setCroppedImage] = useState<string | null>(null)
 
-//   return (
-//     <ImageContext.Provider value={{ value, setValue }}>
-//       {children}
-//     </ImageContext.Provider>
-//   );
-// };
+  return (
+    <ImageContext.Provider value={{ croppedImage, setCroppedImage }}>
+      {children}
+    </ImageContext.Provider>
+  )
+}
+
+export const useImageContext = () => {
+  const context = useContext(ImageContext)
+  if (context === undefined) {
+    throw new Error('useImageContext must be used within an ImageProvider')
+  }
+  return context
+}

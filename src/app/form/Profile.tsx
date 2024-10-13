@@ -2,6 +2,7 @@ import React, { useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Upload, CropIcon, CheckCircle, ZoomIn, RotateCw } from 'lucide-react'
 import Cropper, { Point, Area } from 'react-easy-crop'
+import { useImageContext } from './ImageContext'
 
 export default function ProfilePictureUpload() {
   const [isOpen, setIsOpen] = useState(false)
@@ -12,6 +13,7 @@ export default function ProfilePictureUpload() {
   const [zoom, setZoom] = useState(1)
   const [rotation, setRotation] = useState(0)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null)
+  const { setCroppedImage } = useImageContext()
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -36,17 +38,72 @@ export default function ProfilePictureUpload() {
     setCroppedAreaPixels(croppedAreaPixels)
   }, [])
 
-  const handleCrop = useCallback(async () => {
-    if (croppedAreaPixels) {
-      // 여기에 실제 크롭 로직을 구현합니다.
-      // 예를 들어, 서버로 크롭된 이미지를 전송하거나 로컬에서 처리할 수 있습니다.
-      console.log('Cropped area', croppedAreaPixels)
-      setCropped(true)
+  const createImage = (url: string): Promise<HTMLImageElement> =>
+    new Promise((resolve, reject) => {
+      const image = new Image()
+      image.addEventListener('load', () => resolve(image))
+      image.addEventListener('error', (error) => reject(error))
+      image.setAttribute('crossOrigin', 'anonymous')
+      image.src = url
+    })
+
+  const getCroppedImg = async (
+    imageSrc: string,
+    pixelCrop: Area,
+    rotation = 0
+  ): Promise<string> => {
+    const image = await createImage(imageSrc)
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')
+
+    if (!ctx) {
+      return ''
     }
-  }, [croppedAreaPixels])
+
+    const maxSize = Math.max(image.width, image.height)
+    const safeArea = 2 * ((maxSize / 2) * Math.sqrt(2))
+
+    canvas.width = safeArea
+    canvas.height = safeArea
+
+    ctx.translate(safeArea / 2, safeArea / 2)
+    ctx.rotate((rotation * Math.PI) / 180)
+    ctx.translate(-safeArea / 2, -safeArea / 2)
+
+    ctx.drawImage(
+      image,
+      safeArea / 2 - image.width * 0.5,
+      safeArea / 2 - image.height * 0.5
+    )
+
+    const data = ctx.getImageData(0, 0, safeArea, safeArea)
+
+    canvas.width = pixelCrop.width
+    canvas.height = pixelCrop.height
+
+    ctx.putImageData(
+      data,
+      0 - safeArea / 2 + image.width * 0.5 - pixelCrop.x,
+      0 - safeArea / 2 + image.height * 0.5 - pixelCrop.y
+    )
+
+    return canvas.toDataURL('image/jpeg')
+  }
+
+  const handleCrop = useCallback(async () => {
+    if (croppedAreaPixels && image) {
+      try {
+        const croppedImage = await getCroppedImg(image, croppedAreaPixels, rotation)
+        setCroppedImage(croppedImage)
+        setCropped(true)
+      } catch (e) {
+        console.error(e)
+      }
+    }
+  }, [croppedAreaPixels, image, rotation, setCroppedImage])
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex text-gray-500 items-center justify-center bg-gray-100">
       <button
         onClick={() => setIsOpen(true)}
         className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors"
@@ -170,7 +227,6 @@ export default function ProfilePictureUpload() {
                 </button>
                 <button
                   onClick={() => {
-                    // 여기에 저장 로직을 구현합니다.
                     setIsOpen(false)
                   }}
                   className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors"
