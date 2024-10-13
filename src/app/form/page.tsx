@@ -58,10 +58,10 @@ const FormPage: React.FC = () => {
 
   return (
     <div className="flex min-h-screen bg-zinc-900 text-zinc-100">
-      <div className="flex-1 flex items-center justify-center p-6">
+      <div className="flex-1 flex items-center justify-center">
         <form onSubmit={sendFormData}>
           <div className="w-full max-w-md justify-between space-y-4">
-            <button onClick={() => router.back()}>
+            <button type="button" onClick={() => router.back()}>
               <ChevronLeft />
             </button>
             <h1 className="text-2xl font-bold mb-6">LinkedIn 템플릿</h1>

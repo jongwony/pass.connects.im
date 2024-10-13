@@ -10,7 +10,8 @@ const Curation: React.FC = () => {
   const router = useRouter();
 
   const navigateToPage = () => {
-    router.push('/form');
+    // router.push('/form');
+    router.push('https://smartstore.naver.com/passconnect/products/10965709607')
   };
 
   return (
