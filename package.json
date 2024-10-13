@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "croppie": "^2.6.5",
     "framer-motion": "^11.11.8",
     "lucide-react": "^0.452.0",
     "next": "14.2.12",
@@ -18,7 +17,6 @@
     "react-easy-crop": "^5.1.0"
   },
   "devDependencies": {
-    "@types/croppie": "^2.6.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
