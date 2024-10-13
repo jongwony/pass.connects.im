@@ -8,10 +8,11 @@ import { ChevronLeft } from "lucide-react"
 
 interface FormData {
   thumbnail: string | null;
-  primaryField: string;
-  secondaryFields: string;
-  auxiliaryFields: string;
-  barcode: string;
+  name: string;
+  role: string;
+  company: string;
+  join_date: string;
+  code: string;
 }
 
 const DisplayCroppedImage = ({ setFormData }: { setFormData: React.Dispatch<React.SetStateAction<FormData>> }) => {
@@ -27,7 +28,7 @@ const DisplayCroppedImage = ({ setFormData }: { setFormData: React.Dispatch<Reac
     <div>
       {croppedImage && (
         <div>
-          <Image src={croppedImage} alt="Cropped" width={128} height={128} className="rounded-full" />
+          <Image src={croppedImage} alt="Cropped" width={180} height={180} className="rounded-full" />
         </div>
       )}
     </div>
@@ -40,10 +41,11 @@ const FormPage: React.FC = () => {
 
   const [formData, setFormData] = useState<FormData>({
     thumbnail: null,
-    primaryField: '',
-    secondaryFields: '',
-    auxiliaryFields: '',
-    barcode: ''
+    name: "",
+    role: "",
+    company: "",
+    join_date: "",
+    code: "",
   })
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -51,10 +53,34 @@ const FormPage: React.FC = () => {
     setFormData(prevData => ({ ...prevData, [name]: value }));
   };
 
-  const sendFormData = (e: FormEvent<HTMLFormElement>) => {
+  const sendFormData = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Form Submitted:', formData);
-  }
+
+    try {
+      const response = await fetch(
+        'https://9e240d7v0k.execute-api.ap-northeast-2.amazonaws.com/api/v1/passes/pass.com.passconnect/linkedin',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Success:', data);
+      // 성공 시 처리 로직
+    } catch (error) {
+      console.error('Error:', error);
+      // 실패 시 처리 로직
+    }
+  };
 
   return (
     <div className="flex min-h-screen bg-zinc-900 text-zinc-100">
@@ -70,41 +96,51 @@ const FormPage: React.FC = () => {
               <ProfilePictureUpload />
             </ImageProvider>
             <div className="space-y-2">
-              <label htmlFor="primaryField" className="m-2 text-sm font-medium">이름</label>
+              <label htmlFor="name" className="m-2 text-sm font-medium">이름</label>
               <input
-                id="primaryField"
-                name="primaryField"
-                value={formData.primaryField}
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 className="p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="secondaryFields" className="m-2 text-sm font-medium">직함</label>
+              <label htmlFor="role" className="m-2 text-sm font-medium">직함</label>
               <input
-                id="secondaryFields"
-                name="secondaryFields"
-                value={formData.secondaryFields}
+                id="role"
+                name="role"
+                value={formData.role}
                 onChange={handleChange}
                 className="p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="auxiliaryFields" className="m-2 text-sm font-medium">소개</label>
+              <label htmlFor="company" className="m-2 text-sm font-medium">회사</label>
               <input
-                id="auxiliaryFields"
-                name="auxiliaryFields"
-                value={formData.auxiliaryFields}
+                id="company"
+                name="company"
+                value={formData.company}
                 onChange={handleChange}
                 className="p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="barcode" className="m-2 text-sm font-medium">QR 코드</label>
+              <label htmlFor="join_date" className="m-2 text-sm font-medium">기간</label>
               <input
-                id="barcode"
-                name="barcode"
-                value={formData.barcode}
+                id="join_date"
+                name="join_date"
+                value={formData.join_date}
+                onChange={handleChange}
+                className="p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
+              />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="code" className="m-2 text-sm font-medium">QR</label>
+              <input
+                id="code"
+                name="code"
+                value={formData.code}
                 onChange={handleChange}
                 className="p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
               />
