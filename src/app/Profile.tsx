@@ -1,12 +1,17 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Upload, CropIcon, CheckCircle } from 'lucide-react'
+import { X, Upload, CropIcon, CheckCircle, ZoomIn, RotateCw } from 'lucide-react'
+import Cropper, { Point, Area } from 'react-easy-crop'
 
 export default function ProfilePictureUpload() {
   const [isOpen, setIsOpen] = useState(false)
   const [image, setImage] = useState<string | null>(null)
   const [cropped, setCropped] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const [crop, setCrop] = useState<Point>({ x: 0, y: 0 })
+  const [zoom, setZoom] = useState(1)
+  const [rotation, setRotation] = useState(0)
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null)
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -27,10 +32,18 @@ export default function ProfilePictureUpload() {
     }
   }
 
-  const handleCrop = () => {
-    // 실제 크롭 로직을 여기에 구현합니다.
-    setCropped(true)
-  }
+  const onCropComplete = useCallback((croppedArea: Area, croppedAreaPixels: Area) => {
+    setCroppedAreaPixels(croppedAreaPixels)
+  }, [])
+
+  const handleCrop = useCallback(async () => {
+    if (croppedAreaPixels) {
+      // 여기에 실제 크롭 로직을 구현합니다.
+      // 예를 들어, 서버로 크롭된 이미지를 전송하거나 로컬에서 처리할 수 있습니다.
+      console.log('Cropped area', croppedAreaPixels)
+      setCropped(true)
+    }
+  }, [croppedAreaPixels])
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -82,10 +95,49 @@ export default function ProfilePictureUpload() {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    <div className="relative w-64 h-64 mx-auto overflow-hidden rounded-full">
-                      <img src={image} alt="Profile" className="object-cover w-full h-full" />
+                    <div className="relative w-64 h-64 mx-auto overflow-hidden rounded-lg">
+                      <Cropper
+                        image={image}
+                        crop={crop}
+                        zoom={zoom}
+                        aspect={1}
+                        onCropChange={setCrop}
+                        onCropComplete={onCropComplete}
+                        onZoomChange={setZoom}
+                        rotation={rotation}
+                        cropShape="round"
+                        showGrid={false}
+                      />
                     </div>
                     <div className="flex justify-center space-x-4">
+                      <div className="flex items-center space-x-2">
+                        <ZoomIn size={20} />
+                        <input
+                          type="range"
+                          value={zoom}
+                          min={1}
+                          max={3}
+                          step={0.1}
+                          aria-labelledby="Zoom"
+                          onChange={(e) => setZoom(Number(e.target.value))}
+                          className="w-24"
+                        />
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RotateCw size={20} />
+                        <input
+                          type="range"
+                          value={rotation}
+                          min={0}
+                          max={360}
+                          step={1}
+                          aria-labelledby="Rotation"
+                          onChange={(e) => setRotation(Number(e.target.value))}
+                          className="w-24"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex justify-center">
                       <button
                         onClick={handleCrop}
                         className="flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors"
