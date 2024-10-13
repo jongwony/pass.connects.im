@@ -96,6 +96,8 @@ export default function ProfilePictureUpload() {
         const croppedImage = await getCroppedImg(image, croppedAreaPixels, rotation)
         setCroppedImage(croppedImage)
         setCropped(true)
+        setImage(null) // 원본 이미지 제거
+        setIsOpen(false) // 모달 닫기
       } catch (e) {
         console.error(e)
       }
@@ -103,7 +105,7 @@ export default function ProfilePictureUpload() {
   }, [croppedAreaPixels, image, rotation, setCroppedImage])
 
   return (
-    <div className="flex text-gray-500 items-center justify-center bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <button
         onClick={() => setIsOpen(true)}
         className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors"
@@ -220,18 +222,16 @@ export default function ProfilePictureUpload() {
 
               <div className="flex justify-end p-4 border-t">
                 <button
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false)
+                    setImage(null)
+                    setCrop({ x: 0, y: 0 })
+                    setZoom(1)
+                    setRotation(0)
+                  }}
                   className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
                 >
                   취소
-                </button>
-                <button
-                  onClick={() => {
-                    setIsOpen(false)
-                  }}
-                  className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors"
-                >
-                  저장
                 </button>
               </div>
             </motion.div>
