@@ -105,6 +105,7 @@ export default function ProfilePictureUpload() {
   return (
     <div className="flex text-gray-500">
       <button
+        type="button"
         onClick={() => setIsOpen(true)}
         className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors"
       >
@@ -193,6 +194,7 @@ export default function ProfilePictureUpload() {
                     </div>
                     <div className="flex justify-center">
                       <button
+                        type="button"
                         onClick={handleCrop}
                         className="flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors"
                       >
@@ -206,6 +208,7 @@ export default function ProfilePictureUpload() {
 
               <div className="flex justify-end p-4 border-t">
                 <button
+                  type="button"
                   onClick={() => {
                     setIsOpen(false)
                     setImage(null)
