@@ -1,13 +1,12 @@
 import React, { useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Upload, CropIcon, CheckCircle, ZoomIn, RotateCw } from 'lucide-react'
+import { Upload, CropIcon, ZoomIn, RotateCw } from 'lucide-react'
 import Cropper, { Point, Area } from 'react-easy-crop'
 import { useImageContext } from './ImageContext'
 
 export default function ProfilePictureUpload() {
   const [isOpen, setIsOpen] = useState(false)
   const [image, setImage] = useState<string | null>(null)
-  const [cropped, setCropped] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [crop, setCrop] = useState<Point>({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
@@ -95,7 +94,6 @@ export default function ProfilePictureUpload() {
       try {
         const croppedImage = await getCroppedImg(image, croppedAreaPixels, rotation)
         setCroppedImage(croppedImage)
-        setCropped(true)
         setImage(null) // 원본 이미지 제거
         setIsOpen(false) // 모달 닫기
       } catch (e) {
@@ -105,7 +103,7 @@ export default function ProfilePictureUpload() {
   }, [croppedAreaPixels, image, rotation, setCroppedImage])
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex text-gray-500">
       <button
         onClick={() => setIsOpen(true)}
         className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors"
@@ -129,9 +127,6 @@ export default function ProfilePictureUpload() {
             >
               <div className="flex justify-between items-center p-4 border-b">
                 <h2 className="text-xl font-semibold">프로필 사진 업로드</h2>
-                <button onClick={() => setIsOpen(false)} className="text-gray-500 hover:text-gray-700">
-                  <X size={24} />
-                </button>
               </div>
 
               <div className="p-6">
@@ -208,17 +203,6 @@ export default function ProfilePictureUpload() {
                   </div>
                 )}
               </div>
-
-              {cropped && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="p-4 bg-green-100 text-green-700 flex items-center justify-center"
-                >
-                  <CheckCircle size={20} className="mr-2" />
-                  이미지가 성공적으로 크롭되었습니다!
-                </motion.div>
-              )}
 
               <div className="flex justify-end p-4 border-t">
                 <button
