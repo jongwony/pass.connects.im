@@ -18,8 +18,29 @@ export default function ProfilePictureUpload() {
     const file = event.target.files?.[0]
     if (file) {
       const reader = new FileReader()
-      reader.onload = (e) => setImage(e.target?.result as string)
+      const validImageTypes = [
+        'image/jpeg',
+        'image/png',
+        'image/heic',
+        'image/heif',
+        'image/webp',
+      ]
+      if (!validImageTypes.includes(file.type)) {
+        alert('지원하지 않는 이미지 형식입니다.')
+        return
+      }
+      reader.onload = (e) => {
+        const result = e.target?.result
+        if (typeof result === 'string') {
+          setImage(result)
+        }
+      }
+      reader.onerror = (error) => {
+        console.error('파일을 읽는 중 오류가 발생했습니다:', error)
+      }
       reader.readAsDataURL(file)
+    } else {
+      console.log('선택된 파일이 없습니다')
     }
   }
 
@@ -59,34 +80,31 @@ export default function ProfilePictureUpload() {
       return ''
     }
 
-    const maxSize = Math.max(image.width, image.height)
-    const safeArea = 2 * ((maxSize / 2) * Math.sqrt(2))
+    const { width, height, x, y } = pixelCrop
 
-    canvas.width = safeArea
-    canvas.height = safeArea
+    // 캔버스 크기를 크롭할 영역으로 설정
+    canvas.width = width
+    canvas.height = height
 
-    ctx.translate(safeArea / 2, safeArea / 2)
+    // 캔버스 중심으로 이동
+    ctx.translate(width / 2, height / 2)
     ctx.rotate((rotation * Math.PI) / 180)
-    ctx.translate(-safeArea / 2, -safeArea / 2)
+    ctx.translate(-width / 2, -height / 2)
 
+    // 원형 클리핑 경로 설정
+    ctx.beginPath()
+    ctx.arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI)
+    ctx.closePath()
+    ctx.clip()
+
+    // 이미지를 캔버스에 그림
     ctx.drawImage(
       image,
-      safeArea / 2 - image.width * 0.5,
-      safeArea / 2 - image.height * 0.5
+      x, y, width, height,
+      0, 0, width, height
     )
 
-    const data = ctx.getImageData(0, 0, safeArea, safeArea)
-
-    canvas.width = pixelCrop.width
-    canvas.height = pixelCrop.height
-
-    ctx.putImageData(
-      data,
-      0 - safeArea / 2 + image.width * 0.5 - pixelCrop.x,
-      0 - safeArea / 2 + image.height * 0.5 - pixelCrop.y
-    )
-
-    return canvas.toDataURL('image/jpeg')
+    return canvas.toDataURL('image/png')
   }
 
   const handleCrop = useCallback(async () => {
@@ -104,7 +122,6 @@ export default function ProfilePictureUpload() {
 
   return (
     <div className="space-y-2">
-      <label htmlFor="primaryField" className="m-2 text-sm font-medium">사진</label>
       <button
         type="button"
         onClick={() => setIsOpen(true)}
@@ -145,7 +162,7 @@ export default function ProfilePictureUpload() {
                       type="file"
                       ref={fileInputRef}
                       onChange={handleFileChange}
-                      accept="image/*"
+                      accept="image/jpeg,image/png,image/heic,image/heif,image/webp"
                       className="hidden"
                     />
                   </div>
@@ -205,6 +222,7 @@ export default function ProfilePictureUpload() {
                     </div>
                   </div>
                 )}
+                <small>heic, heif 등 아이폰 전용 이미지는 Safari 브라우저에서만 보일 수 있습니다.</small>
               </div>
 
               <div className="flex justify-end p-4 border-t">

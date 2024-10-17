@@ -25,10 +25,10 @@ const DisplayCroppedImage = ({ setFormData }: { setFormData: React.Dispatch<Reac
   }, [croppedImage]);
 
   return (
-    <div>
+    <div className="relative justify-center items-center w-full h-full">
       {croppedImage && (
         <div>
-          <Image src={croppedImage} alt="Cropped" width={180} height={180} className="rounded-full" />
+          <Image src={croppedImage} alt="Cropped" width={180} height={180} className="relative"/>
         </div>
       )}
     </div>
@@ -84,9 +84,9 @@ const FormPage: React.FC = () => {
 
   return (
     <div className="flex min-h-screen bg-zinc-900 text-zinc-100">
-      <div className="flex-1 flex items-center justify-center">
-        <form onSubmit={sendFormData}>
-          <div className="w-full max-w-md justify-between space-y-4">
+      <div className="flex-1 flex items-center justify-center p-4">
+        <form onSubmit={sendFormData} className="w-full max-w-md">
+          <div className="space-y-4">
             <button type="button" onClick={() => router.back()}>
               <ChevronLeft />
             </button>
@@ -102,7 +102,7 @@ const FormPage: React.FC = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
+                className="w-full p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
             <div className="space-y-2">
@@ -112,7 +112,7 @@ const FormPage: React.FC = () => {
                 name="role"
                 value={formData.role}
                 onChange={handleChange}
-                className="p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
+                className="w-full p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
             <div className="space-y-2">
@@ -122,7 +122,7 @@ const FormPage: React.FC = () => {
                 name="company"
                 value={formData.company}
                 onChange={handleChange}
-                className="p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
+                className="w-full p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
             <div className="space-y-2">
@@ -132,7 +132,7 @@ const FormPage: React.FC = () => {
                 name="joinDate"
                 value={formData.joinDate}
                 onChange={handleChange}
-                className="p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
+                className="w-full p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
             <div className="space-y-2">
@@ -142,12 +142,12 @@ const FormPage: React.FC = () => {
                 name="code"
                 value={formData.code}
                 onChange={handleChange}
-                className="p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
+                className="w-full p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
             <div className="flex justify-between">
               <button
-                className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors"
+                className="mt-2 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors"
                 type="submit"
               >
                 결정
