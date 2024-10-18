@@ -121,7 +121,7 @@ export default function ProfilePictureUpload() {
   }, [croppedAreaPixels, image, rotation, setCroppedImage])
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 text-gray-500">
       <button
         type="button"
         onClick={() => setIsOpen(true)}

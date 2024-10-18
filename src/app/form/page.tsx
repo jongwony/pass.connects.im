@@ -95,54 +95,59 @@ const FormPage: React.FC = () => {
               <DisplayCroppedImage setFormData={setFormData} />
               <ProfilePictureUpload />
             </ImageProvider>
-            <div className="space-y-2">
-              <label htmlFor="name" className="m-2 text-sm font-medium">이름</label>
+            <div className="flex items-center space-x-2 w-full max-w-md">
+              <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
               <input
                 id="name"
                 name="name"
                 value={formData.name}
+                placeholder="첫번째 줄에 들어갈 이름입니다."
                 onChange={handleChange}
-                className="w-full p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
+                className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
-            <div className="space-y-2">
-              <label htmlFor="role" className="m-2 text-sm font-medium">직함</label>
+            <div className="flex items-center space-x-2 w-full max-w-md">
+              <label htmlFor="role" className="m-2 whitespace-nowrap text-sm font-medium">직함</label>
               <input
                 id="role"
                 name="role"
                 value={formData.role}
+                placeholder="두번째 줄에 들어갈 직함입니다."
                 onChange={handleChange}
-                className="w-full p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
+                className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
-            <div className="space-y-2">
-              <label htmlFor="company" className="m-2 text-sm font-medium">회사</label>
+            <div className="flex items-center space-x-2 w-full max-w-md">
+              <label htmlFor="company" className="m-2 whitespace-nowrap text-sm font-medium">회사</label>
               <input
                 id="company"
                 name="company"
                 value={formData.company}
+                placeholder="세번째 줄에 들어갈 회사명입니다."
                 onChange={handleChange}
-                className="w-full p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
+                className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
-            <div className="space-y-2">
-              <label htmlFor="joinDate" className="m-2 text-sm font-medium">기간</label>
+            <div className="flex items-center space-x-2 w-full max-w-md">
+              <label htmlFor="joinDate" className="m-2 whitespace-nowrap text-sm font-medium">기간</label>
               <input
                 id="joinDate"
                 name="joinDate"
                 value={formData.joinDate}
+                placeholder="세번째 줄 우측에 위치할 재직 기간입니다."
                 onChange={handleChange}
-                className="w-full p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
+                className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
-            <div className="space-y-2">
-              <label htmlFor="code" className="m-2 text-sm font-medium">QR</label>
+            <div className="flex items-center space-x-2 w-full max-w-md">
+              <label htmlFor="code" className="m-2 whitespace-nowrap text-sm font-medium">QR</label>
               <input
                 id="code"
                 name="code"
                 value={formData.code}
+                placeholder="QR코드로 나타날 LinkedIn URL입니다."
                 onChange={handleChange}
-                className="w-full p-2 rounded-md bg-zinc-800 border-zinc-700 text-zinc-100"
+                className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
             <div className="flex justify-between">
