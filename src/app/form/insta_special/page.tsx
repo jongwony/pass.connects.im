@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import Image from 'next/image';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { ImageProvider, useImageContext } from '../ImageContext'
 import ProfilePictureUpload from "../Profile";
 import { ChevronLeft } from "lucide-react"
@@ -37,7 +37,6 @@ const DisplayCroppedImage = ({ setFormData }: { setFormData: React.Dispatch<Reac
 
 const FormPage: React.FC = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const [formData, setFormData] = useState<FormData>({
     thumbnail: null,
@@ -124,7 +123,6 @@ const FormPage: React.FC = () => {
                 id="name"
                 name="name"
                 value={formData.name}
-                placeholder={searchParams.get('name') || '첫번째 줄에 들어갈 이름입니다.'}
                 onChange={handleChange}
                 className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
               />
@@ -135,7 +133,6 @@ const FormPage: React.FC = () => {
                 id="id"
                 name="id"
                 value={formData.id}
-                placeholder={searchParams.get('id') || "두번째 줄에 들어갈 @ID입니다."}
                 onChange={handleChange}
                 className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
               />
@@ -146,7 +143,6 @@ const FormPage: React.FC = () => {
                 id="bio"
                 name="bio"
                 value={formData.bio}
-                placeholder={searchParams.get('bio') || "세번째 줄에 들어갈 소개란입니다."}
                 onChange={handleChange}
                 className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
               />
@@ -157,7 +153,6 @@ const FormPage: React.FC = () => {
                 id="code"
                 name="code"
                 value={formData.code}
-                placeholder={searchParams.get('code') || "QR코드로 나타날 Instagram Profile URL입니다."}
                 onChange={handleChange}
                 className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
               />

@@ -27,13 +27,6 @@ const Curation: React.FC = () => {
             <Link
               href={{
                 pathname: '/form/linkedin2',
-                query: {
-                  name: 'Sanghyo Yee',
-                  role: 'Product Designer',
-                  company: 'Lottefiles',
-                  code: 'https://www.linkedin.com/in/sanghyo-yee/',
-                  theme: 'light',
-                },
               }}
             >
               <Image alt="Linkedin2Light" src="/Linkedin2Light.png" width={282} height={568} />
@@ -41,12 +34,6 @@ const Curation: React.FC = () => {
             <Link
               href={{
                 pathname: '/form/insta_special',
-                query: {
-                  name: 'jongwony_',
-                  id: '최종원',
-                  bio: '🧑‍💻 🎸🍳🍾',
-                  code: 'https://www.instagram.com/jongwony_/',
-                },
               }}
             >
               <Image alt="InstaSpecial" src="/InstaSpecial.png" width={282} height={568} />
@@ -54,14 +41,6 @@ const Curation: React.FC = () => {
             <Link
               href={{
                 pathname: '/form/linkedin1',
-                query: {
-                  name: 'Jongwon Choi',
-                  role: 'Data Engineering Manager',
-                  company: 'Wantedlab',
-                  joinDate: 'June 2018 - Present',
-                  code: 'https://www.linkedin.com/in/jongwon-choi-366b5b111/',
-                  theme: 'dark',
-                },
               }}
             >
               <Image alt="Linkedin1Dark" src="/Linkedin1Dark.png" width={282} height={568} />
@@ -69,13 +48,6 @@ const Curation: React.FC = () => {
             <Link
               href={{
                 pathname: '/form/insta1',
-                query: {
-                  name: 'jongwony_',
-                  id: '최종원',
-                  bio: '🧑‍💻 🎸🍳🍾',
-                  code: 'https://www.instagram.com/jongwony_/',
-                  theme: 'light',
-                },
               }}
             >
               <Image alt="Insta1Light" src="/Insta1Light.png" width={282} height={568} />
@@ -85,13 +57,6 @@ const Curation: React.FC = () => {
               className={styles.clone}
               href={{
                 pathname: '/form/linkedin2',
-                query: {
-                  name: 'Sanghyo Yee',
-                  role: 'Product Designer',
-                  company: 'Lottefiles',
-                  code: 'https://www.linkedin.com/in/sanghyo-yee/',
-                  theme: 'light',
-                },
               }}
             >
               <Image alt="Linkedin2Light" src="/Linkedin2Light.png" width={282} height={568} />
@@ -100,12 +65,6 @@ const Curation: React.FC = () => {
               className={styles.clone}
               href={{
                 pathname: '/form/insta_special',
-                query: {
-                  name: 'jongwony_',
-                  id: '최종원',
-                  bio: '🧑‍💻 🎸🍳🍾',
-                  code: 'https://www.instagram.com/jongwony_/',
-                },
               }}
             >
               <Image alt="InstaSpecial" src="/InstaSpecial.png" width={282} height={568} />
@@ -114,13 +73,6 @@ const Curation: React.FC = () => {
               className={styles.clone}
               href={{
                 pathname: '/form/linkedin1',
-                query: {
-                  name: 'Jongwon Choi',
-                  role: 'Data Engineering Manager',
-                  company: 'Wantedlab',
-                  code: 'https://www.linkedin.com/in/jongwon-choi-366b5b111/',
-                  theme: 'dark',
-                },
               }}
             >
               <Image alt="Linkedin1Dark" src="/Linkedin1Dark.png" width={282} height={568} />
@@ -129,13 +81,6 @@ const Curation: React.FC = () => {
               className={styles.clone}
               href={{
                 pathname: '/form/insta1',
-                query: {
-                  name: 'jongwony_',
-                  id: '최종원',
-                  bio: '🧑‍💻 🎸🍳🍾',
-                  code: 'https://www.instagram.com/jongwony_/',
-                  theme: 'light',
-                },
               }}
             >
               <Image alt="Insta1Light" src="/Insta1Light.png" width={282} height={568} />
