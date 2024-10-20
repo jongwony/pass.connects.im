@@ -1,19 +1,19 @@
 "use client"
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { ImageProvider, useImageContext } from './ImageContext'
-import ProfilePictureUpload from "./Profile";
+import { useRouter, useSearchParams } from 'next/navigation';
+import { ImageProvider, useImageContext } from '../ImageContext'
+import ProfilePictureUpload from "../Profile";
 import { ChevronLeft } from "lucide-react"
+import Component from './Theme';
 
 interface FormData {
   thumbnail: string | null;
   name: string;
-  role: string;
-  company: string;
-  joinDate: string;
+  id: string;
+  bio: string;
   code: string;
-  dark: boolean;
+  theme: "light" | "dark" | undefined;
 }
 
 const DisplayCroppedImage = ({ setFormData }: { setFormData: React.Dispatch<React.SetStateAction<FormData>> }) => {
@@ -26,7 +26,7 @@ const DisplayCroppedImage = ({ setFormData }: { setFormData: React.Dispatch<Reac
   }, [croppedImage]);
 
   return (
-    <div className="relative justify-center items-center w-full h-full">
+    <div className="flex justify-center items-center w-full h-full">
       {croppedImage && (
         <div>
           <Image src={croppedImage} alt="Cropped" width={180} height={180} className="relative" />
@@ -36,19 +36,32 @@ const DisplayCroppedImage = ({ setFormData }: { setFormData: React.Dispatch<Reac
   );
 };
 
-
 const FormPage: React.FC = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
 
   const [formData, setFormData] = useState<FormData>({
     thumbnail: null,
     name: "",
-    role: "",
-    company: "",
-    joinDate: "",
+    id: "",
+    bio: "",
     code: "",
-    dark: true,
-  })
+    theme: undefined,
+  });
+
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  // 모든 필드가 비어있지 않은지 확인하는 함수
+  const validateForm = () => {
+    return formData.code !== '';
+  };
+
+  // formData가 변경될 때마다 버튼 활성화 상태를 업데이트
+  useEffect(() => {
+    setIsButtonDisabled(!validateForm());
+  }, [formData]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -61,13 +74,13 @@ const FormPage: React.FC = () => {
 
     try {
       const response = await fetch(
-        'https://9e240d7v0k.execute-api.ap-northeast-2.amazonaws.com/api/v1/passes/pass.com.passconnect/linkedin',
+        'https://9e240d7v0k.execute-api.ap-northeast-2.amazonaws.com/api/v1/passes/pass.com.passconnect/instagram',
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({...formData, type: '1'}),
         }
       );
 
@@ -92,22 +105,16 @@ const FormPage: React.FC = () => {
             <button type="button" onClick={() => router.back()}>
               <ChevronLeft />
             </button>
-            <h1 className="text-2xl font-bold mb-6">LinkedIn 템플릿</h1>
+
+            <Component 
+              initialTheme={searchParams.get('theme') || formData.theme}
+              onThemeChange={() => setFormData(prevData => ({...prevData, theme: formData.theme}))}
+            />
+
             <ImageProvider>
               <DisplayCroppedImage setFormData={setFormData} />
               <ProfilePictureUpload />
             </ImageProvider>
-
-            <div className="flex items-center space-x-2 w-full max-w-md">
-              <div className="flex-grow p-2 items-center ps-4">
-                <input checked={!formData.dark} onChange={() => setFormData(prevData => ({...prevData, dark: false}))} id="white" type="radio" value="" name="radio" className="text-blue-600 bg-gray-100focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="white" className="py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">White</label>
-              </div>
-              <div className="flex-grow p-2 items-center ps-4">
-                <input checked={formData.dark} onChange={() => setFormData(prevData => ({...prevData, dark: true}))} id="dark" type="radio" value="" name="radio" className="text-blue-600 bg-gray-100 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="dark" className="py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Dark</label>
-              </div>
-            </div>
 
             <div className="flex items-center space-x-2 w-full max-w-md">
               <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
@@ -115,40 +122,29 @@ const FormPage: React.FC = () => {
                 id="name"
                 name="name"
                 value={formData.name}
-                placeholder="첫번째 줄에 들어갈 이름입니다."
+                placeholder={searchParams.get('name') || "첫번째 줄에 들어갈 이름입니다."}
                 onChange={handleChange}
                 className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
             <div className="flex items-center space-x-2 w-full max-w-md">
-              <label htmlFor="role" className="m-2 whitespace-nowrap text-sm font-medium">직함</label>
+              <label htmlFor="id" className="m-2 whitespace-nowrap text-sm font-medium">@ID</label>
               <input
-                id="role"
-                name="role"
-                value={formData.role}
-                placeholder="두번째 줄에 들어갈 직함입니다."
+                id="id"
+                name="id"
+                value={formData.id}
+                placeholder={searchParams.get('role') || "두번째 줄에 들어갈 @ID입니다."}
                 onChange={handleChange}
                 className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
             <div className="flex items-center space-x-2 w-full max-w-md">
-              <label htmlFor="company" className="m-2 whitespace-nowrap text-sm font-medium">회사</label>
+              <label htmlFor="bio" className="m-2 whitespace-nowrap text-sm font-medium">소개</label>
               <input
-                id="company"
-                name="company"
-                value={formData.company}
-                placeholder="세번째 줄에 들어갈 회사명입니다."
-                onChange={handleChange}
-                className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-              />
-            </div>
-            <div className="flex items-center space-x-2 w-full max-w-md">
-              <label htmlFor="joinDate" className="m-2 whitespace-nowrap text-sm font-medium">기간</label>
-              <input
-                id="joinDate"
-                name="joinDate"
-                value={formData.joinDate}
-                placeholder="세번째 줄 우측에 위치할 재직 기간입니다."
+                id="bio"
+                name="bio"
+                value={formData.bio}
+                placeholder={searchParams.get('bio') || "세번째 줄에 들어갈 소개란입니다."}
                 onChange={handleChange}
                 className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
               />
@@ -159,17 +155,18 @@ const FormPage: React.FC = () => {
                 id="code"
                 name="code"
                 value={formData.code}
-                placeholder="QR코드로 나타날 LinkedIn URL입니다."
+                placeholder={searchParams.get('code') || "QR코드로 나타날 LinkedIn URL입니다."}
                 onChange={handleChange}
                 className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
               />
             </div>
             <div className="flex justify-between">
               <button
-                className="mt-2 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors"
+                className="mt-2 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors disabled:bg-gray-400"
                 type="submit"
+                disabled={isButtonDisabled}
               >
-                결정
+                제출하기
               </button>
             </div>
           </div>

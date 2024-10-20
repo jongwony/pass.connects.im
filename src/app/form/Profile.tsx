@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Upload, CropIcon, ZoomIn, RotateCw, Camera } from 'lucide-react'
+import { Upload, CropIcon, ZoomIn, RotateCw } from 'lucide-react'
 import Cropper, { Point, Area } from 'react-easy-crop'
 import { useImageContext } from './ImageContext'
 
@@ -121,13 +121,14 @@ export default function ProfilePictureUpload() {
   }, [croppedAreaPixels, image, rotation, setCroppedImage])
 
   return (
-    <div className="space-y-2 text-gray-500">
+    <div className="flex justify-center text-gray-400">
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 text-white bg-gray-800 hover:bg-gray-600 rounded-md transition-colors"
+        className="flex px-4 py-2 space-x-2 text-white bg-gray-800 hover:bg-gray-600 rounded-md transition-colors"
       >
-        <Camera />
+        <Upload />
+        <label htmlFor="upload">사진을 업로드 해주세요</label>
       </button>
 
       <AnimatePresence>

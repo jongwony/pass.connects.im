@@ -17,6 +17,7 @@ export const ImageProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   )
 }
 
+
 export const useImageContext = () => {
   const context = useContext(ImageContext)
   if (context === undefined) {
