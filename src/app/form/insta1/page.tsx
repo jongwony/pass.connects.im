@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, ChangeEvent, FormEvent, useEffect, Suspense } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ImageProvider, useImageContext } from '../ImageContext'
@@ -80,7 +80,7 @@ const FormPage: React.FC = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ ...formData, type: '1' }),
+          body: JSON.stringify({...formData, type: '1'}),
         }
       );
 
@@ -106,9 +106,9 @@ const FormPage: React.FC = () => {
               <ChevronLeft />
             </button>
 
-            <Component
+            <Component 
               initialTheme={searchParams.get('theme') || formData.theme}
-              onThemeChange={() => setFormData(prevData => ({ ...prevData, theme: formData.theme }))}
+              onThemeChange={() => setFormData(prevData => ({...prevData, theme: formData.theme}))}
             />
 
             <ImageProvider>
@@ -118,55 +118,47 @@ const FormPage: React.FC = () => {
 
             <div className="flex items-center space-x-2 w-full max-w-md">
               <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
-              <Suspense>
-                <input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  placeholder={searchParams.get('name') || "첫번째 줄에 들어갈 이름입니다."}
-                  onChange={handleChange}
-                  className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-                />
-              </Suspense>
+              <input
+                id="name"
+                name="name"
+                value={formData.name}
+                placeholder={searchParams.get('name') || "첫번째 줄에 들어갈 이름입니다."}
+                onChange={handleChange}
+                className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+              />
             </div>
             <div className="flex items-center space-x-2 w-full max-w-md">
               <label htmlFor="id" className="m-2 whitespace-nowrap text-sm font-medium">@ID</label>
-              <Suspense>
-                <input
-                  id="id"
-                  name="id"
-                  value={formData.id}
-                  placeholder={searchParams.get('role') || "두번째 줄에 들어갈 @ID입니다."}
-                  onChange={handleChange}
-                  className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-                />
-              </Suspense>
+              <input
+                id="id"
+                name="id"
+                value={formData.id}
+                placeholder={searchParams.get('role') || "두번째 줄에 들어갈 @ID입니다."}
+                onChange={handleChange}
+                className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+              />
             </div>
             <div className="flex items-center space-x-2 w-full max-w-md">
               <label htmlFor="bio" className="m-2 whitespace-nowrap text-sm font-medium">소개</label>
-              <Suspense>
-                <input
-                  id="bio"
-                  name="bio"
-                  value={formData.bio}
-                  placeholder={searchParams.get('bio') || "세번째 줄에 들어갈 소개란입니다."}
-                  onChange={handleChange}
-                  className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-                />
-              </Suspense>
+              <input
+                id="bio"
+                name="bio"
+                value={formData.bio}
+                placeholder={searchParams.get('bio') || "세번째 줄에 들어갈 소개란입니다."}
+                onChange={handleChange}
+                className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+              />
             </div>
             <div className="flex items-center space-x-2 w-full max-w-md">
               <label htmlFor="code" className="m-2 whitespace-nowrap text-sm font-medium">QR</label>
-              <Suspense>
-                <input
-                  id="code"
-                  name="code"
-                  value={formData.code}
-                  placeholder={searchParams.get('code') || "QR코드로 나타날 LinkedIn URL입니다."}
-                  onChange={handleChange}
-                  className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-                />
-              </Suspense>
+              <input
+                id="code"
+                name="code"
+                value={formData.code}
+                placeholder={searchParams.get('code') || "QR코드로 나타날 LinkedIn URL입니다."}
+                onChange={handleChange}
+                className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+              />
             </div>
             <div className="flex justify-between">
               <button
