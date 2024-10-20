@@ -13,6 +13,7 @@ interface FormData {
   company: string;
   joinDate: string;
   code: string;
+  dark: boolean;
 }
 
 const DisplayCroppedImage = ({ setFormData }: { setFormData: React.Dispatch<React.SetStateAction<FormData>> }) => {
@@ -28,7 +29,7 @@ const DisplayCroppedImage = ({ setFormData }: { setFormData: React.Dispatch<Reac
     <div className="relative justify-center items-center w-full h-full">
       {croppedImage && (
         <div>
-          <Image src={croppedImage} alt="Cropped" width={180} height={180} className="relative"/>
+          <Image src={croppedImage} alt="Cropped" width={180} height={180} className="relative" />
         </div>
       )}
     </div>
@@ -46,6 +47,7 @@ const FormPage: React.FC = () => {
     company: "",
     joinDate: "",
     code: "",
+    dark: true,
   })
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -95,6 +97,18 @@ const FormPage: React.FC = () => {
               <DisplayCroppedImage setFormData={setFormData} />
               <ProfilePictureUpload />
             </ImageProvider>
+
+            <div className="flex items-center space-x-2 w-full max-w-md">
+              <div className="flex-grow p-2 items-center ps-4">
+                <input checked={!formData.dark} onChange={() => setFormData(prevData => ({...prevData, dark: false}))} id="white" type="radio" value="" name="radio" className="text-blue-600 bg-gray-100focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label htmlFor="white" className="py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">White</label>
+              </div>
+              <div className="flex-grow p-2 items-center ps-4">
+                <input checked={formData.dark} onChange={() => setFormData(prevData => ({...prevData, dark: true}))} id="dark" type="radio" value="" name="radio" className="text-blue-600 bg-gray-100 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label htmlFor="dark" className="py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Dark</label>
+              </div>
+            </div>
+
             <div className="flex items-center space-x-2 w-full max-w-md">
               <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
               <input
