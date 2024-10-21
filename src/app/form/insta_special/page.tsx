@@ -37,6 +37,7 @@ const DisplayCroppedImage = ({ setFormData }: { setFormData: React.Dispatch<Reac
 
 const FormPage: React.FC = () => {
   const router = useRouter();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const [formData, setFormData] = useState<FormData>({
     thumbnail: null,
@@ -45,6 +46,17 @@ const FormPage: React.FC = () => {
     bio: "",
     code: "",
   });
+
+  // QR 필드가 비어있지 않은지 확인하는 함수
+  const validateForm = () => {
+    return formData.code !== '';
+  };
+
+  // formData가 변경될 때마다 버튼 활성화 상태를 업데이트
+  useEffect(() => {
+    setIsButtonDisabled(!validateForm());
+  }, [formData]);
+
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -159,8 +171,9 @@ const FormPage: React.FC = () => {
             </div>
             <div className="flex w-full items-center justify-center">
               <button
-                className="mt-2 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors"
+                className="flex-grow mt-2 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 disabled:bg-gray-400 transition-colors"
                 type="submit"
+                disabled={isButtonDisabled}
               >
                 제출하기
               </button>

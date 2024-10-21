@@ -52,7 +52,7 @@ const FormPage: React.FC = () => {
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  // 모든 필드가 비어있지 않은지 확인하는 함수
+  // QR 필드가 비어있지 않은지 확인하는 함수
   const validateForm = () => {
     return formData.code !== '';
   };
@@ -163,9 +163,9 @@ const FormPage: React.FC = () => {
                 />
               </Suspense>
             </div>
-            <div className="flex justify-between">
+            <div className="flex w-full items-center justify-center">
               <button
-                className="mt-2 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors disabled:bg-gray-400"
+                className="flex-grow mt-2 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors disabled:bg-gray-400"
                 type="submit"
                 disabled={isButtonDisabled}
               >
