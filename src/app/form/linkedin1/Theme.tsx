@@ -6,7 +6,7 @@ interface ThemeSelectorProps {
   onThemeChange?: (theme: 'light' | 'dark') => void
 }
 
-export default function Component({ initialTheme = undefined, onThemeChange = () => { } }: ThemeSelectorProps) {
+export default function Component({ initialTheme = undefined, onThemeChange = () => {} }: ThemeSelectorProps) {
   const [theme, setTheme] = useState<string | undefined>(initialTheme);
 
   const handleThemeChange = useCallback((newTheme: 'light' | 'dark') => {

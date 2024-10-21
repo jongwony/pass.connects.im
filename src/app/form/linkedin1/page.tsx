@@ -54,7 +54,7 @@ const FormPage: React.FC = () => {
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  // QR 필드가 비어있지 않은지 확인하는 함수
+  // QR, theme 필드가 비어있지 않은지 확인하는 함수
   const validateForm = () => {
     return formData.code !== '';
   };
