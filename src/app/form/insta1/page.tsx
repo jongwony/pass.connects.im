@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, ChangeEvent, FormEvent, useEffect, Suspense } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ImageProvider, useImageContext } from '../ImageContext'
@@ -52,10 +52,9 @@ const FormPage: React.FC = () => {
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  // TODO:
   // QR, theme 필드가 비어있지 않은지 확인하는 함수
   const validateForm = () => {
-    return formData.code !== '';
+    return formData.theme !== undefined && formData.code !== '';
   };
 
   // formData가 변경될 때마다 버튼 활성화 상태를 업데이트
@@ -108,7 +107,7 @@ const FormPage: React.FC = () => {
 
             <Component
               initialTheme={formData.theme}
-              onThemeChange={() => setFormData(prevData => ({ ...prevData, theme: formData.theme }))}
+              onThemeChange={(theme) => setFormData(prevData => ({...prevData, theme}))}
             />
 
             <ImageProvider>
@@ -118,7 +117,6 @@ const FormPage: React.FC = () => {
 
             <div className="flex items-center space-x-2 w-full max-w-md">
               <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
-              <Suspense>
                 <input
                   id="name"
                   name="name"
@@ -126,11 +124,9 @@ const FormPage: React.FC = () => {
                   onChange={handleChange}
                   className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
                 />
-              </Suspense>
             </div>
             <div className="flex items-center space-x-2 w-full max-w-md">
               <label htmlFor="id" className="m-2 whitespace-nowrap text-sm font-medium">@ID</label>
-              <Suspense>
                 <input
                   id="id"
                   name="id"
@@ -138,11 +134,9 @@ const FormPage: React.FC = () => {
                   onChange={handleChange}
                   className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
                 />
-              </Suspense>
             </div>
             <div className="flex items-center space-x-2 w-full max-w-md">
               <label htmlFor="bio" className="m-2 whitespace-nowrap text-sm font-medium">소개</label>
-              <Suspense>
                 <input
                   id="bio"
                   name="bio"
@@ -150,11 +144,9 @@ const FormPage: React.FC = () => {
                   onChange={handleChange}
                   className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
                 />
-              </Suspense>
             </div>
             <div className="flex items-center space-x-2 w-full max-w-md">
               <label htmlFor="code" className="m-2 whitespace-nowrap text-sm font-medium">QR</label>
-              <Suspense>
                 <input
                   id="code"
                   name="code"
@@ -162,7 +154,6 @@ const FormPage: React.FC = () => {
                   onChange={handleChange}
                   className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
                 />
-              </Suspense>
             </div>
             <div className="flex w-full items-center justify-center">
               <button

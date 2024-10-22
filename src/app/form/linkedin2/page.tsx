@@ -54,7 +54,7 @@ const FormPage: React.FC = () => {
 
   // QR, theme 필드가 비어있지 않은지 확인하는 함수
   const validateForm = () => {
-    return formData.code !== '';
+    return formData.theme !== undefined && formData.code !== '';
   };
 
   // formData가 변경될 때마다 버튼 활성화 상태를 업데이트
@@ -106,7 +106,8 @@ const FormPage: React.FC = () => {
             </button>
 
             <Component 
-              onThemeChange={() => setFormData(prevData => ({...prevData, theme: formData.theme}))}
+              initialTheme={formData.theme}
+              onThemeChange={(theme) => setFormData(prevData => ({...prevData, theme}))}
             />
 
             <ImageProvider>
