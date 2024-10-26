@@ -13,6 +13,7 @@ interface FormData {
   id: string;
   bio: string;
   code: string;
+  email: string;
   theme: "light" | "dark" | undefined;
 }
 
@@ -46,6 +47,7 @@ const FormPage: React.FC = () => {
     id: "",
     bio: "",
     code: "",
+    email: "",
     theme: undefined,
   });
 
@@ -54,7 +56,7 @@ const FormPage: React.FC = () => {
 
   // QR, theme 필드가 비어있지 않은지 확인하는 함수
   const validateForm = () => {
-    return formData.theme !== undefined && formData.code !== '';
+    return formData.email !== '' && formData.theme !== undefined && formData.code !== '';
   };
 
   // formData가 변경될 때마다 버튼 활성화 상태를 업데이트
@@ -146,7 +148,7 @@ const FormPage: React.FC = () => {
                 />
             </div>
             <div className="flex items-center space-x-2 w-full max-w-md">
-              <label htmlFor="code" className="m-2 whitespace-nowrap text-sm font-medium">QR</label>
+              <label htmlFor="code" className="m-2 whitespace-nowrap text-sm font-medium">프로필링크</label>
                 <input
                   id="code"
                   name="code"
@@ -154,6 +156,18 @@ const FormPage: React.FC = () => {
                   onChange={handleChange}
                   className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
                 />
+            </div>
+            <div className="flex items-center space-x-2 w-full max-w-md">
+              <label htmlFor="email" className="m-2 whitespace-nowrap text-sm font-medium">이메일</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="이메일로 패스를 보내드립니다."
+                value={formData.email}
+                onChange={handleChange}
+                className="flex-grow p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+              />
             </div>
             <div className="flex w-full items-center justify-center">
               <button
