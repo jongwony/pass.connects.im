@@ -38,6 +38,9 @@ const DisplayCroppedImage = ({ setFormData }: { setFormData: React.Dispatch<Reac
 
 const FormPage: React.FC = () => {
   const router = useRouter();
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const [formData, setFormData] = useState<FormData>({
@@ -67,6 +70,8 @@ const FormPage: React.FC = () => {
 
   const sendFormData = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMessage('');
     console.log('Form Submitted:', formData);
 
     try {
@@ -88,9 +93,14 @@ const FormPage: React.FC = () => {
       const data = await response.json();
       console.log('Success:', data);
       // 성공 시 처리 로직
+      // 응답 성공 시 issue_code로 리다이렉트
+      router.push(`/form/success?issue_code=${data.issue_code}`);
     } catch (error) {
       console.error('Error:', error);
       // 실패 시 처리 로직
+      setErrorMessage('제출 중 문제가 발생했습니다.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -192,10 +202,14 @@ const FormPage: React.FC = () => {
               <button
                 className="w-full m-2 p-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 disabled:bg-gray-400 transition-colors"
                 type="submit"
-                disabled={isButtonDisabled}
+                disabled={isSubmitting && isButtonDisabled}
               >
-                제출하기
+                {isSubmitting ? '제출 중...' : '제출하기'}
               </button>
+
+              {errorMessage && (
+                <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
+              )}
             </div>
           </div>
         </form>
