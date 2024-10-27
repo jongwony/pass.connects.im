@@ -121,6 +121,31 @@ const FormPage: React.FC = () => {
 
           <div className="space-y-4 w-full content-center">
             <div className="items-center space-x-2">
+              <label htmlFor="email" className="m-2 whitespace-nowrap text-sm font-medium">이메일</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="이메일로 패스를 보내드립니다."
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                required={true}
+              />
+            </div>
+            <div className="items-center space-x-2">
+              <label htmlFor="code" className="m-2 whitespace-nowrap text-sm font-medium">프로필링크</label>
+              <input
+                id="code"
+                name="code"
+                value={formData.code}
+                placeholder="QR Code로 저장됩니다."
+                onChange={handleChange}
+                className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                required={true}
+              />
+            </div>
+            <div className="items-center space-x-2">
               <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
               <input
                 id="name"
@@ -158,31 +183,6 @@ const FormPage: React.FC = () => {
                 value={formData.joinDate}
                 onChange={handleChange}
                 className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-              />
-            </div>
-            <div className="items-center space-x-2">
-              <label htmlFor="code" className="m-2 whitespace-nowrap text-sm font-medium">프로필링크</label>
-              <input
-                id="code"
-                name="code"
-                value={formData.code}
-                placeholder="QR Code로 저장됩니다."
-                onChange={handleChange}
-                className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-                required={true}
-              />
-            </div>
-            <div className="items-center space-x-2">
-              <label htmlFor="email" className="m-2 whitespace-nowrap text-sm font-medium">이메일</label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                placeholder="이메일로 패스를 보내드립니다."
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-                required={true}
               />
             </div>
             <div className="items-center justify-center">
