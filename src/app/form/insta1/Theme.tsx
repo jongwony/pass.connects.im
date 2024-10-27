@@ -6,8 +6,8 @@ interface ThemeSelectorProps {
   onThemeChange?: (theme: 'light' | 'dark') => void
 }
 
-export default function Component({ initialTheme = undefined, onThemeChange = () => {} }: ThemeSelectorProps) {
-  const [ theme, setTheme ] = useState<string | undefined>(initialTheme);
+export default function Component({ initialTheme = undefined, onThemeChange = () => { } }: ThemeSelectorProps) {
+  const [theme, setTheme] = useState<string | undefined>(initialTheme);
 
   const handleThemeChange = useCallback((newTheme: 'light' | 'dark') => {
     setTheme(newTheme)
@@ -20,11 +20,10 @@ export default function Component({ initialTheme = undefined, onThemeChange = ()
 
       <div className="flex flex-row space-x-4 space-y-0 justify-center mb-6">
         <div
-          className={`relative cursor-pointer ${
-            theme === 'light'
+          className={`relative cursor-pointer ${theme === 'light'
               ? 'ring-2 ring-blue-500 ring-offset-2'
               : 'hover:opacity-80'
-          }`}
+            }`}
           onClick={() => handleThemeChange('light')}
         >
           <Image alt="Insta1Light" src="/Insta1Light.png" width={141} height={284} />
@@ -46,11 +45,10 @@ export default function Component({ initialTheme = undefined, onThemeChange = ()
           )}
         </div>
         <div
-          className={`relative cursor-pointer ${
-            theme === 'dark'
+          className={`relative cursor-pointer ${theme === 'dark'
               ? 'ring-2 ring-blue-500 ring-offset-2'
               : 'hover:opacity-80'
-          }`}
+            }`}
           onClick={() => handleThemeChange('dark')}
         >
           <Image alt="Insta1Dark" src="/Insta1Dark.png" width={141} height={284} />

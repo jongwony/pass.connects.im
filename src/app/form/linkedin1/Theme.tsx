@@ -6,7 +6,7 @@ interface ThemeSelectorProps {
   onThemeChange?: (theme: 'light' | 'dark') => void
 }
 
-export default function Component({ initialTheme = undefined, onThemeChange = () => {} }: ThemeSelectorProps) {
+export default function Component({ initialTheme = undefined, onThemeChange = () => { } }: ThemeSelectorProps) {
   const [theme, setTheme] = useState<string | undefined>(initialTheme);
 
   const handleThemeChange = useCallback((newTheme: 'light' | 'dark') => {
@@ -21,8 +21,8 @@ export default function Component({ initialTheme = undefined, onThemeChange = ()
       <div className="flex flex-row space-x-4 space-y-0 justify-center mb-6">
         <div
           className={`relative cursor-pointer ${theme === 'light'
-              ? 'ring-2 ring-blue-500 ring-offset-2'
-              : 'hover:opacity-80'
+            ? 'ring-2 ring-blue-500 ring-offset-2'
+            : 'hover:opacity-80'
             }`}
           onClick={() => handleThemeChange('light')}
         >
@@ -46,8 +46,8 @@ export default function Component({ initialTheme = undefined, onThemeChange = ()
         </div>
         <div
           className={`relative cursor-pointer ${theme === 'dark'
-              ? 'ring-2 ring-blue-500 ring-offset-2'
-              : 'hover:opacity-80'
+            ? 'ring-2 ring-blue-500 ring-offset-2'
+            : 'hover:opacity-80'
             }`}
           onClick={() => handleThemeChange('dark')}
         >

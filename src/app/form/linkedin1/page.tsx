@@ -82,7 +82,7 @@ const FormPage: React.FC = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({...formData, type: '1'}),
+          body: JSON.stringify({ ...formData, type: '1' }),
         }
       );
 
@@ -108,9 +108,9 @@ const FormPage: React.FC = () => {
               <ChevronLeft />
             </button>
 
-            <Component 
+            <Component
               initialTheme={formData.theme}
-              onThemeChange={(theme) => setFormData(prevData => ({...prevData, theme}))}
+              onThemeChange={(theme) => setFormData(prevData => ({ ...prevData, theme }))}
             />
 
             <ImageProvider>

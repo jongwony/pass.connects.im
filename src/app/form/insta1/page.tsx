@@ -109,7 +109,7 @@ const FormPage: React.FC = () => {
 
             <Component
               initialTheme={formData.theme}
-              onThemeChange={(theme) => setFormData(prevData => ({...prevData, theme}))}
+              onThemeChange={(theme) => setFormData(prevData => ({ ...prevData, theme }))}
             />
 
             <ImageProvider>
@@ -121,45 +121,45 @@ const FormPage: React.FC = () => {
           <div className="space-y-4 w-full content-center">
             <div className="items-center space-x-2">
               <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
-                <input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-                />
+              <input
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+              />
             </div>
             <div className="items-center space-x-2">
               <label htmlFor="id" className="m-2 whitespace-nowrap text-sm font-medium">@ID</label>
-                <input
-                  id="id"
-                  name="id"
-                  value={formData.id}
-                  onChange={handleChange}
-                  className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-                />
+              <input
+                id="id"
+                name="id"
+                value={formData.id}
+                onChange={handleChange}
+                className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+              />
             </div>
             <div className="items-center space-x-2">
               <label htmlFor="bio" className="m-2 whitespace-nowrap text-sm font-medium">소개</label>
-                <input
-                  id="bio"
-                  name="bio"
-                  value={formData.bio}
-                  onChange={handleChange}
-                  className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-                />
+              <input
+                id="bio"
+                name="bio"
+                value={formData.bio}
+                onChange={handleChange}
+                className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+              />
             </div>
             <div className="items-center space-x-2">
               <label htmlFor="code" className="m-2 whitespace-nowrap text-sm font-medium">프로필 링크</label>
-                <input
-                  id="code"
-                  name="code"
-                  value={formData.code}
-                  placeholder="QR Code로 저장됩니다."
-                  onChange={handleChange}
-                  className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-                  required={true}
-                />
+              <input
+                id="code"
+                name="code"
+                value={formData.code}
+                placeholder="QR Code로 저장됩니다."
+                onChange={handleChange}
+                className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                required={true}
+              />
             </div>
             <div className="items-center space-x-2">
               <label htmlFor="email" className="m-2 whitespace-nowrap text-sm font-medium">이메일</label>
