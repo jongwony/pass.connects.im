@@ -15,10 +15,10 @@ export default function Component({ initialTheme = undefined, onThemeChange = ()
   }, [onThemeChange])
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-6 text-center">Instagram 카드 테마를 골라주세요.</h1>
 
-    <div className="flex flex-row space-x-4 space-y-0 justify-center mb-6">
+      <div className="flex flex-row space-x-4 space-y-0 justify-center mb-6">
         <div
           className={`relative cursor-pointer ${
             theme === 'light'
