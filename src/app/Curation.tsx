@@ -2,17 +2,17 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
 import styles from "./curation.module.css";
 
 
 const Curation: React.FC = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
-  const navigateToPage = () => {
-    router.push('https://smartstore.naver.com/passconnect/products/10965709607')
-  };
+  // const navigateToPage = () => {
+  //   router.push('https://smartstore.naver.com/passconnect/products/10965709607')
+  // };
 
   return (
     <div className="relative mt-8">
