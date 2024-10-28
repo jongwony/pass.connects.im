@@ -202,7 +202,7 @@ const FormPage: React.FC = () => {
               <button
                 className="w-full m-2 p-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 disabled:bg-gray-400 transition-colors"
                 type="submit"
-                disabled={isSubmitting && isButtonDisabled}
+                disabled={isSubmitting || isButtonDisabled}
               >
                 {isSubmitting ? '처리 중...' : '명함 생성 후 결제하기'}
               </button>
