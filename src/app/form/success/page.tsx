@@ -4,6 +4,7 @@ import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { Check, Copy } from 'lucide-react';
+import DynamicBuyerConfirmation from './Confirm';
 
 
 const CopyIssueCode: React.FC = () => {
@@ -38,6 +39,9 @@ export default function SuccessPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
+
+      <DynamicBuyerConfirmation />
+
       <div className="p-8 rounded-lg shadow-md w-full max-w-md text-center">
         <h1 className="text-2xl font-bold mb-6">발급코드 입력 안내</h1>
         <Image
