@@ -18,7 +18,7 @@ const Curation: React.FC = () => {
     <div className="relative mt-8">
       {/* Header */}
       <header className="flex flex-col text-center p-8 gap-4 order-1">
-        <h1 className="text-xl sm:text-2xl">원하는 템플릿을 눌러 보세요.</h1>
+        <h1 className="font-semibold text-xl sm:text-2xl">원하는 템플릿을 눌러 보세요.</h1>
         <p className="text-gray-400 sm:text-xl">다양한 템플릿으로 나만의 스타일을 완성하세요.</p>
       </header>
       <div className={styles.template}>
