@@ -1,11 +1,15 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { Check, Copy } from 'lucide-react';
 
-export default function SuccessPage() {
+
+const CopyIssueCode: React.FC = () => {
+  const searchParams = useSearchParams()
+  const issueCode = searchParams.get('issue_code') || 'No code provided'
+
   const [isCopied, setIsCopied] = useState(false);
 
   const copyToClipboard = async (text: string) => {
@@ -19,9 +23,18 @@ export default function SuccessPage() {
     }
   };
 
+  return (
+    <div className="rounded-md">
+      <code className="text-gray-400 font-mono">{issueCode}</code>
+      <button className="p-2 m-2 bg-gray-800 hover:bg-gray-400 rounded-md" onClick={() => copyToClipboard(issueCode)}>
+        {isCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+      </button>
+    </div>
+  )
+}
+
+export default function SuccessPage() {
   const router = useRouter();
-  const searchParams = useSearchParams()
-  const issueCode = searchParams.get('issue_code') || 'No code provided'
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
@@ -35,13 +48,11 @@ export default function SuccessPage() {
           className="mx-auto rounded-lg mb-6"
         />
         <p className="text-lg">아래의 발급 코드를 복사해주세요</p>
-        <div className="rounded-md">
-          <code className="text-gray-400 font-mono">{issueCode}</code>
-          <button className="p-2 m-2 bg-gray-800 hover:bg-gray-400 rounded-md" onClick={() => copyToClipboard(issueCode)}>
-            {isCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-          </button>
-        </div>
-        
+
+        <Suspense>
+          <CopyIssueCode />
+        </Suspense>
+
         <button
           className="w-full mt-4 p-2 text-white bg-green-500 rounded-md hover:bg-green-600 transition-colors disabled:bg-gray-400"
           type="submit"
