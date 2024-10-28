@@ -114,8 +114,8 @@ export default function ProfilePictureUpload() {
         setCroppedImage(croppedImage)
         setImage(null) // 원본 이미지 제거
         setIsOpen(false) // 모달 닫기
-      } catch (e) {
-        console.error(e)
+      } catch (error) {
+        console.error('Error:', error);
       }
     }
   }, [croppedAreaPixels, image, rotation, setCroppedImage])
