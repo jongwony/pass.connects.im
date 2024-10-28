@@ -187,8 +187,9 @@ const FormPage: React.FC = () => {
                 type="submit"
                 disabled={isSubmitting && isButtonDisabled}
               >
-                {isSubmitting ? '제출 중...' : '제출하기'}
+                {isSubmitting ? '처리 중...' : '명함 생성 후 결제하기'}
               </button>
+              <small>구매 후 Apple Wallet에 저장할 수 있습니다.</small>
 
               {errorMessage && (
                 <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
