@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ImageProvider, useImageContext } from '../ImageContext'
 import ProfilePictureUpload from "../Profile";
-import { ChevronLeft } from "lucide-react"
 import Component from './Theme';
 
 interface FormData {
@@ -112,10 +111,6 @@ const FormPage: React.FC = () => {
       <div className="flex-1 flex items-center justify-center p-4">
         <form onSubmit={sendFormData} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
           <div className="space-y-4 w-full content-center">
-            <button type="button" onClick={() => router.back()}>
-              <ChevronLeft />
-            </button>
-
             <Component
               initialTheme={formData.theme}
               onThemeChange={(theme) => setFormData(prevData => ({ ...prevData, theme }))}

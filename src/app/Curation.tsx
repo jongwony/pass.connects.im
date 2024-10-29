@@ -45,7 +45,18 @@ export default function Curation() {
       <header className="flex flex-col text-center p-8 gap-4 order-1">
         <h1 className="font-semibold text-xl sm:text-2xl">원하는 템플릿을 선택해 나만의 디지털 명함을 만들어보세요.</h1>
       </header>
-      
+
+      <div className="justify-self-center">
+        <button
+          type="button"
+          onClick={() => router.push(templates[Math.floor(Math.random() * templates.length)].path)}
+          className="px-4 py-2 text-white font-semibold bg-blue-500 rounded-md
+                      hover:bg-blue-600 transition-colors"
+        >
+          만들기
+        </button>
+      </div>
+
       <div className={styles.template}>
         <div className={styles.container}>
           <div className={styles.innerContainer}>
@@ -57,11 +68,11 @@ export default function Curation() {
                 onMouseLeave={() => !isMobile && setSelectedTemplate(null)}
                 onClick={() => handleImageInteraction(template.id)}
               >
-                <Image 
-                  alt={template.alt} 
-                  src={template.src} 
-                  width={282} 
-                  height={568} 
+                <Image
+                  alt={template.alt}
+                  src={template.src}
+                  width={282}
+                  height={568}
                   priority={true}
                   className={`transition-opacity duration-300 ${selectedTemplate === template.id ? 'opacity-50' : 'opacity-100'}`}
                 />
@@ -78,7 +89,7 @@ export default function Curation() {
                 )}
               </div>
             ))}
-            
+
             {/* 480px 이하에서만 보일 복제된 이미지 */}
             {templates.map((template) => (
               <div
@@ -86,10 +97,10 @@ export default function Curation() {
                 className={`${styles.clone} relative group`}
                 onClick={() => handleImageInteraction(template.id)}
               >
-                <Image 
-                  alt={template.alt} 
-                  src={template.src} 
-                  width={282} 
+                <Image
+                  alt={template.alt}
+                  src={template.src}
+                  width={282}
                   height={568}
                   priority={true}
                   className={`transition-opacity duration-300 ${selectedTemplate === template.id ? 'opacity-50' : 'opacity-100'}`}

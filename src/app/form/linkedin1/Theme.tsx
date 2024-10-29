@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react'
 import Image from 'next/image'
+import ChooseTemplate from '@/app/Template';
 
 interface ThemeSelectorProps {
   initialTheme?: string
@@ -16,7 +17,8 @@ export default function Component({ initialTheme = undefined, onThemeChange = ()
 
   return (
     <div className="mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6 text-center">LinkedIn 카드 테마를 골라주세요.</h1>
+      <h1 className="text-2xl font-bold mb-6 text-center">카드 템플릿과 테마를 골라주세요.</h1>
+      <ChooseTemplate />
 
       <div className="flex flex-row space-x-4 space-y-0 justify-center mb-6">
         <div

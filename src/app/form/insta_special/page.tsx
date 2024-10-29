@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ImageProvider, useImageContext } from '../ImageContext'
 import ProfilePictureUpload from "../Profile";
-import { ChevronLeft } from "lucide-react"
+import ChooseTemplate from '@/app/Template';
 
 interface FormData {
   thumbnail: string | null;
@@ -109,11 +109,9 @@ const FormPage: React.FC = () => {
       <div className="flex-1 flex items-center justify-center p-4">
         <form onSubmit={sendFormData} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
           <div className="space-y-4 w-full content-center">
-            <button type="button" onClick={() => router.back()}>
-              <ChevronLeft />
-            </button>
             <div className="mx-auto px-4 py-8">
-              <h1 className="text-2xl font-bold mb-6 text-center">Instagram Special 테마입니다.</h1>
+              <h1 className="text-2xl font-bold mb-6 text-center">카드 템플릿을 골라주세요.</h1>
+              <ChooseTemplate />
 
               <div className="flex flex-row space-x-4 space-y-0 justify-center mb-6">
                 <div
