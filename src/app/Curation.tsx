@@ -46,7 +46,7 @@ export default function Curation() {
         <h1 className="font-semibold text-xl sm:text-2xl">원하는 템플릿을 선택해 나만의 디지털 명함을 만들어보세요.</h1>
       </header>
 
-      <div className="justify-self-center">
+      <div className="flex justify-center items-center">
         <button
           type="button"
           onClick={() => router.push(templates[Math.floor(Math.random() * templates.length)].path)}
