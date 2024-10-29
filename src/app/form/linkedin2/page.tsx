@@ -30,7 +30,7 @@ const DisplayCroppedImage = ({ setFormData }: { setFormData: React.Dispatch<Reac
     <div className="flex justify-center items-center w-full">
       {croppedImage && (
         <div>
-          <Image src={croppedImage} alt="Cropped" width={180} height={180} className="relative" />
+          <Image src={croppedImage} alt="Cropped" width={90} height={90} className="relative" />
         </div>
       )}
     </div>
