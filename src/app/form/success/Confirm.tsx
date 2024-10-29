@@ -78,7 +78,7 @@ const GetFormFromServer: React.FC = () => {
 
           <div>
             <p className="text-sm font-medium">QR Code</p>
-            <a href={profileData.code} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:underline">
+            <a href={profileData.code} target="_blank" rel="noopener noreferrer" className="text-sm truncate text-gray-500 hover:underline">
               {profileData.code}
             </a>
           </div>
@@ -101,7 +101,7 @@ const GetFormFromServer: React.FC = () => {
 
 export default function DynamicBuyerConfirmation() {
   return (
-    <div className={`flex items-center justify-center`}>
+    <div className={`flex max-w-md items-center justify-center`}>
       <Suspense>
         <GetFormFromServer />
       </Suspense>
