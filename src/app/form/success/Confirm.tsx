@@ -55,9 +55,9 @@ const GetFormFromServer: React.FC = () => {
 
   return (
     <div className="rounded-md">
-      <div className={`p-6 rounded-lg shadow-lg`}>
+      <div className={`p-6 max-w-md rounded-lg shadow-lg`}>
         <h2 className="text-2xl font-bold mb-4 text-center">명함 제작 준비가 완료되었습니다!</h2>
-        <div className="space-y-2">
+        <div className="space-y-2 overflow-hidden">
           {profileData.thumbnail ? (
           <div className="flex justify-center">
             <Image
@@ -78,8 +78,8 @@ const GetFormFromServer: React.FC = () => {
 
           <div>
             <p className="text-sm font-medium">QR Code</p>
-            <a href={profileData.code} target="_blank" rel="noopener noreferrer" className="text-sm truncate text-gray-500 hover:underline">
-              {profileData.code}
+            <a href={profileData.code} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:underline">
+              <span className="truncate">{profileData.code}</span>
             </a>
           </div>
 
@@ -101,7 +101,7 @@ const GetFormFromServer: React.FC = () => {
 
 export default function DynamicBuyerConfirmation() {
   return (
-    <div className={`flex max-w-md items-center justify-center`}>
+    <div className={`flex items-center justify-center`}>
       <Suspense>
         <GetFormFromServer />
       </Suspense>
