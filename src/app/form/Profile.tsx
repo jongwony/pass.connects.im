@@ -80,35 +80,28 @@ export default function ProfilePictureUpload() {
       return ''
     }
 
-    // 원본 이미지의 비율을 유지하면서 크기 조절
-    let scaleFactor = 1;
-    if (image.width > 180 || image.height > 180) {
-      scaleFactor = Math.min(180 / image.width, 180 / image.height);
-    }
     const { width, height, x, y } = pixelCrop
 
-    // 캔버스 크기를 크롭할 영역으로 설정하고 스케일 적용
-    const scaledWidth = width * scaleFactor;
-    const scaledHeight = height * scaleFactor;
-    canvas.width = scaledWidth;
-    canvas.height = scaledHeight;
+    // 캔버스 크기를 크롭할 영역으로 설정
+    canvas.width = width
+    canvas.height = height
 
     // 캔버스 중심으로 이동
-    ctx.translate(scaledWidth / 2, scaledHeight / 2);
-    ctx.rotate((rotation * Math.PI) / 180);
-    ctx.translate(-scaledWidth / 2, -scaledHeight / 2);
+    ctx.translate(width / 2, height / 2)
+    ctx.rotate((rotation * Math.PI) / 180)
+    ctx.translate(-width / 2, -height / 2)
 
     // 원형 클리핑 경로 설정
     ctx.beginPath()
-    ctx.arc(scaledWidth / 2, scaledHeight / 2, Math.min(scaledWidth, scaledHeight) / 2, 0, 2 * Math.PI);
+    ctx.arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI)
     ctx.closePath()
     ctx.clip()
 
     // 이미지를 캔버스에 그림
     ctx.drawImage(
       image,
-      x / scaleFactor, y / scaleFactor, width / scaleFactor, height / scaleFactor,
-      0, 0, scaledWidth, scaledHeight
+      x, y, width, height,
+      0, 0, width, height
     )
 
     return canvas.toDataURL('image/png')
