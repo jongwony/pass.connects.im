@@ -55,17 +55,21 @@ const GetFormFromServer: React.FC = () => {
 
   return (
     <div className="rounded-md">
-      <div className={`w-full max-w-md p-6 rounded-lg shadow-lg`}>
+      <div className={`p-6 rounded-lg shadow-lg`}>
         <h2 className="text-2xl font-bold mb-4 text-center">명함 제작 준비가 완료되었습니다!</h2>
         <div className="space-y-2">
-          {profileData.thumbnail && (<div className="flex justify-center">
+          {profileData.thumbnail ? (
+          <div className="flex justify-center">
             <Image
               src={profileData.thumbnail}
               alt="Profile Thumbnail"
               width={90}
               height={90}
             />
-          </div>)}
+          </div>
+          ) : (
+            <p className="text-sm text-gray-500">이미지가 첨부되지 않았습니다.</p>
+          )}
 
           <div>
             <p className="text-sm font-medium">이메일</p>
