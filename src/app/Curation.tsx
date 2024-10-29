@@ -91,6 +91,7 @@ export default function Curation() {
                   src={template.src} 
                   width={282} 
                   height={568}
+                  priority={true}
                   className={`transition-opacity duration-300 ${selectedTemplate === template.id ? 'opacity-50' : 'opacity-100'}`}
                 />
                 {selectedTemplate === template.id && (
