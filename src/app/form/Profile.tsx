@@ -104,7 +104,26 @@ export default function ProfilePictureUpload() {
       0, 0, width, height
     )
 
-    return canvas.toDataURL('image/png')
+    // 캔버스를 180 x 180 px로 리사이즈
+    const resizedCanvas = document.createElement('canvas')
+    resizedCanvas.width = 180
+    resizedCanvas.height = 180
+    const resizedCtx = resizedCanvas.getContext('2d')
+
+    if (resizedCtx) {
+      // 이미지 스무딩을 위한 설정
+      resizedCtx.imageSmoothingEnabled = true
+      resizedCtx.imageSmoothingQuality = 'high'
+
+      // 원본 캔버스의 내용을 리사이즈된 캔버스에 그림
+      resizedCtx.drawImage(
+        canvas,
+        0, 0, width, height,
+        0, 0, resizedCanvas.width, resizedCanvas.height
+      )
+    }
+
+    return resizedCanvas.toDataURL('image/png')
   }
 
   const handleCrop = useCallback(async () => {
