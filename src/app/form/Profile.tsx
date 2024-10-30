@@ -147,7 +147,7 @@ export default function ProfilePictureUpload() {
         className="flex px-4 py-2 space-x-2 text-white bg-gray-800 hover:bg-gray-600 rounded-md transition-colors"
       >
         <Upload />
-        <label htmlFor="upload">사진을 업로드 해주세요</label>
+        <label htmlFor="upload">프로필 사진 업로드</label>
       </button>
 
       <AnimatePresence>

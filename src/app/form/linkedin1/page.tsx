@@ -48,7 +48,7 @@ const FormPage: React.FC = () => {
     joinDate: "",
     code: "",
     email: "",
-    theme: undefined,
+    theme: "dark",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -124,7 +124,7 @@ const FormPage: React.FC = () => {
 
           <div className="space-y-4 w-full content-center">
             <div className="items-center space-x-2">
-              <label htmlFor="email" className="m-2 whitespace-nowrap text-sm font-medium">이메일</label>
+              <label htmlFor="email" className="m-2 whitespace-nowrap text-sm font-medium">이메일 <span className="text-red-500 font-semibold">*</span></label>
               <input
                 id="email"
                 type="email"
@@ -137,7 +137,7 @@ const FormPage: React.FC = () => {
               />
             </div>
             <div className="items-center space-x-2">
-              <label htmlFor="code" className="m-2 whitespace-nowrap text-sm font-medium">프로필 링크</label>
+              <label htmlFor="code" className="m-2 whitespace-nowrap text-sm font-medium">프로필 링크 <span className="text-red-500 font-semibold">*</span></label>
               <input
                 id="code"
                 name="code"
