@@ -5,7 +5,7 @@ import { ImageProvider } from './ImageContext';
 import { DisplayCroppedImage } from './CropImage';
 import ProfilePictureUpload from './Profile';
 import ChooseTemplate from './Template';
-import { FormDataTypes, Insta1Form, InstaSpecialForm, Linkedin1Form, Linkedin2Form } from './types';
+import { FormDataTypes, Insta1Form, InstaSpecialForm, Linkedin1Form, Linkedin2Form } from './Types';
 
 const templates = [
   {
