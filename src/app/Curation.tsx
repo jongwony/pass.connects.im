@@ -7,10 +7,10 @@ import { useRouter } from 'next/navigation';
 import styles from "./curation.module.css";
 
 const templates = [
-  { id: 'linkedin2', src: '/Linkedin2Light.png', alt: 'Linkedin2Light', path: '/form/linkedin2' },
-  { id: 'insta_special', src: '/InstaSpecial.png', alt: 'InstaSpecial', path: '/form/insta_special' },
-  { id: 'linkedin1', src: '/Linkedin1Dark.png', alt: 'Linkedin1Dark', path: '/form/linkedin1' },
-  { id: 'insta1', src: '/Insta1Light.png', alt: 'Insta1Light', path: '/form/insta1' },
+  { id: 'linkedin2', src: '/Linkedin2Light.png', alt: 'Linkedin2Light' },
+  { id: 'insta_special', src: '/InstaSpecial.png', alt: 'InstaSpecial' },
+  { id: 'linkedin1', src: '/Linkedin1Dark.png', alt: 'Linkedin1Dark' },
+  { id: 'insta1', src: '/Insta1Light.png', alt: 'Insta1Light' },
 ];
 
 export default function Curation() {
@@ -24,15 +24,6 @@ export default function Curation() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  const navigateToPage = () => {
-    if (selectedTemplate) {
-      const template = templates.find(t => t.id === selectedTemplate);
-      if (template) {
-        router.push(template.path);
-      }
-    }
-  };
 
   const handleImageInteraction = (id: string) => {
     if (isMobile) {
@@ -49,7 +40,7 @@ export default function Curation() {
       <div className="flex justify-center items-center">
         <button
           type="button"
-          onClick={() => router.push(templates[Math.floor(Math.random() * templates.length)].path)}
+          onClick={() => router.push('/form')}
           className="px-4 py-2 text-white font-semibold bg-blue-500 rounded-md
                       hover:bg-blue-600 transition-colors"
         >
@@ -74,19 +65,7 @@ export default function Curation() {
                   width={282}
                   height={568}
                   priority={true}
-                  className={`transition-opacity duration-300 ${selectedTemplate === template.id ? 'opacity-50' : 'opacity-100'}`}
                 />
-                {selectedTemplate === template.id && (
-                  <button
-                    type="button"
-                    onClick={navigateToPage}
-                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                               px-4 py-2 text-white font-semibold bg-blue-500 rounded-md 
-                               hover:bg-blue-600 transition-colors z-10"
-                  >
-                    만들기
-                  </button>
-                )}
               </div>
             ))}
 
@@ -103,19 +82,7 @@ export default function Curation() {
                   width={282}
                   height={568}
                   priority={true}
-                  className={`transition-opacity duration-300 ${selectedTemplate === template.id ? 'opacity-50' : 'opacity-100'}`}
                 />
-                {selectedTemplate === template.id && (
-                  <button
-                    type="button"
-                    onClick={navigateToPage}
-                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                               px-4 py-2 text-white font-semibold bg-blue-500 rounded-md 
-                               hover:bg-blue-600 transition-colors z-10"
-                  >
-                    만들기
-                  </button>
-                )}
               </div>
             ))}
           </div>
