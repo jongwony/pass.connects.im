@@ -159,7 +159,7 @@ const FormPage: React.FC = () => {
               />
             </div>
             <div className="items-center space-x-2">
-              <label htmlFor="joinDate" className="m-2 whitespace-nowrap text-sm font-medium">기간</label>
+              <label htmlFor="joinDate" className="m-2 whitespace-nowrap text-sm font-medium">근무 기간</label>
               <input
                 id="joinDate"
                 name="joinDate"
