@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -15,21 +15,6 @@ const templates = [
 
 export default function Curation() {
   const router = useRouter();
-  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const handleImageInteraction = (id: string) => {
-    if (isMobile) {
-      setSelectedTemplate(prevSelected => prevSelected === id ? null : id);
-    }
-  };
 
   return (
     <div className="relative mt-8">
@@ -55,9 +40,6 @@ export default function Curation() {
               <div
                 key={template.id}
                 className="relative group"
-                onMouseEnter={() => !isMobile && setSelectedTemplate(template.id)}
-                onMouseLeave={() => !isMobile && setSelectedTemplate(null)}
-                onClick={() => handleImageInteraction(template.id)}
               >
                 <Image
                   alt={template.alt}
@@ -74,7 +56,6 @@ export default function Curation() {
               <div
                 key={`clone-${template.id}`}
                 className={`${styles.clone} relative group`}
-                onClick={() => handleImageInteraction(template.id)}
               >
                 <Image
                   alt={template.alt}
