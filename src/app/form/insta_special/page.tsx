@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ImageProvider, useImageContext } from '../ImageContext'
 import ProfilePictureUpload from "../Profile";
 import ChooseTemplate from '@/app/Template';
+import { DisplayCroppedImage } from '../CropImage';
 
 interface FormData {
   thumbnail: string | null;
@@ -14,27 +15,6 @@ interface FormData {
   code: string;
   email: string;
 }
-
-const DisplayCroppedImage = ({ setFormData }: { setFormData: React.Dispatch<React.SetStateAction<FormData>> }) => {
-  const { croppedImage } = useImageContext();
-
-  useEffect(() => {
-    if (croppedImage) {
-      setFormData(prevData => ({ ...prevData, thumbnail: croppedImage }));
-    }
-  }, [croppedImage]);
-
-  return (
-    <div className="flex justify-center items-center w-full">
-      {croppedImage && (
-        <div>
-          <Image src={croppedImage} alt="Cropped" width={90} height={90} className="relative" />
-        </div>
-      )}
-    </div>
-  );
-};
-
 
 const FormPage: React.FC = () => {
   const router = useRouter();
@@ -135,7 +115,7 @@ const FormPage: React.FC = () => {
             </div>
 
             <ImageProvider>
-              <DisplayCroppedImage setFormData={setFormData} />
+              <DisplayCroppedImage<FormData> setFormData={setFormData} />
               <ProfilePictureUpload />
             </ImageProvider>
           </div>

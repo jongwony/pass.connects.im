@@ -28,7 +28,7 @@ export default function Component({ initialTheme = undefined, onThemeChange = ()
             }`}
           onClick={() => handleThemeChange('light')}
         >
-          <Image alt="Linkedin1Light" src="/Linkedin2Light.png" width={141} height={284} />
+          <Image alt="Linkedin2Light" src="/Linkedin2Light.png" width={141} height={284} />
           <input
             type="radio"
             name="theme"
