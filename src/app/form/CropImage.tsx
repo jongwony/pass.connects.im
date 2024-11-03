@@ -6,7 +6,7 @@ type DisplayCroppedImageProps<T> = {
   setFormData: Dispatch<SetStateAction<T>>;
 };
 
-export const DisplayCroppedImage = <T extends {}>({ setFormData }: DisplayCroppedImageProps<T>) => {
+export const DisplayCroppedImage = <T extends object>({ setFormData }: DisplayCroppedImageProps<T>) => {
   const { croppedImage } = useImageContext();
 
   useEffect(() => {
