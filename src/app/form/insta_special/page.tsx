@@ -2,7 +2,7 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { ImageProvider, useImageContext } from '../ImageContext'
+import { ImageProvider } from '../ImageContext'
 import ProfilePictureUpload from "../Profile";
 import ChooseTemplate from '@/app/Template';
 import { DisplayCroppedImage } from '../CropImage';
