@@ -6,7 +6,7 @@ export interface Insta1Form {
   bio?: string;
   code: string;
   email: string;
-  theme?: "light" | "dark";
+  theme: string;
 }
 
 export interface InstaSpecialForm {
@@ -17,6 +17,7 @@ export interface InstaSpecialForm {
   bio?: string;
   code: string;
   email: string;
+  theme: string;
 }
 
 export interface Linkedin1Form {
@@ -28,7 +29,7 @@ export interface Linkedin1Form {
   joinDate?: string;
   code: string;
   email: string;
-  theme?: "light" | "dark";
+  theme: string;
 }
 
 export interface Linkedin2Form {
@@ -39,7 +40,7 @@ export interface Linkedin2Form {
   company?: string;
   code: string;
   email: string;
-  theme?: "light" | "dark";
+  theme: string;
 }
 
 export type FormDataTypes = Insta1Form | InstaSpecialForm | Linkedin1Form | Linkedin2Form;

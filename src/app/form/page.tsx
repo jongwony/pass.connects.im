@@ -50,7 +50,7 @@ const FormPage = (): React.ReactElement => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const validateForm = useCallback(() => {
-    return formData.email !== '' && formData.code !== '';
+    return formData.email !== '';
   }, [formData]);
 
   useEffect(() => {
@@ -126,7 +126,6 @@ const FormPage = (): React.ReactElement => {
         <form onSubmit={sendFormData} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
           <ChooseTemplate
             templates={templates}
-            initialTheme={"dark"}
             onThemeChange={theme => setFormData(prevData => ({ ...prevData, theme }))}
             onTemplateChange={(template) => {
               setFormData(prevData => ({ ...prevData, template }));

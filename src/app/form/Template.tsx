@@ -8,22 +8,22 @@ import Image from "next/image"
 
 interface TemplateProps {
   templates: {id: string, name: string, path: string, src: string, dark: string, light: string}[];
-  initialTheme?: "light" | "dark";
-  onThemeChange: (theme: "light" | "dark") => void;
+  onThemeChange: (theme: string) => void;
   onTemplateChange: (template: string) => void;
 }
 
-export default function ChooseTemplate({ templates, initialTheme, onThemeChange, onTemplateChange }: TemplateProps) {
+export default function ChooseTemplate({ templates, onThemeChange, onTemplateChange }: TemplateProps) {
   const [currentTemplate, setCurrentTemplate] = useState(0);
   const [dragStart, setDragStart] = useState(0);
-  const [currentTheme, setCurrentTheme] = useState<"light" | "dark">(initialTheme || "dark");
+  const [currentTheme, setCurrentTheme] = useState('dark');
   const [direction, setDirection] = useState(1); // 방향 상태 유지
 
   useEffect(() => {
     onTemplateChange(templates[currentTemplate].id);
+    onThemeChange(currentTheme);
   }, [currentTemplate]);
 
-  const handleThemeChange = (theme: "light" | "dark") => {
+  const handleThemeChange = (theme: string) => {
     setCurrentTheme(theme)
     onThemeChange(theme)
   }
@@ -130,8 +130,8 @@ export default function ChooseTemplate({ templates, initialTheme, onThemeChange,
         </button>
       </div>
  
-      {(templates[currentTemplate].src === '') && 
-        <div className="flex justify-center items-center gap-4">
+      {(templates[currentTemplate].src === '') ? (
+      <div className="flex justify-center items-center gap-4">
         <button
           type="button"
           onClick={() => handleThemeChange("light")}
@@ -146,7 +146,17 @@ export default function ChooseTemplate({ templates, initialTheme, onThemeChange,
             }`}
           aria-label="Dark theme"
         />
-      </div>}
+      </div>
+      ) : (
+      <div className="flex justify-center items-center gap-4">
+        <button
+          type="button"
+          className={`w-8 h-8 rounded-full border-2 bg-black transition-all bg-gradient-to-tr from-yellow-500 via-pink-500 to-blue-500 border-blue-500 scale-110"
+            }`}
+          aria-label="Special theme"
+        />
+      </div>
+      )}
     </div>
   )
 }
