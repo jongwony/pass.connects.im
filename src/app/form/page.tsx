@@ -168,21 +168,21 @@ const FormPage = (): React.ReactElement => {
       {isInstaForm(formData) && (
         <>
           <div className="items-center space-x-2">
-            <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
-            <input
-              id="name"
-              name="name"
-              value={formData.name || ''}
-              onChange={handleChange}
-              className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-            />
-          </div>
-          <div className="items-center space-x-2">
             <label htmlFor="id" className="m-2 whitespace-nowrap text-sm font-medium">아이디</label>
             <input
               id="id"
               name="id"
               value={formData.id || ''}
+              onChange={handleChange}
+              className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+            />
+          </div>
+          <div className="items-center space-x-2">
+            <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
+            <input
+              id="name"
+              name="name"
+              value={formData.name || ''}
               onChange={handleChange}
               className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
             />
