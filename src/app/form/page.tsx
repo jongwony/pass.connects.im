@@ -47,15 +47,6 @@ const FormPage = (): React.ReactElement => {
   const [formData, setFormData] = useState<FormDataTypes>(() => ({} as FormDataTypes));
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-
-  const validateForm = useCallback(() => {
-    return formData.email !== '';
-  }, [formData]);
-
-  useEffect(() => {
-    setIsButtonDisabled(!validateForm());
-  }, [formData, validateForm]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -252,11 +243,11 @@ const FormPage = (): React.ReactElement => {
               <button
                 className="w-full m-2 p-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors disabled:bg-gray-400"
                 type="submit"
-                disabled={isSubmitting || isButtonDisabled}
+                disabled={isSubmitting}
               >
-                {isSubmitting ? '처리 중...' : '명함 생성 후 결제하기'}
+                {isSubmitting ? '처리 중...' : '샘플 받아보기'}
               </button>
-              <small>구매 후 Apple Wallet에 저장할 수 있습니다.</small>
+              <small>이메일로 곧 샘플을 보내드립니다.</small>
 
               {errorMessage && (
                 <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
