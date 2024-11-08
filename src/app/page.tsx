@@ -2,10 +2,13 @@
 import Hero from "./Hero";
 import Curation from "./Curation";
 import { QrCode, Scan, IdCard } from "lucide-react";
+import GTM from "./GTM";
 
 export default function Home() {
   return (
     <div>
+      <GTM />
+
       <Hero />
 
       <div className="flex flex-col sm:flex-row item-center align-center justify-center p-8 gap-8">
