@@ -9,9 +9,15 @@ import { FormDataTypes, Insta1Form, InstaSpecialForm, Linkedin1Form, Linkedin2Fo
 
 const templates = [
   {
+    id: 'linkedin3',
+    name: 'LinkedIn: 가운데 정렬된 템플릿',
+    src: '',
+    dark: '/Linkedin3Dark.png',
+    light: '/Linkedin3Light.png',
+  },
+  {
     id: 'linkedin2',
     name: 'LinkedIn: 직무를 강조하는 템플릿',
-    path: '/form/linkedin2',
     src: '',
     dark: '/Linkedin2Dark.png',
     light: '/Linkedin2Light.png',
@@ -19,7 +25,6 @@ const templates = [
   {
     id: 'linkedin1',
     name: 'LinkedIn: 근무기간을 포함하는 템플릿',
-    path: '/form/linkedin1',
     src: '',
     dark: '/Linkedin1Dark.png',
     light: '/Linkedin1Light.png',
@@ -27,7 +32,6 @@ const templates = [
   {
     id: 'insta_special',
     name: 'Instagram: 컬러풀한 템플릿',
-    path: '/form/insta_special',
     src: '/InstaSpecial.png',
     dark: '',
     light: '',
@@ -35,7 +39,6 @@ const templates = [
   {
     id: 'insta1',
     name: 'Instagram: 깔끔한 템플릿',
-    path: '/form/insta1',
     src: '',
     dark: '/Insta1Dark.png',
     light: '/Insta1Light.png',
@@ -68,6 +71,7 @@ const FormPage = (): React.ReactElement => {
           break;
         case 'linkedin1':
         case 'linkedin2':
+        case 'linkedin3':
           endpoint = 'https://9e240d7v0k.execute-api.ap-northeast-2.amazonaws.com/api/v1/passes/pass.com.passconnect/linkedin';
           break;
         default:
@@ -108,7 +112,7 @@ const FormPage = (): React.ReactElement => {
   };
 
   const isLinkedin2Form = (data: FormDataTypes): data is Linkedin2Form => {
-    return data.template === 'linkedin2';
+    return data.template === 'linkedin2' || data.template === 'linkedin3';
   };
 
   return (

@@ -7,7 +7,7 @@ import Image from "next/image"
 
 
 interface TemplateProps {
-  templates: {id: string, name: string, path: string, src: string, dark: string, light: string}[];
+  templates: {id: string, name: string, src: string, dark: string, light: string}[];
   onThemeChange: (theme: string) => void;
   onTemplateChange: (template: string) => void;
 }
