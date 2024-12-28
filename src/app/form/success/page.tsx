@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, Suspense } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Check, Copy } from 'lucide-react';
 import Link from 'next/link';
@@ -33,8 +33,23 @@ const CopyIssueCode: React.FC = () => {
   )
 }
 
+const isMobile = () => {
+  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+};
+
 export default function SuccessPage() {
   const router = useRouter();
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    if (!isMobile()) {
+      setShowPopup(true);
+    }
+  }, []);
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
@@ -91,12 +106,31 @@ export default function SuccessPage() {
           className="w-full my-2 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors"
           type="submit"
           onClick={() => {
-            router.push('supertoss://send?amount=2000&bank=%ED%86%A0%EC%8A%A4%EB%B1%85%ED%81%AC&accountNo=100007643029&origin=qr')
+            if (isMobile()) {
+              router.push('supertoss://send?amount=2000&bank=%ED%86%A0%EC%8A%A4%EB%B1%85%ED%81%AC&accountNo=100007643029&origin=qr');
+            } else {
+              setShowPopup(true);
+            }
           }}
         >
           토스로 2000원 후원하기
         </button>
       </div>
+
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h2 className="text-xl font-bold mb-4">모바일 환경에서 이용해 주세요</h2>
+            <p className="mb-4">이 기능은 모바일 환경에서 토스 앱을 사용해야 합니다. 모바일 기기에서 요청해 주세요.</p>
+            <button
+              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+              onClick={handleClosePopup}
+            >
+              닫기
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

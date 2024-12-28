@@ -54,46 +54,48 @@ const GetFormFromServer: React.FC = () => {
   }
 
   return (
-    <div className="rounded-md">
-      <div className={`p-6 max-w-sm rounded-lg shadow-lg`}>
-        <h2 className="text-2xl font-bold mb-4 text-center">요청한 내용을 확인해 보세요</h2>
-        <p className="text-gray-500 font-semibold text-center">잘못된 부분이 있다면, 다시 만들어 주세요</p>
-        <div className="space-y-2 overflow-hidden">
-          {profileData.thumbnail ? (
-          <div className="flex justify-center">
-            <Image
-              src={profileData.thumbnail}
-              alt="Profile Thumbnail"
-              width={90}
-              height={90}
-            />
-          </div>
-          ) : (
-            <p className="text-sm text-gray-500">이미지가 첨부되지 않았습니다.</p>
-          )}
+    <div>
+      <div className={`p-6 rounded-lg shadow-lg`}>
+          <h2 className="text-2xl font-bold mb-4 text-center">요청한 내용을 확인해 보세요</h2>
+          <p className="text-gray-500 font-semibold text-center">아래 내용이 맞나요?</p>
+          <p className="text-gray-500 font-semibold text-center">잘못된 부분이 있다면, 다시 만들어 주세요</p>
+      </div>
 
-          <div>
-            <p className="text-sm font-medium">이메일</p>
-            <p className="text-sm text-gray-500">{profileData.email}</p>
-          </div>
-
-          <div>
-            <p className="text-sm font-medium">QR Code</p>
-            <a href={profileData.code} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:underline">
-              <span className="truncate">{profileData.code}</span>
-            </a>
-          </div>
-
-          {/* code, email, thumbnail 키를 제외한 나머지 키-값을 순회 */}
-          {Object.entries(profileData)
-            .filter(([key]) => !['code', 'email', 'thumbnail', 'issue_code', 'type', 'timestamp'].includes(key))
-            .map(([key, value]) => (
-              <div key={key}>
-                <p className="text-sm font-medium">{key}</p>
-                <code className="text-sm text-gray-500">{String(value) || "<비어 있음>"}</code>
-              </div>
-            ))}
+      <div className="space-y-2 overflow-hidden border border-gray-400 p-8 rounded-lg shadow-md w-full max-w-md">
+        {profileData.thumbnail ? (
+        <div className="flex justify-center">
+          <Image
+            src={profileData.thumbnail}
+            alt="Profile Thumbnail"
+            width={90}
+            height={90}
+          />
         </div>
+        ) : (
+          <p className="text-lg font-bold text-center text-red-400 mb-4">이미지가 첨부되지 않았어요!</p>
+        )}
+
+        <div>
+          <p className="text-sm font-medium">이메일</p>
+          <p className="text-sm text-gray-500">{profileData.email}</p>
+        </div>
+
+        <div>
+          <p className="text-sm font-medium">QR Code</p>
+          <a href={profileData.code} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:underline">
+            <span className="truncate">{profileData.code}</span>
+          </a>
+        </div>
+
+        {/* code, email, thumbnail 키를 제외한 나머지 키-값을 순회 */}
+        {Object.entries(profileData)
+          .filter(([key]) => !['code', 'email', 'thumbnail', 'issue_code', 'type', 'timestamp'].includes(key))
+          .map(([key, value]) => (
+            <div key={key}>
+              <p className="text-sm font-medium">{key}</p>
+              <code className="text-sm text-gray-500">{String(value) || "<비어 있음>"}</code>
+            </div>
+          ))}
       </div>
     </div>
   )
