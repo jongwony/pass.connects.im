@@ -249,9 +249,9 @@ const FormPage = (): React.ReactElement => {
                 type="submit"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? '처리 중...' : '샘플 받아보기'}
+                {isSubmitting ? '처리 중...' : '대기열 등록하기'}
               </button>
-              <small>이메일로 곧 샘플을 보내드립니다.</small>
+              <small>결과물을 곧 이메일로 보내드리니, 모바일에서 확인해보세요.</small>
 
               {errorMessage && (
                 <p className="text-red-500 text-sm mt-2">{errorMessage}</p>

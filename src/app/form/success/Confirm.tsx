@@ -56,8 +56,8 @@ const GetFormFromServer: React.FC = () => {
   return (
     <div className="rounded-md">
       <div className={`p-6 max-w-sm rounded-lg shadow-lg`}>
-        <h2 className="text-2xl font-bold mb-4 text-center">명함 제작 준비가 완료되었습니다!</h2>
-        <p className="text-md text-gray-500 font-semibold mb-4 text-center">샘플을 곧 이메일로 보내드립니다.</p>
+        <h2 className="text-2xl font-bold mb-4 text-center">요청한 내용을 확인해 보세요</h2>
+        <p className="text-gray-500 font-semibold text-center">잘못된 부분이 있다면, 다시 만들어 주세요</p>
         <div className="space-y-2 overflow-hidden">
           {profileData.thumbnail ? (
           <div className="flex justify-center">
