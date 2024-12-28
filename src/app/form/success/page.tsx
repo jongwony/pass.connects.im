@@ -61,7 +61,7 @@ export default function SuccessPage() {
         <ol className="list-decimal list-inside space-y-2">
           <li><strong>iPhone 또는 iPad</strong>에서 이메일을 열어주세요.</li>
           <li>첨부된 파일인 <em>PassConnect.pkpass</em>를 탭합니다.</li>
-          <li>나타나는 화면 오른쪽 상단에 있는 <strong>"추가"</strong> 버튼을 눌러 Apple 지갑에 추가합니다.</li>
+          <li>나타나는 화면 오른쪽 상단에 있는 <strong>추가</strong> 버튼을 눌러 Apple 지갑에 추가합니다.</li>
         </ol>
       </div>
 
