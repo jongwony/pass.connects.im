@@ -1,6 +1,7 @@
 'use client'
 
-import DynamicBuyerConfirmation from './Confirm';
+import { Suspense } from 'react';
+import GetInfo from './Info';
 import Sponsor from '@/app/Sponsor';
 import Cancel from './Cancel';
 
@@ -10,12 +11,15 @@ export default function SuccessPage() {
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <h1 className="text-2xl font-bold">성공적으로 대기열에 등록되었습니다</h1>
 
-      <DynamicBuyerConfirmation />
+      <Suspense>
+        <GetInfo />
+      </Suspense>
 
       <div className="p-8 rounded-lg shadow-md w-full text-center">
         <h2 className="text-xl font-bold m-4">
-          모바일 환경에서 이메일을 열어주세요.
+          하루 내에 이메일이 도착할 예정입니다.
         </h2>
+        <p>모바일 환경에서 이메일을 확인해 주세요.</p>
         <p>첨부된 파일을 탭하여 따로 앱 설치 없이 Apple 지갑에 추가할 수 있습니다.</p>
       </div>
 
@@ -35,9 +39,11 @@ export default function SuccessPage() {
         </ol>
       </div>
 
-      <Cancel />
-
       <Sponsor />
+
+      <Suspense>
+        <Cancel />
+      </Suspense>
 
     </div>
   )

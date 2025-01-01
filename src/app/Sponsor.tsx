@@ -26,7 +26,7 @@ export default function Sponsor() {
                 <p className="text-gray-400">
                     이 프로젝트는 아래와 같은 문제 인식에서 출발했어요.
                 </p>
-                <blockquote className="italic m-4">
+                <blockquote className="italic font-semibold m-4">
                     내 프로필 페이지를 소개하는데 <br /> 모두가 내 아이디를 검색하는 일이 번거롭다.
                 </blockquote>
                 <p className="text-gray-400 mb-2">
