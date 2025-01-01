@@ -1,7 +1,5 @@
 'use client'
-
 import { Suspense } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
 import GetInfo from './Info';
 import Sponsor from '@/app/Sponsor';
 import Cancel from './Cancel';
