@@ -101,13 +101,13 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              transition={{ type: "spring", stiffness: 1000, damping: 50 }}
               className="relative"
             >
               <Image
                 src={templates[currentTemplate].src !== '' ? templates[currentTemplate].src : (currentTheme === 'dark' ? templates[currentTemplate].dark : templates[currentTemplate].light)}
                 alt={templates[currentTemplate].name}
-                className={`aspect-[1/2] object-cover transition-colors duration-200`}
+                className={`aspect-[1/2] object-cover transition-colors duration-100`}
                 width={282}
                 height={568}
               />
