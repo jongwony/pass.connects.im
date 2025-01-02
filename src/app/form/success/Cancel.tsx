@@ -52,7 +52,7 @@ const Cancel: React.FC = () => {
       <div className="text-center m-4">
         <button
           onClick={handleShowConfirmPopup}
-          className={`${from === 'email' ? 'bg-green-600' : 'bg-red-500'} text-white font-semibold px-4 py-2 rounded hover:bg-opacity-80 transition-colors`}
+          className={`bg-red-500 text-white font-semibold px-4 py-2 rounded hover:bg-opacity-80 transition-colors`}
         >
           삭제하기
         </button>
@@ -61,20 +61,20 @@ const Cancel: React.FC = () => {
       {showConfirmPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-            <h2 className="text-xl font-bold mb-4">정말 삭제하시겠습니까?</h2>
-            <p className="mb-4">이 작업은 되돌릴 수 없습니다.</p>
-            <div className="flex justify-center space-x-4">
-              <button
-                className={`px-4 py-2 ${from === 'email' ? 'bg-green-600' : 'bg-red-500'} text-white rounded-md hover:bg-opacity-80 transition-colors`}
-                onClick={() => handleCancel(issueCode)}
-              >
-                삭제
-              </button>
+            <h2 className="text-xl font-bold mb-2">정말 삭제하시겠습니까?</h2>
+            <p className="mb-8">이 작업은 되돌릴 수 없습니다.</p>
+            <div className="space-x-4">
               <button
                 className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
                 onClick={handleCloseConfirmPopup}
               >
                 취소
+              </button>
+              <button
+                className={`px-4 py-2 bg-red-500 text-white rounded-md hover:bg-opacity-80 transition-colors`}
+                onClick={() => handleCancel(issueCode)}
+              >
+                삭제
               </button>
             </div>
           </div>
