@@ -32,7 +32,7 @@ const Hero: React.FC = () => {
       {/* Header */}
       <header className="flex flex-col text-center p-8">
         <h1 className="text-3xl font-bold mb-4">Pass Connect</h1>
-        <p className="text-gray-400 text-xl">
+        <p className="text-gray-400 text-lg">
           <span
             className={`inline-block transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'
               }`}
@@ -40,7 +40,7 @@ const Hero: React.FC = () => {
             {text}
           </span>
         </p>
-        <p className="text-gray-400 text-xl">
+        <p className="text-gray-400 text-lg">
           Apple Wallet 앱에 담으세요.
         </p>
 
