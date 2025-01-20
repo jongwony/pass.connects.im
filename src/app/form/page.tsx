@@ -5,9 +5,17 @@ import { ImageProvider } from './ImageContext';
 import { DisplayCroppedImage } from './CropImage';
 import ProfilePictureUpload from './Profile';
 import ChooseTemplate from './Template';
-import { FormDataTypes, Insta1Form, InstaSpecialForm, Linkedin1Form, Linkedin2Form } from './Types';
+import { FormDataTypes, Insta1Form, InstaSpecialForm, Linkedin1Form, Linkedin2Form, KakaopayForm } from './Types';
+import { MessageCircleQuestion } from 'lucide-react';
 
 const templates = [
+  {
+    id: 'kakaopay1',
+    name: 'KakaoPay: 로고가 가운데에 있는 템플릿',
+    src: '/kakaopay1.png',
+    dark: '',
+    light: '',
+  },
   {
     id: 'linkedin3',
     name: 'LinkedIn: 가운데 정렬된 템플릿',
@@ -50,6 +58,12 @@ const FormPage = (): React.ReactElement => {
   const [formData, setFormData] = useState<FormDataTypes>(() => ({} as FormDataTypes));
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handlePopupToggle = () => {
+    console.log('test', showPopup)
+    setShowPopup(prevState => !prevState);
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -115,6 +129,10 @@ const FormPage = (): React.ReactElement => {
     return data.template === 'linkedin2' || data.template === 'linkedin3';
   };
 
+  const isKakaoPayForm = (data: FormDataTypes): data is KakaopayForm => {
+    return data.template === 'kakaopay1';
+  }
+
   return (
     <div className="flex min-h-screen bg-zinc-900 text-zinc-100">
       <div className="flex-1 flex items-center justify-center p-4">
@@ -147,7 +165,55 @@ const FormPage = (): React.ReactElement => {
               />
             </div>
             <div className="items-center space-x-2">
-              <label htmlFor="code" className="m-2 whitespace-nowrap text-sm font-medium">프로필 링크 <span className="text-red-500 font-semibold">*</span></label>
+              <label htmlFor="code" className="m-2 whitespace-nowrap text-sm font-medium">
+                {isKakaoPayForm(formData) ? (
+                  <>
+                    <span>
+                      송금 QR 코드
+                    </span>
+                    <span className="text-red-500 font-semibold"> * </span>
+                    <button
+                      onClick={handlePopupToggle}
+                      className="text-blue-500"
+                      type="button"
+                    >
+                      <MessageCircleQuestion className="text-gray-400" />
+                    </button>
+
+                    {/* 팝업 표시 */}
+                    {showPopup && (
+                      <div className="fixed inset-0 flex flex-col gap-4 items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm">
+                        <video className="rounded-2xl w-64 object-cover" autoPlay loop muted>
+                          <source src="/get_kakao_url_guide.mp4" type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+
+                        <div className="text-center">
+                          <p className="font-semibold">
+                            카톡 더보기 &gt; Kakao Pay &gt; 페이머니 &gt; 송금코드 &gt; 링크복사
+                          </p>
+                          <p className="text-gray-500">
+                            복사한 송금 QR 링크를 이곳에 붙여넣기 해주세요.
+                          </p>
+                        </div>
+
+                        <button
+                          onClick={handlePopupToggle}
+                          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                          type="button"
+                        >
+                          닫기
+                        </button>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    프로필 링크
+                    <span className="text-red-500 font-semibold"> *</span>
+                  </>
+                )}
+              </label>
               <input
                 id="code"
                 name="code"
@@ -159,89 +225,105 @@ const FormPage = (): React.ReactElement => {
               />
             </div>
 
-      {/* Insta 폼 필드 */}
-      {isInstaForm(formData) && (
-        <>
-          <div className="items-center space-x-2">
-            <label htmlFor="id" className="m-2 whitespace-nowrap text-sm font-medium">아이디</label>
-            <input
-              id="id"
-              name="id"
-              value={formData.id || ''}
-              onChange={handleChange}
-              className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-            />
-          </div>
-          <div className="items-center space-x-2">
-            <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
-            <input
-              id="name"
-              name="name"
-              value={formData.name || ''}
-              onChange={handleChange}
-              className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-            />
-          </div>
-          <div className="items-center space-x-2">
-            <label htmlFor="bio" className="m-2 whitespace-nowrap text-sm font-medium">소개</label>
-            <input
-              id="bio"
-              name="bio"
-              value={formData.bio || ''}
-              onChange={handleChange}
-              className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-            />
-          </div>
-        </>
-      )}
+            {/* Kakao Pay 폼 필드 */}
+            {isKakaoPayForm(formData) && (
+              <>
+                <div className="items-center space-x-2">
+                  <label htmlFor="id" className="m-2 whitespace-nowrap text-sm font-medium">텍스트</label>
+                  <input
+                    id="text"
+                    name="text"
+                    value={formData.text || ''}
+                    onChange={handleChange}
+                    className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                  />
+                </div>
+              </>
+            )}
 
-      {/* LinkedIn 폼 필드 */}
-      {(isLinkedin1Form(formData) || isLinkedin2Form(formData)) && (
-        <>
-          <div className="items-center space-x-2">
-            <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
-            <input
-              id="name"
-              name="name"
-              value={formData.name || ''}
-              onChange={handleChange}
-              className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-            />
-          </div>
-          <div className="items-center space-x-2">
-            <label htmlFor="role" className="m-2 whitespace-nowrap text-sm font-medium">직함</label>
-            <input
-              id="role"
-              name="role"
-              value={formData.role || ''}
-              onChange={handleChange}
-              className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-            />
-          </div>
-          <div className="items-center space-x-2">
-            <label htmlFor="company" className="m-2 whitespace-nowrap text-sm font-medium">회사</label>
-            <input
-              id="company"
-              name="company"
-              value={formData.company || ''}
-              onChange={handleChange}
-              className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-            />
-          </div>
-          {isLinkedin1Form(formData) && (
-            <div className="items-center space-x-2">
-              <label htmlFor="joinDate" className="m-2 whitespace-nowrap text-sm font-medium">근무 기간</label>
-              <input
-                id="joinDate"
-                name="joinDate"
-                value={formData.joinDate || ''}
-                onChange={handleChange}
-                className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
-              />
-            </div>
-          )}
-        </>
-      )}
+            {/* Insta 폼 필드 */}
+            {isInstaForm(formData) && (
+              <>
+                <div className="items-center space-x-2">
+                  <label htmlFor="id" className="m-2 whitespace-nowrap text-sm font-medium">아이디</label>
+                  <input
+                    id="id"
+                    name="id"
+                    value={formData.id || ''}
+                    onChange={handleChange}
+                    className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                  />
+                </div>
+                <div className="items-center space-x-2">
+                  <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
+                  <input
+                    id="name"
+                    name="name"
+                    value={formData.name || ''}
+                    onChange={handleChange}
+                    className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                  />
+                </div>
+                <div className="items-center space-x-2">
+                  <label htmlFor="bio" className="m-2 whitespace-nowrap text-sm font-medium">소개</label>
+                  <input
+                    id="bio"
+                    name="bio"
+                    value={formData.bio || ''}
+                    onChange={handleChange}
+                    className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                  />
+                </div>
+              </>
+            )}
+
+            {/* LinkedIn 폼 필드 */}
+            {(isLinkedin1Form(formData) || isLinkedin2Form(formData)) && (
+              <>
+                <div className="items-center space-x-2">
+                  <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
+                  <input
+                    id="name"
+                    name="name"
+                    value={formData.name || ''}
+                    onChange={handleChange}
+                    className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                  />
+                </div>
+                <div className="items-center space-x-2">
+                  <label htmlFor="role" className="m-2 whitespace-nowrap text-sm font-medium">직함</label>
+                  <input
+                    id="role"
+                    name="role"
+                    value={formData.role || ''}
+                    onChange={handleChange}
+                    className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                  />
+                </div>
+                <div className="items-center space-x-2">
+                  <label htmlFor="company" className="m-2 whitespace-nowrap text-sm font-medium">회사</label>
+                  <input
+                    id="company"
+                    name="company"
+                    value={formData.company || ''}
+                    onChange={handleChange}
+                    className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                  />
+                </div>
+                {isLinkedin1Form(formData) && (
+                  <div className="items-center space-x-2">
+                    <label htmlFor="joinDate" className="m-2 whitespace-nowrap text-sm font-medium">근무 기간</label>
+                    <input
+                      id="joinDate"
+                      name="joinDate"
+                      value={formData.joinDate || ''}
+                      onChange={handleChange}
+                      className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                    />
+                  </div>
+                )}
+              </>
+            )}
 
             <div className="items-center justify-center">
               <button
@@ -258,6 +340,7 @@ const FormPage = (): React.ReactElement => {
               )}
             </div>
           </div>
+
         </form>
       </div>
     </div>

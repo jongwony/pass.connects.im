@@ -80,6 +80,17 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
     })
   };
 
+  const themeStyles: Record<string, string> = {
+    light: "bg-white border-blue-500 scale-110",
+    dark: "bg-black border-blue-500 scale-110",
+    insta_special: "bg-gradient-to-tr from-yellow-500 via-pink-500 to-blue-500 border-blue-500 scale-110",
+    kakaopay1: "bg-yellow-300 border-blue-500 scale-110",
+  };
+
+  const getThemeStyle = (theme: string) => {
+    return themeStyles[theme] || "border-transparent"; // 기본값 처리
+  };
+
   return (
     <div className="w-full max-w-md mx-auto space-y-8">
       <div className="relative rounded-2xl bg-zinc-900">
@@ -130,33 +141,32 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
         </button>
       </div>
  
+      <div className="flex justify-center items-center gap-4">
       {(templates[currentTemplate].src === '') ? (
-      <div className="flex justify-center items-center gap-4">
-        <button
-          type="button"
-          onClick={() => handleThemeChange("light")}
-          className={`w-8 h-8 rounded-full border-2 bg-white transition-all ${currentTheme === "light" ? "border-blue-500 scale-110" : "border-transparent"
-            }`}
-          aria-label="Light theme"
-        />
-        <button
-          type="button"
-          onClick={() => handleThemeChange("dark")}
-          className={`w-8 h-8 rounded-full border-2 bg-black transition-all ${currentTheme === "dark" ? "border-blue-500 scale-110" : "border-transparent"
-            }`}
-          aria-label="Dark theme"
-        />
-      </div>
+        <>
+          <button
+            type="button"
+            onClick={() => handleThemeChange("light")}
+            className={`w-8 h-8 rounded-full border-2 bg-white transition-all ${currentTheme === "light" ? "border-blue-500 scale-110" : "border-transparent"
+              }`}
+            aria-label="Light theme"
+          />
+          <button
+            type="button"
+            onClick={() => handleThemeChange("dark")}
+            className={`w-8 h-8 rounded-full border-2 bg-black transition-all ${currentTheme === "dark" ? "border-blue-500 scale-110" : "border-transparent"
+              }`}
+            aria-label="Dark theme"
+          />
+        </>
       ) : (
-      <div className="flex justify-center items-center gap-4">
         <button
           type="button"
-          className={`w-8 h-8 rounded-full border-2 bg-black transition-all bg-gradient-to-tr from-yellow-500 via-pink-500 to-blue-500 border-blue-500 scale-110"
-            }`}
+          className={`w-8 h-8 rounded-full border-2 bg-black transition-all ${getThemeStyle(templates[currentTemplate].id)}`}
           aria-label="Special theme"
         />
-      </div>
       )}
     </div>
+  </div>
   )
 }

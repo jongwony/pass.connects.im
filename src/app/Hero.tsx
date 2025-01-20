@@ -5,8 +5,10 @@ import Image from 'next/image';
 const Hero: React.FC = () => {
   const router = useRouter();
   const states = [
-    { text: '내 LinkedIn 프로필을', image: '/hero_linkedin.png' },
-    { text: '내 Instagram 프로필을', image: '/hero_instagram.png' },
+    { text: 'LinkedIn 프로필을', image: '/hero_linkedin.png' },
+    { text: 'Instagram 프로필을', image: '/hero_instagram.png' },
+    { text: '카카오페이로 송금하는 QR코드를', image: '/hero_kakao.png' },
+    // { text: '토스뱅크로 송금하는 QR코드를', image: '/hero_toss.png' },
   ];
 
   const [currentStateIndex, setCurrentStateIndex] = useState(0);

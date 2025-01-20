@@ -43,4 +43,13 @@ export interface Linkedin2Form {
   theme: string;
 }
 
-export type FormDataTypes = Insta1Form | InstaSpecialForm | Linkedin1Form | Linkedin2Form;
+export interface KakaopayForm {
+  template: string;
+  thumbnail?: string;
+  text?: string;
+  code: string;
+  email: string;
+  theme: string;
+}
+
+export type FormDataTypes = Insta1Form | InstaSpecialForm | Linkedin1Form | Linkedin2Form | KakaopayForm;
