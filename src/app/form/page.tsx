@@ -88,6 +88,10 @@ const FormPage = (): React.ReactElement => {
         case 'linkedin3':
           endpoint = 'https://9e240d7v0k.execute-api.ap-northeast-2.amazonaws.com/api/v1/passes/pass.com.passconnect/linkedin';
           break;
+        case 'kakaopay1':
+        case 'kakaopay2':
+          endpoint = 'https://9e240d7v0k.execute-api.ap-northeast-2.amazonaws.com/api/v1/passes/pass.com.passconnect/kakaopay';
+          break;
         default:
           endpoint = 'https://your-api.com/api/default';
           break;
