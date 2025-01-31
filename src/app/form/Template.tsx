@@ -85,6 +85,7 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
     dark: "bg-black border-blue-500 scale-110",
     insta_special: "bg-gradient-to-tr from-yellow-500 via-pink-500 to-blue-500 border-blue-500 scale-110",
     kakaopay1: "bg-yellow-300 border-blue-500 scale-110",
+    tosspay1: "bg-black border-blue-500 scale-110",
   };
 
   const getThemeStyle = (theme: string) => {

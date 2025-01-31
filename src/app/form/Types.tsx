@@ -52,4 +52,11 @@ export interface KakaopayForm {
   theme: string;
 }
 
-export type FormDataTypes = Insta1Form | InstaSpecialForm | Linkedin1Form | Linkedin2Form | KakaopayForm;
+export interface TosspayForm {
+  template: string;
+  code: string;
+  email: string;
+  theme: string;
+}
+
+export type FormDataTypes = Insta1Form | InstaSpecialForm | Linkedin1Form | Linkedin2Form | KakaopayForm | TosspayForm;

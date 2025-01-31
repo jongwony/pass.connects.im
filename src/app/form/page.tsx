@@ -1,17 +1,25 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { ImageProvider } from './ImageContext';
 import { DisplayCroppedImage } from './CropImage';
 import ProfilePictureUpload from './Profile';
 import ChooseTemplate from './Template';
-import { FormDataTypes, Insta1Form, InstaSpecialForm, Linkedin1Form, Linkedin2Form, KakaopayForm } from './Types';
+import { FormDataTypes, Insta1Form, InstaSpecialForm, Linkedin1Form, Linkedin2Form, KakaopayForm, TosspayForm } from './Types';
 import { MessageCircleQuestion } from 'lucide-react';
 
 const templates = [
   {
+    id: 'tosspay1',
+    name: 'Toss: 로고가 가운데 있는 템플릿',
+    src: '/tosspay1.png',
+    dark: '',
+    light: '',
+  },
+  {
     id: 'kakaopay1',
-    name: 'KakaoPay: 로고가 가운데에 있는 템플릿',
+    name: 'KakaoPay: 로고가 가운데 있는 템플릿',
     src: '/kakaopay1.png',
     dark: '',
     light: '',
@@ -92,6 +100,9 @@ const FormPage = (): React.ReactElement => {
         case 'kakaopay2':
           endpoint = 'https://9e240d7v0k.execute-api.ap-northeast-2.amazonaws.com/api/v1/passes/pass.com.passconnect/kakaopay';
           break;
+        case 'tosspay1':
+          endpoint = 'https://9e240d7v0k.execute-api.ap-northeast-2.amazonaws.com/api/v1/passes/pass.com.passconnect/tosspay';
+          break;
         default:
           endpoint = 'https://your-api.com/api/default';
           break;
@@ -137,6 +148,10 @@ const FormPage = (): React.ReactElement => {
     return data.template === 'kakaopay1';
   }
 
+  const isTossPayForm = (data: FormDataTypes): data is TosspayForm => {
+    return data.template === 'tosspay1';
+  }
+
   return (
     <div className="flex min-h-screen bg-zinc-900 text-zinc-100">
       <div className="flex-1 flex items-center justify-center p-4">
@@ -150,10 +165,12 @@ const FormPage = (): React.ReactElement => {
           />
 
           <div className="space-y-4 w-full content-center">
-            <ImageProvider>
-              <DisplayCroppedImage setFormData={setFormData} />
-              <ProfilePictureUpload />
-            </ImageProvider>
+            {!isTossPayForm(formData) && (
+              <ImageProvider>
+                <DisplayCroppedImage setFormData={setFormData} />
+                <ProfilePictureUpload />
+              </ImageProvider>
+            )}
 
             <div className="items-center space-x-2">
               <label htmlFor="email" className="m-2 whitespace-nowrap text-sm font-medium">이메일 <span className="text-red-500 font-semibold">*</span></label>
@@ -170,11 +187,49 @@ const FormPage = (): React.ReactElement => {
             </div>
             <div className="items-center space-x-2">
               <label htmlFor="code" className="m-2 whitespace-nowrap text-sm font-medium">
-                {isKakaoPayForm(formData) ? (
+                {
+                isTossPayForm(formData) && (
                   <>
-                    <span>
-                      송금 QR 코드
-                    </span>
+                    계좌 정보
+                    <span className="text-red-500 font-semibold"> * </span>
+
+                    <button
+                      onClick={handlePopupToggle}
+                      className="text-blue-500"
+                      type="button"
+                    >
+                      <MessageCircleQuestion className="text-gray-400" />
+                    </button>
+
+                    {/* 팝업 표시 */}
+                    {showPopup && (
+                      <div className="fixed inset-0 flex flex-col gap-4 items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm">
+                        <Image src="/get_toss_url_guide.png" width={282} height={568} alt="Toss 계좌 정보 복사 가이드" />
+
+                        <div className="text-center">
+                          <p className="font-semibold">
+                            홈 &gt; 연결 계좌 선택 &gt; 계좌 정보 복사
+                          </p>
+                          <p className="text-gray-500">
+                            잔액이 표시된 화면에서 계좌 정보를 눌러 복사한 계좌 정보를 이곳에 붙여넣기 해주세요.
+                          </p>
+                        </div>
+
+                        <button
+                          onClick={handlePopupToggle}
+                          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                          type="button"
+                        >
+                          닫기
+                        </button>
+                      </div>
+                    )}
+                  </>
+                )}
+
+                {isKakaoPayForm(formData) && (
+                  <>
+                    송금 QR 코드
                     <span className="text-red-500 font-semibold"> * </span>
                     <button
                       onClick={handlePopupToggle}
@@ -211,7 +266,9 @@ const FormPage = (): React.ReactElement => {
                       </div>
                     )}
                   </>
-                ) : (
+                )}
+
+                {!isTossPayForm(formData) && !isKakaoPayForm(formData) && (
                   <>
                     프로필 링크
                     <span className="text-red-500 font-semibold"> *</span>
