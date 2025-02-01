@@ -96,7 +96,7 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
     <div className="w-full max-w-md mx-auto space-y-8">
       <div className="relative rounded-2xl">
         <h1 className="text-2xl font-bold m-2 text-center">원하는 카드를 골라주세요</h1>
-        <p className="text-sm mb-6 text-gray-400 text-center">{templates[currentTemplate].name}</p>
+        <p className="text-sm mb-6 text-zinc-600 dark:text-zinc-400 text-center">{templates[currentTemplate].name}</p>
 
         <div
           className="relative w-full flex justify-center items-center"
@@ -148,14 +148,14 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
           <button
             type="button"
             onClick={() => handleThemeChange("light")}
-            className={`w-8 h-8 rounded-full border-2 bg-white transition-all ${currentTheme === "light" ? "border-blue-500 scale-110" : "border-transparent"
+            className={`w-8 h-8 rounded-full border-2 bg-white transition-all ${currentTheme === "light" ? "border-blue-500 scale-110" : "border-gray-200 dark:border-gray-800"
               }`}
             aria-label="Light theme"
           />
           <button
             type="button"
             onClick={() => handleThemeChange("dark")}
-            className={`w-8 h-8 rounded-full border-2 bg-black transition-all ${currentTheme === "dark" ? "border-blue-500 scale-110" : "border-transparent"
+            className={`w-8 h-8 rounded-full border-2 bg-black transition-all ${currentTheme === "dark" ? "border-blue-500 scale-110" : "border-gray-200 dark:border-gray-800"
               }`}
             aria-label="Dark theme"
           />

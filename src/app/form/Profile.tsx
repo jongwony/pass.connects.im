@@ -140,11 +140,11 @@ export default function ProfilePictureUpload() {
   }, [croppedAreaPixels, image, rotation, setCroppedImage])
 
   return (
-    <div className="flex justify-center text-gray-400">
+    <div className="flex justify-center">
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="flex px-4 py-2 space-x-2 text-white bg-gray-800 hover:bg-gray-600 rounded-md transition-colors"
+        className="flex px-4 py-2 space-x-2 text-black dark:text-white bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md transition-colors"
       >
         <Upload />
         <label htmlFor="upload">프로필 사진 업로드</label>
@@ -156,15 +156,15 @@ export default function ProfilePictureUpload() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-lg shadow-xl w-96 overflow-hidden"
+              className="bg-zinc-200 dark:bg-zinc-800 rounded-lg w-96 overflow-hidden"
             >
-              <div className="flex justify-between items-center p-4 border-b">
+              <div className="flex justify-between items-center p-4">
                 <h2 className="text-xl font-semibold">프로필 사진 업로드</h2>
               </div>
 
@@ -177,7 +177,7 @@ export default function ProfilePictureUpload() {
                     onClick={() => fileInputRef.current?.click()}
                   >
                     <Upload size={48} className="mx-auto text-gray-400 mb-4" />
-                    <p className="text-gray-600">클릭하거나 이미지를 여기에 드래그하세요</p>
+                    <p className="text-zinc-600 dark:text-zinc-400">클릭하거나 이미지를 여기에 드래그하세요</p>
                     <input
                       type="file"
                       ref={fileInputRef}
@@ -245,7 +245,7 @@ export default function ProfilePictureUpload() {
                 <small>heic, heif 등 아이폰 전용 이미지는 Safari 브라우저에서만 보일 수 있습니다.</small>
               </div>
 
-              <div className="flex justify-end p-4 border-t">
+              <div className="flex justify-end p-4">
                 <button
                   type="button"
                   onClick={() => {
@@ -255,7 +255,7 @@ export default function ProfilePictureUpload() {
                     setZoom(1)
                     setRotation(0)
                   }}
-                  className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
+                  className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-opacity-80 transition-colors "
                 >
                   취소
                 </button>

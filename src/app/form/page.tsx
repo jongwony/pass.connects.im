@@ -153,7 +153,7 @@ const FormPage = (): React.ReactElement => {
   }
 
   return (
-    <div className="flex min-h-screentext-zinc-100">
+    <div className="flex min-h-screen">
       <div className="flex-1 flex items-center justify-center p-4">
         <form onSubmit={sendFormData} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
           <ChooseTemplate
@@ -181,7 +181,7 @@ const FormPage = (): React.ReactElement => {
                 placeholder="이메일로 패스를 보내드립니다."
                 value={formData.email || ''}
                 onChange={handleChange}
-                className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                className="w-full p-2 rounded-md placeholder-zinc-400 dark:placeholder-zinc-600 bg-zinc-200 dark:bg-zinc-800 border-zinc-500 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100"
                 required={true}
               />
             </div>
@@ -285,7 +285,7 @@ const FormPage = (): React.ReactElement => {
                 value={formData.code || ''}
                 placeholder="QR Code로 저장됩니다."
                 onChange={handleChange}
-                className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                className="w-full p-2 rounded-md placeholder-zinc-400 dark:placeholder-zinc-600 bg-zinc-200 dark:bg-zinc-800 border-zinc-500 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100"
                 required={true}
               />
             </div>
@@ -300,7 +300,7 @@ const FormPage = (): React.ReactElement => {
                     name="text"
                     value={formData.text || ''}
                     onChange={handleChange}
-                    className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                    className="w-full p-2 rounded-md placeholder-zinc-400 dark:placeholder-zinc-600 bg-zinc-200 dark:bg-zinc-800 border-zinc-500 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
               </>
@@ -316,7 +316,7 @@ const FormPage = (): React.ReactElement => {
                     name="id"
                     value={formData.id || ''}
                     onChange={handleChange}
-                    className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                    className="w-full p-2 rounded-md placeholder-zinc-400 dark:placeholder-zinc-600 bg-zinc-200 dark:bg-zinc-800 border-zinc-500 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
                 <div className="items-center space-x-2">
@@ -326,7 +326,7 @@ const FormPage = (): React.ReactElement => {
                     name="name"
                     value={formData.name || ''}
                     onChange={handleChange}
-                    className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                    className="w-full p-2 rounded-md placeholder-zinc-400 dark:placeholder-zinc-600 bg-zinc-200 dark:bg-zinc-800 border-zinc-500 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
                 <div className="items-center space-x-2">
@@ -336,7 +336,7 @@ const FormPage = (): React.ReactElement => {
                     name="bio"
                     value={formData.bio || ''}
                     onChange={handleChange}
-                    className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                    className="w-full p-2 rounded-md placeholder-zinc-400 dark:placeholder-zinc-600 bg-zinc-200 dark:bg-zinc-800 border-zinc-500 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
               </>
@@ -352,7 +352,7 @@ const FormPage = (): React.ReactElement => {
                     name="name"
                     value={formData.name || ''}
                     onChange={handleChange}
-                    className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                    className="w-full p-2 rounded-md placeholder-zinc-400 dark:placeholder-zinc-600 bg-zinc-200 dark:bg-zinc-800 border-zinc-500 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
                 <div className="items-center space-x-2">
@@ -362,7 +362,7 @@ const FormPage = (): React.ReactElement => {
                     name="role"
                     value={formData.role || ''}
                     onChange={handleChange}
-                    className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                    className="w-full p-2 rounded-md placeholder-zinc-400 dark:placeholder-zinc-600 bg-zinc-200 dark:bg-zinc-800 border-zinc-500 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
                 <div className="items-center space-x-2">
@@ -372,7 +372,7 @@ const FormPage = (): React.ReactElement => {
                     name="company"
                     value={formData.company || ''}
                     onChange={handleChange}
-                    className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                    className="w-full p-2 rounded-md placeholder-zinc-400 dark:placeholder-zinc-600 bg-zinc-200 dark:bg-zinc-800 border-zinc-500 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100"
                   />
                 </div>
                 {isLinkedin1Form(formData) && (
@@ -383,7 +383,7 @@ const FormPage = (): React.ReactElement => {
                       name="joinDate"
                       value={formData.joinDate || ''}
                       onChange={handleChange}
-                      className="w-full p-2 rounded-md placeholder-zinc-600 bg-zinc-800 border-zinc-700 text-zinc-100"
+                      className="w-full p-2 rounded-md placeholder-zinc-400 dark:placeholder-zinc-600 bg-zinc-200 dark:bg-zinc-800 border-zinc-500 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100"
                     />
                   </div>
                 )}
@@ -398,7 +398,7 @@ const FormPage = (): React.ReactElement => {
               >
                 {isSubmitting ? '처리 중...' : '대기열 등록하기'}
               </button>
-              <small>결과물을 곧 이메일로 보내드리니, 모바일에서 확인해보세요.</small>
+              <small className="m-2">결과물을 곧 이메일로 보내드리니, 모바일에서 확인해보세요.</small>
 
               {errorMessage && (
                 <p className="text-red-500 text-sm mt-2">{errorMessage}</p>

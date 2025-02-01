@@ -53,7 +53,7 @@ export default function Sponsor() {
 
             {showPopup && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-center justify-center">
+                    <div className="bg-zinc-400 dark:bg-zinc-800 p-6 rounded-lg shadow-lg text-center justify-center">
                         <h2 className="text-xl font-bold mb-4">QR 코드를 스캔해 보세요</h2>
                         <p className="">이 기능은 모바일 환경에서 토스 앱을 사용해야 합니다.</p>
                         <Image className="m-4 mx-auto" src="/supertoss.png" alt="토스 QR 코드" width={100} height={100} />

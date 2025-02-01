@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
       {/* Header */}
       <header className="flex flex-col text-center p-8">
         <h1 className="text-3xl font-bold mb-4">Pass Connect</h1>
-        <p className="text-gray-400 text-lg">
+        <p className="text-zinc-600 dark:text-zinc-400 text-lg">
           <span
             className={`inline-block transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'
               }`}
@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
             {text}
           </span>
         </p>
-        <p className="text-gray-400 text-lg">
+        <p className="text-zinc-600 dark:text-zinc-400 text-lg">
           Apple Wallet 앱에 담으세요.
         </p>
 
@@ -64,7 +64,22 @@ const Hero: React.FC = () => {
         <div
           className='relative'
         >
-          <Image alt="dynamic content" src={image} width={546} height={773} priority={true} />
+          <Image
+            alt="dynamic content"
+            src={image.replace('.png', '_light.png')}
+            width={546}
+            height={773}
+            priority={true}
+            className="dark:hidden"
+          />
+          <Image
+            alt="dynamic content"
+            src={image}
+            width={546}
+            height={773}
+            priority={true}
+            className="hidden dark:block"
+          />
         </div>
       </div>
     </main>

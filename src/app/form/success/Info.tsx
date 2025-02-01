@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
+import Cancel from './Cancel';
 
 const GetInfo: React.FC = () => {
   /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -42,7 +43,7 @@ const GetInfo: React.FC = () => {
   }, [])
 
   if (isLoading) {
-    return <div className="text-center p-4">로딩 중...</div>
+    return <div className="text-center p-4 text-gray-500 font-semibold italic">로딩 중...</div>
   }
 
   if (error) {
@@ -50,18 +51,18 @@ const GetInfo: React.FC = () => {
   }
 
   if (!profileData) {
-    return <div className="text-center p-4">프로필 데이터가 없습니다.</div>
+    return <div className="text-center p-4 text-gray-500 font-semibold italic">프로필 데이터가 없습니다.</div>
   }
 
   return (
     <>
-      <div className={`p-6 rounded-lg shadow-lg`}>
+      <div className="p-4">
         <h2 className="text-xl font-bold mb-4 text-center">요청한 내용을 확인해 보세요</h2>
         <p className="text-gray-500 font-semibold text-center">발급 코드: {issueCode}</p>
       </div>
 
-      <div className="border border-gray-400 p-8 rounded-lg shadow-md w-full max-w-md">
-        <div className="space-y-2 overflow-hidden rounded-lg shadow-md">
+      <div className="border rounded-lg border-gray-400 p-8 w-full max-w-md">
+        <div className="space-y-2 overflow-hidden">
           {profileData.thumbnail ? (
             <div className="flex justify-center">
               <Image
@@ -98,6 +99,8 @@ const GetInfo: React.FC = () => {
             ))}
         </div>
       </div>
+
+      <Cancel />
     </>
   )
 }

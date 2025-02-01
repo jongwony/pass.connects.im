@@ -2,7 +2,6 @@
 import { Suspense } from 'react';
 import GetInfo from './Info';
 import Sponsor from '@/app/Sponsor';
-import Cancel from './Cancel';
 import EmailGuide from './Guide';
 
 
@@ -20,10 +19,6 @@ export default function SuccessPage() {
       </Suspense>
 
       <Sponsor />
-
-      <Suspense>
-        <Cancel />
-      </Suspense>
     </div>
   )
 }

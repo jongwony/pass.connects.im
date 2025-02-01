@@ -21,7 +21,7 @@ export const DisplayCroppedImage = <T extends object>({ setFormData }: DisplayCr
       {croppedImage ? (
         <Image src={croppedImage} alt="Cropped" width={90} height={90} className="relative" />
       ) : (
-        <div className="w-20 h-20 mx-auto bg-zinc-800 rounded-full flex items-center justify-center">
+        <div className="w-20 h-20 mx-auto bg-zinc-400 dark:bg-zinc-800 rounded-full flex items-center justify-center">
           <X className="w-8 h-8" />
         </div>
       )}

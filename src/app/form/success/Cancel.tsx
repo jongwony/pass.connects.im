@@ -38,17 +38,9 @@ const Cancel: React.FC = () => {
 
   return (
     <>
-      {from === 'email' ? (
-        <>
-          <h2 className="text-xl font-bold mt-8 text-center">개인정보를 보호할 수 있습니다</h2>
-          <p className='mt-4 font-semibold'>이메일을 이미 받으셨다면 개인정보보호를 위해 결과를 영구적으로 삭제할 수 있습니다.</p>
-        </>
-      ) : (
-        <>
-          <h2 className="text-xl font-bold mt-8 text-center">잘못된 부분이 있다면, 다시 만들어 주세요</h2>
-          <p className='mt-4'>이메일을 받기 전까지 결과를 삭제할 수 있습니다.</p>
-        </>
-      )}
+      <h2 className="text-xl font-bold mt-8 text-center">잘못된 부분이 있다면, 다시 만들어 주세요</h2>
+      <p className='mt-4'>이메일을 받기 전까지 결과를 삭제할 수 있습니다.</p>
+
       <div className="text-center m-4">
         <button
           onClick={handleShowConfirmPopup}
@@ -60,12 +52,12 @@ const Cancel: React.FC = () => {
 
       {showConfirmPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+          <div className="bg-zinc-400 dark:bg-zinc-800 p-6 rounded-lg shadow-lg text-center">
             <h2 className="text-xl font-bold mb-2">정말 삭제하시겠습니까?</h2>
             <p className="mb-8">이 작업은 되돌릴 수 없습니다.</p>
             <div className="space-x-4">
               <button
-                className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
+                className="px-4 py-2 dark:bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
                 onClick={handleCloseConfirmPopup}
               >
                 취소
