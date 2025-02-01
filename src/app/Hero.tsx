@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
     }, 3000); // Duration for each state
 
     return () => clearInterval(interval);
-  }, []);
+  }, [states.length]);
 
   const { text, image } = states[currentStateIndex];
 

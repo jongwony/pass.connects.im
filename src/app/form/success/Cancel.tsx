@@ -6,7 +6,6 @@ const Cancel: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const issueCode = searchParams.get('issue_code') || 'No code provided';
-  const from = searchParams.get('utm_medium') || 'No source provided';
   const [showConfirmPopup, setShowConfirmPopup] = useState(false);
 
   const handleCancel = async (issueCode: string) => {

@@ -21,7 +21,7 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
   useEffect(() => {
     onTemplateChange(templates[currentTemplate].id);
     onThemeChange(currentTheme);
-  }, [currentTemplate]);
+  }, [currentTemplate, onTemplateChange, onThemeChange, templates, currentTheme]);
 
   const handleThemeChange = (theme: string) => {
     setCurrentTheme(theme)

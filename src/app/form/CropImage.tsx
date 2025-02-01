@@ -14,7 +14,7 @@ export const DisplayCroppedImage = <T extends object>({ setFormData }: DisplayCr
     if (croppedImage) {
       setFormData(prevData => ({ ...prevData, thumbnail: croppedImage }));
     }
-  }, [croppedImage]);
+  }, [croppedImage, setFormData]);
 
   return (
     <div className="flex justify-center items-center w-full">

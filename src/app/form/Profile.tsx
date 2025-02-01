@@ -137,7 +137,7 @@ export default function ProfilePictureUpload() {
         console.error('Error:', error);
       }
     }
-  }, [croppedAreaPixels, image, rotation, setCroppedImage])
+  }, [croppedAreaPixels, image, rotation, setCroppedImage, getCroppedImg])
 
   return (
     <div className="flex justify-center">

@@ -40,7 +40,7 @@ const GetInfo: React.FC = () => {
     }
 
     fetchProfileData()
-  }, [])
+  }, [issueCode])
 
   if (isLoading) {
     return <div className="text-center p-4 text-gray-500 font-semibold italic">로딩 중...</div>
