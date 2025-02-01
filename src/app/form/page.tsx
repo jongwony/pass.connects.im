@@ -153,7 +153,7 @@ const FormPage = (): React.ReactElement => {
   }
 
   return (
-    <div className="flex min-h-screen bg-zinc-900 text-zinc-100">
+    <div className="flex min-h-screentext-zinc-100">
       <div className="flex-1 flex items-center justify-center p-4">
         <form onSubmit={sendFormData} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
           <ChooseTemplate
@@ -201,6 +201,10 @@ const FormPage = (): React.ReactElement => {
                       <MessageCircleQuestion className="text-gray-400" />
                     </button>
 
+                    <span className="text-xs text-gray-500">
+                      이메일이 발송되는 즉시 계좌번호는 삭제됩니다.
+                    </span>
+
                     {/* 팝업 표시 */}
                     {showPopup && (
                       <div className="fixed inset-0 flex flex-col gap-4 items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm">
@@ -211,7 +215,7 @@ const FormPage = (): React.ReactElement => {
                             홈 &gt; 연결 계좌 선택 &gt; 계좌 정보 복사
                           </p>
                           <p className="text-gray-500">
-                            잔액이 표시된 화면에서 계좌 정보를 눌러 복사한 계좌 정보를 이곳에 붙여넣기 해주세요.
+                            잔액이 표시된 화면에서 계좌 정보를 눌러 <br/> 복사한 계좌 정보를 이곳에 붙여넣기 해주세요.
                           </p>
                         </div>
 

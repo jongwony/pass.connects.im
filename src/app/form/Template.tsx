@@ -94,7 +94,7 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
 
   return (
     <div className="w-full max-w-md mx-auto space-y-8">
-      <div className="relative rounded-2xl bg-zinc-900">
+      <div className="relative rounded-2xl">
         <h1 className="text-2xl font-bold m-2 text-center">원하는 카드를 골라주세요</h1>
         <p className="text-sm mb-6 text-gray-400 text-center">{templates[currentTemplate].name}</p>
 
@@ -129,14 +129,14 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
         <button
           type="button"
           onClick={handlePrev}
-          className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+          className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-zinc-900 text-white hover:bg-zinc-700 transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
         <button
           type="button"
           onClick={handleNext}
-          className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+          className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-zinc-900 text-white hover:bg-zinc-700 transition-colors"
         >
           <ChevronRight className="w-4 h-4" />
         </button>
