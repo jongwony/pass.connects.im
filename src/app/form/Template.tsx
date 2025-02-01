@@ -129,14 +129,14 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
         <button
           type="button"
           onClick={handlePrev}
-          className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-zinc-900 text-white hover:bg-zinc-700 transition-colors"
+          className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
         <button
           type="button"
           onClick={handleNext}
-          className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-zinc-900 text-white hover:bg-zinc-700 transition-colors"
+          className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors"
         >
           <ChevronRight className="w-4 h-4" />
         </button>
