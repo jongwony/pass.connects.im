@@ -50,13 +50,13 @@ const Cancel: React.FC = () => {
       </div>
 
       {showConfirmPopup && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-zinc-400 dark:bg-zinc-800 p-6 rounded-lg shadow-lg text-center">
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-70 backdrop-blur-sm">
+          <div className="bg-zinc-100 dark:bg-zinc-900 p-6 rounded-lg shadow-lg text-center">
             <h2 className="text-xl font-bold mb-2">정말 삭제하시겠습니까?</h2>
             <p className="mb-8">이 작업은 되돌릴 수 없습니다.</p>
             <div className="space-x-4">
               <button
-                className="px-4 py-2 dark:bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
+                className="px-4 py-2 bg-zinc-400 dark:bg-zinc-600 text-white rounded-md hover:bg-opacity-80 transition-colors"
                 onClick={handleCloseConfirmPopup}
               >
                 취소

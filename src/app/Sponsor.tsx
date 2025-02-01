@@ -58,7 +58,7 @@ export default function Sponsor() {
                         <p className="">이 기능은 모바일 환경에서 토스 앱을 사용해야 합니다.</p>
                         <Image className="m-4 mx-auto" src="/supertoss.png" alt="토스 QR 코드" width={100} height={100} />
                         <button
-                            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-opacity-80 transition-colors"
                             onClick={handleClosePopup}
                         >
                             닫기

@@ -144,7 +144,7 @@ export default function ProfilePictureUpload() {
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="flex px-4 py-2 space-x-2 text-black dark:text-white bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-md transition-colors"
+        className="flex px-4 py-2 space-x-2 text-black dark:text-white bg-zinc-200 dark:bg-zinc-800 hover:bg-opacity-80 rounded-md transition-colors"
       >
         <Upload />
         <label htmlFor="upload">프로필 사진 업로드</label>
@@ -234,7 +234,7 @@ export default function ProfilePictureUpload() {
                       <button
                         type="button"
                         onClick={handleCrop}
-                        className="flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors"
+                        className="flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-opacity-80 transition-colors"
                       >
                         <CropIcon size={20} className="mr-2" />
                         이미지 자르기

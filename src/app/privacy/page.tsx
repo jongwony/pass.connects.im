@@ -58,7 +58,7 @@ export default function PrivacyPolicy() {
         </div>
       ))}
       <div className="m-12 flex justify-center">
-        <button onClick={() => router.back()} className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+        <button onClick={() => router.back()} className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-opacity-80 transition">
           돌아가기
         </button>
       </div>

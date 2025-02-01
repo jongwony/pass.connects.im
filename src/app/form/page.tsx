@@ -207,11 +207,11 @@ const FormPage = (): React.ReactElement => {
 
                     {/* 팝업 표시 */}
                     {showPopup && (
-                      <div className="fixed inset-0 flex flex-col gap-4 items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm">
+                      <div className="fixed inset-0 flex flex-col gap-4 items-center justify-center bg-opacity-70 backdrop-blur-sm">
                         <Image src="/get_toss_url_guide.png" width={282} height={568} alt="Toss 계좌 정보 복사 가이드" />
 
-                        <div className="text-center">
-                          <p className="font-semibold p-2">
+                        <div className="text-center p-4 rounded-lg bg-zinc-200 dark:bg-zinc-800">
+                          <p className="font-semibold mb-2">
                             홈 &gt; 연결 계좌 선택 &gt; 계좌 정보 복사
                           </p>
                           <p className="text-gray-500">
@@ -221,7 +221,7 @@ const FormPage = (): React.ReactElement => {
 
                         <button
                           onClick={handlePopupToggle}
-                          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-opacity-80 transition-colors"
                           type="button"
                         >
                           닫기
@@ -245,14 +245,14 @@ const FormPage = (): React.ReactElement => {
 
                     {/* 팝업 표시 */}
                     {showPopup && (
-                      <div className="fixed inset-0 flex flex-col gap-4 items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm">
+                      <div className="fixed inset-0 flex flex-col gap-4 items-center justify-center bg-opacity-70 backdrop-blur-sm">
                         <video className="rounded-2xl w-64 object-cover" autoPlay loop muted>
                           <source src="/get_kakao_url_guide.mp4" type="video/mp4" />
                           Your browser does not support the video tag.
                         </video>
 
-                        <div className="text-center">
-                          <p className="font-semibold p-2">
+                        <div className="text-center p-4 rounded-lg bg-zinc-200 dark:bg-zinc-800">
+                          <p className="font-semibold mb-2">
                             카톡 더보기 &gt; Kakao Pay &gt; 페이머니 &gt; 송금코드 &gt; 링크복사
                           </p>
                           <p className="text-gray-500">
@@ -262,7 +262,7 @@ const FormPage = (): React.ReactElement => {
 
                         <button
                           onClick={handlePopupToggle}
-                          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-opacity-80 transition-colors"
                           type="button"
                         >
                           닫기
@@ -392,7 +392,7 @@ const FormPage = (): React.ReactElement => {
 
             <div className="items-center justify-center">
               <button
-                className="w-full m-2 p-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors disabled:bg-gray-400"
+                className="w-full m-2 p-2 text-white bg-blue-500 rounded-md hover:bg-opacity-80 transition-colors disabled:bg-gray-400"
                 type="submit"
                 disabled={isSubmitting}
               >

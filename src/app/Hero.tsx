@@ -53,7 +53,7 @@ const Hero: React.FC = () => {
           type="button"
           onClick={() => router.push('/form')}
           className="px-4 py-2 text-white font-semibold bg-blue-500 rounded-md
-                      hover:bg-blue-600 transition-colors"
+                      hover:bg-opacity-80 transition-colors"
         >
           만들기
         </button>
