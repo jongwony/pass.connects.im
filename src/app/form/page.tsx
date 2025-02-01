@@ -190,7 +190,7 @@ const FormPage = (): React.ReactElement => {
                 {
                 isTossPayForm(formData) && (
                   <>
-                    계좌 정보
+                    송금 계좌
                     <span className="text-red-500 font-semibold"> * </span>
 
                     <button
@@ -211,7 +211,7 @@ const FormPage = (): React.ReactElement => {
                         <Image src="/get_toss_url_guide.png" width={282} height={568} alt="Toss 계좌 정보 복사 가이드" />
 
                         <div className="text-center">
-                          <p className="font-semibold">
+                          <p className="font-semibold p-2">
                             홈 &gt; 연결 계좌 선택 &gt; 계좌 정보 복사
                           </p>
                           <p className="text-gray-500">
@@ -233,7 +233,7 @@ const FormPage = (): React.ReactElement => {
 
                 {isKakaoPayForm(formData) && (
                   <>
-                    송금 QR 코드
+                    송금 링크
                     <span className="text-red-500 font-semibold"> * </span>
                     <button
                       onClick={handlePopupToggle}
@@ -252,7 +252,7 @@ const FormPage = (): React.ReactElement => {
                         </video>
 
                         <div className="text-center">
-                          <p className="font-semibold">
+                          <p className="font-semibold p-2">
                             카톡 더보기 &gt; Kakao Pay &gt; 페이머니 &gt; 송금코드 &gt; 링크복사
                           </p>
                           <p className="text-gray-500">
