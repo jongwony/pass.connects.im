@@ -76,25 +76,13 @@ const GetInfo: React.FC = () => {
             <p className="text-lg font-bold text-center text-red-400 mb-4">이미지가 첨부되지 않았어요!</p>
           )}
 
-          <div>
-            <p className="text-sm font-medium">이메일</p>
-            <p className="text-sm text-gray-500">{profileData.email}</p>
-          </div>
-
-          <div>
-            <p className="text-sm font-medium">QR Code</p>
-            <a href={profileData.code} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:underline">
-              <span className="truncate">{profileData.code}</span>
-            </a>
-          </div>
-
           {/* code, email, thumbnail 키를 제외한 나머지 키-값을 순회 */}
           {Object.entries(profileData)
-            .filter(([key]) => !['code', 'email', 'thumbnail', 'issue_code', 'type', 'timestamp'].includes(key))
+            .filter(([key]) => !['thumbnail', 'issue_code', 'type', 'timestamp'].includes(key))
             .map(([key, value]) => (
               <div key={key}>
                 <p className="text-sm font-medium">{key}</p>
-                <code className="text-sm text-gray-500">{String(value) || "<비어 있음>"}</code>
+                <code className="text-sm text-gray-500 hover:underline">{String(value) || "<비어 있음>"}</code>
               </div>
             ))}
         </div>

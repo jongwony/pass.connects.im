@@ -40,9 +40,9 @@ export default function PrivacyPolicy() {
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6 text-center">개인정보 처리방침</h1>
+      <h1 className="text-2xl font-bold m-12 text-center">개인정보 처리방침</h1>
       {privacyPolicy.map((item, index) => (
-        <div key={index} className="mb-4 border border-gray-200 rounded-lg shadow-sm">
+        <div key={index} className="mb-8 border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-sm">
           <button
             className="flex justify-between items-center w-full p-4 rounded-t-lg focus:outline-none"
             onClick={() => toggleAccordion(index)}
@@ -51,15 +51,15 @@ export default function PrivacyPolicy() {
             {openIndex === index ? <ChevronUp /> : <ChevronDown />}
           </button>
           {openIndex === index && (
-            <div className="p-4 border-t">
-              <p className="text-gray-400 whitespace-pre-line">{item.content}</p>
+            <div className="p-4 border-t border-zinc-200 dark:border-zinc-800">
+              <p className="text-zinc-600 dark:text-zinc-400 whitespace-pre-line">{item.content}</p>
             </div>
           )}
         </div>
       ))}
-      <div className="mt-6 flex justify-center">
+      <div className="m-12 flex justify-center">
         <button onClick={() => router.back()} className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
-          홈으로 돌아가기
+          돌아가기
         </button>
       </div>
     </div>
