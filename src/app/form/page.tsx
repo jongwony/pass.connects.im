@@ -7,7 +7,7 @@ import { DisplayCroppedImage } from './CropImage';
 import ProfilePictureUpload from './Profile';
 import ChooseTemplate from './Template';
 import { FormDataTypes, Insta1Form, InstaSpecialForm, Linkedin1Form, Linkedin2Form, KakaopayForm, TosspayForm } from './Types';
-import { MessageCircleQuestion } from 'lucide-react';
+import { Info } from 'lucide-react';
 
 const templates = [
   {
@@ -191,15 +191,14 @@ const FormPage = (): React.ReactElement => {
                 isTossPayForm(formData) && (
                   <>
                     송금 계좌
-                    <span className="text-red-500 font-semibold"> * </span>
-
                     <button
                       onClick={handlePopupToggle}
                       className="text-blue-500"
                       type="button"
                     >
-                      <MessageCircleQuestion className="text-gray-400" />
+                      <Info width={16} height={16} className="text-gray-400" />
                     </button>
+                    <span className="text-red-500 font-semibold"> * </span>
 
                     <span className="text-xs text-gray-500">
                       이메일이 발송되는 즉시 계좌번호는 삭제됩니다.
@@ -234,14 +233,15 @@ const FormPage = (): React.ReactElement => {
                 {isKakaoPayForm(formData) && (
                   <>
                     송금 링크
-                    <span className="text-red-500 font-semibold"> * </span>
                     <button
                       onClick={handlePopupToggle}
                       className="text-blue-500"
                       type="button"
                     >
-                      <MessageCircleQuestion className="text-gray-400" />
+                      <Info width={16} height={16} className="text-gray-400" />
                     </button>
+                    <span className="text-red-500 font-semibold"> * </span>
+                    <br />
 
                     {/* 팝업 표시 */}
                     {showPopup && (

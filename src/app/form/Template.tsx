@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
@@ -18,10 +18,10 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
   const [currentTheme, setCurrentTheme] = useState('dark');
   const [direction, setDirection] = useState(1); // 방향 상태 유지
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     onTemplateChange(templates[currentTemplate].id);
     onThemeChange(currentTheme);
-  }, [currentTemplate, onTemplateChange, onThemeChange, templates, currentTheme]);
+  }, [currentTemplate, currentTheme]);
 
   const handleThemeChange = (theme: string) => {
     setCurrentTheme(theme)
@@ -119,7 +119,7 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
               <Image
                 src={templates[currentTemplate].src !== '' ? templates[currentTemplate].src : (currentTheme === 'dark' ? templates[currentTemplate].dark : templates[currentTemplate].light)}
                 alt={templates[currentTemplate].name}
-                className={`aspect-[1/2] object-cover transition-colors duration-100`}
+                className={`w-[282px] h-[568px] object-cover transition-colors duration-100`}
                 width={282}
                 height={568}
               />
