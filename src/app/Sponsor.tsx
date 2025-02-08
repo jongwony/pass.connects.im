@@ -24,16 +24,16 @@ export default function Sponsor() {
     return (
         <>
             <div className="m-8 border border-gray-400 p-8 rounded-lg shadow-md w-full max-w-md text-center">
-                <p className="text-gray-400">
+                <p className="text-zinc-600 dark:text-zinc-400">
                     이 프로젝트는 아래와 같은 문제 인식에서 출발했어요.
                 </p>
                 <blockquote className="italic font-semibold m-4">
                     내 프로필 페이지를 소개하는데 <br /> 모두가 내 아이디를 검색하는 일이 번거롭다.
                 </blockquote>
-                <p className="text-gray-400 mb-2">
+                <p className="text-zinc-600 dark:text-zinc-400">
                     하지만 서비스 운영을 위한 비용, 그리고 Apple Developer Program 연회비로 99달러의 비용을 부담하게 되었어요.
                 </p>
-                <p className="mb-4">
+                <p className="m-4 text-zinc-600 dark:text-zinc-400">
                     서비스가 꾸준히 이어질 수 있도록 따뜻한 응원을 보내주시면 정말 감사하겠습니다.
                 </p>
                 <button

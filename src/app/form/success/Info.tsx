@@ -43,7 +43,7 @@ const GetInfo: React.FC = () => {
   }, [issueCode])
 
   if (isLoading) {
-    return <div className="text-center p-4 text-gray-500 font-semibold italic">로딩 중...</div>
+    return <div className="text-center p-4 text-zinc-600 dark:text-zinc-400 font-semibold italic">로딩 중...</div>
   }
 
   if (error) {
@@ -51,14 +51,31 @@ const GetInfo: React.FC = () => {
   }
 
   if (!profileData) {
-    return <div className="text-center p-4 text-gray-500 font-semibold italic">프로필 데이터가 없습니다.</div>
+    return (
+      <div className="p-4 text-center">
+        <h1 className="text-2xl font-bold">
+          이메일이 발송되어 데이터가 삭제되었습니다.
+        </h1>
+        <p className="mt-2 text-center">
+          메일을 받지 못하셨다면{' '}
+          <a
+            href="mailto:pass.connects.im@gmail.com"
+            className="text-blue-600 font-medium hover:underline"
+          >
+            pass.connects.im@gmail.com
+          </a>{' '}
+          으로 문의해 주세요.
+        </p>
+      </div>
+    )
   }
 
   return (
     <>
-      <div className="p-4">
-        <h2 className="text-xl font-bold mb-4 text-center">요청한 내용을 확인해 보세요</h2>
-        <p className="text-gray-500 font-semibold text-center">발급 코드: {issueCode}</p>
+      <div className="p-4 text-center">
+        <h1 className="text-2xl font-bold">성공적으로 대기열에 등록되었습니다</h1>
+        <h2 className="text-xl font-bold mt-4 text-center">요청한 내용을 확인해 보세요</h2>
+        <p className="font-semibold text-center mt-2">발급 코드: {issueCode}</p>
       </div>
 
       <div className="border rounded-lg border-gray-400 p-8 w-full max-w-md">
@@ -73,7 +90,11 @@ const GetInfo: React.FC = () => {
               />
             </div>
           ) : (
-            <p className="text-lg font-bold text-center text-red-400 mb-4">이미지가 첨부되지 않았어요!</p>
+            !(profileData.issue_code.startsWith('tosspay')) && (
+              <p className="text-lg font-bold text-center text-red-400 mb-4">
+                이미지가 첨부되지 않았어요!
+              </p>
+            )
           )}
 
           {/* code, email, thumbnail 키를 제외한 나머지 키-값을 순회 */}
