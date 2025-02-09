@@ -30,9 +30,9 @@ const Hero: React.FC = () => {
   const { text, image } = states[currentStateIndex];
 
   return (
-    <main className="relative flex flex-col align-center mt-8">
+    <main className="relative flex flex-col align-center mt-16">
       {/* Header */}
-      <header className="flex flex-col text-center p-8">
+      <header className="flex flex-col text-center">
         <h1 className="text-3xl font-bold mb-4">Pass Connect</h1>
         <p className="text-zinc-600 dark:text-zinc-400 text-lg">
           <span
@@ -48,7 +48,7 @@ const Hero: React.FC = () => {
 
       </header>
 
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center mt-4">
         <button
           type="button"
           onClick={() => router.push('/form')}
