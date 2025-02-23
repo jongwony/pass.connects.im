@@ -31,7 +31,6 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
 
       const newCurrentTemplate = Math.round(scrollLeft / childWidth);
       setCurrentTemplate(newCurrentTemplate);
-      setCurrentTheme(templates[newCurrentTemplate].id)
     }
   }
 
