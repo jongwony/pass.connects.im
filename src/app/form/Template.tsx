@@ -82,6 +82,10 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
             </div>
           ))}
         </div>
+        {/* 왼쪽 fade-out 오버레이 */}
+        <div className="absolute top-0 left-0 h-full w-8 pointer-events-none bg-gradient-to-r from-white to-transparent dark:from-black"></div>
+        {/* 오른쪽 fade-out 오버레이 */}
+        <div className="absolute top-0 right-0 h-full w-8 pointer-events-none bg-gradient-to-l from-white to-transparent dark:from-black"></div>
       </div>
 
       <div className="flex justify-center items-center gap-4">
