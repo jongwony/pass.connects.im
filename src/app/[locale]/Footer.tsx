@@ -1,20 +1,23 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import { Coffee } from "lucide-react";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Footer() {
   const pathname = usePathname();
+  const t = useTranslations('footer');
 
   return (
     <footer className="p-4 m-8">
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
         {pathname !== "/privacy" && (
           <a
-            href="/privacy"
+            href="privacy"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
           >
-            개인정보 처리방침
+            {t('privacy')}
           </a>
         )}
         <a
@@ -26,6 +29,7 @@ export default function Footer() {
           <Coffee size={18} />
           Buy Me a Coffee
         </a>
+        <LanguageSwitcher />
       </div>
     </footer>
   );

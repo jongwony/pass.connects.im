@@ -1,0 +1,142 @@
+{
+  "metadata": {
+    "title": "Pass Connect (패스 커넥트)",
+    "description": "토스, 카카오, 링크드인, 인스타그램 등 다양한 정보를 QR로 만들어 Apple 지갑으로 연결하세요.",
+    "ogImageAlt": "Pass Connect 토스 송금하기"
+  },
+  "common": {
+    "close": "닫기",
+    "back": "돌아가기",
+    "processing": "처리 중...",
+    "empty": "<비어 있음>"
+  },
+  "hero": {
+    "title": "Pass Connect",
+    "subtitle": "Apple Wallet 앱에 담으세요.",
+    "cta": "만들기",
+    "states": {
+      "toss": "토스뱅크 송금 코드를",
+      "linkedin": "LinkedIn 프로필을",
+      "kakao": "카카오페이 송금 코드를",
+      "instagram": "Instagram 프로필을"
+    }
+  },
+  "footer": {
+    "privacy": "개인정보 처리방침"
+  },
+  "template": {
+    "chooseCard": "원하는 카드를 골라주세요",
+    "names": {
+      "tosspay1": "Toss: 로고가 가운데 있는 템플릿",
+      "kakaopay1": "KakaoPay: 로고가 가운데 있는 템플릿",
+      "linkedin3": "LinkedIn: 가운데 정렬된 템플릿",
+      "linkedin2": "LinkedIn: 직무를 강조하는 템플릿",
+      "linkedin1": "LinkedIn: 근무기간을 포함하는 템플릿",
+      "insta_special": "Instagram: 컬러풀한 템플릿",
+      "insta1": "Instagram: 깔끔한 템플릿"
+    }
+  },
+  "form": {
+    "email": "이메일",
+    "emailPlaceholder": "이메일로 패스를 보내드립니다.",
+    "profileLink": "프로필 링크",
+    "qrPlaceholder": "QR Code로 저장됩니다.",
+    "submit": "대기열 등록하기",
+    "submitNote": "결과물을 곧 이메일로 보내드리니, 모바일에서 확인해보세요.",
+    "submitError": "제출 중 문제가 발생했습니다.",
+    "toss": {
+      "accountLabel": "송금 계좌",
+      "accountNote": "이메일이 발송되는 즉시 계좌번호는 삭제됩니다.",
+      "guideTitle": "홈 > 연결 계좌 선택 > 계좌 정보 복사",
+      "guideDesc": "잔액이 표시된 화면에서 계좌 정보를 눌러 복사한 계좌 정보를 이곳에 붙여넣기 해주세요."
+    },
+    "kakao": {
+      "linkLabel": "송금 링크",
+      "textLabel": "텍스트",
+      "guideTitle": "카톡 더보기 > Kakao Pay > 페이머니 > 송금코드 > 링크복사",
+      "guideDesc": "복사한 송금 QR 링크를 이곳에 붙여넣기 해주세요."
+    },
+    "instagram": {
+      "id": "아이디",
+      "name": "이름",
+      "bio": "소개"
+    },
+    "linkedin": {
+      "name": "이름",
+      "role": "직함",
+      "company": "회사",
+      "joinDate": "근무 기간"
+    }
+  },
+  "profile": {
+    "upload": "프로필 사진 업로드",
+    "change": "사진 변경",
+    "cropTitle": "이미지 자르기",
+    "confirm": "확인"
+  },
+  "success": {
+    "title": "성공적으로 대기열에 등록되었습니다",
+    "checkRequest": "요청한 내용을 확인해 보세요",
+    "issueCode": "발급 코드",
+    "loading": "로딩 중...",
+    "fetchError": "프로필 데이터를 불러오는 데 실패했습니다.",
+    "dataDeleted": "이메일이 발송되어 데이터가 삭제되었습니다.",
+    "contactNote": "메일을 받지 못하셨다면",
+    "contactSuffix": "으로 문의해 주세요.",
+    "noImage": "이미지가 첨부되지 않았어요!",
+    "emailGuide": {
+      "title": "하루 내에 이메일이 도착할 예정입니다.",
+      "checkMobile": "모바일 환경에서 이메일을 확인해 주세요.",
+      "tapAttachment": "첨부된 파일을 탭하여 따로 앱 설치 없이 Apple 지갑에 추가할 수 있습니다.",
+      "howToAdd": "Apple 지갑에 추가하는 방법",
+      "step1": "<strong>iPhone 또는 iPad</strong>에서 이메일을 열어주세요.",
+      "step2": "첨부된 파일인 <em>PassConnect.pkpass</em>를 탭합니다.",
+      "step3": "나타나는 화면 오른쪽 상단에 있는 <strong>추가</strong> 버튼을 눌러 Apple 지갑에 추가합니다."
+    },
+    "cancel": {
+      "title": "잘못된 부분이 있다면, 다시 만들어 주세요",
+      "description": "이메일을 받기 전까지 결과를 삭제할 수 있습니다.",
+      "button": "삭제하기",
+      "confirm": "정말 삭제하시겠습니까?",
+      "warning": "이 작업은 되돌릴 수 없습니다.",
+      "yes": "삭제",
+      "no": "취소",
+      "deleted": "삭제되었습니다.",
+      "deleteError": "삭제하는 데 실패했습니다. pass.connects.im@gmail.com으로 문의해주세요."
+    }
+  },
+  "sponsor": {
+    "intro": "이 프로젝트는 아래와 같은 문제 인식에서 출발했어요.",
+    "quote": "내 프로필 페이지를 소개하는데 모두가 내 아이디를 검색하는 일이 번거롭다.",
+    "cost": "하지만 서비스 운영을 위한 비용, 그리고 Apple Developer Program 연회비로 99달러의 비용을 부담하게 되었어요.",
+    "appeal": "서비스가 꾸준히 이어질 수 있도록 따뜻한 응원을 보내주시면 정말 감사하겠습니다.",
+    "donateButton": "토스로 2000원 후원하기",
+    "qrTitle": "QR 코드를 스캔해 보세요",
+    "qrDesc": "이 기능은 모바일 환경에서 토스 앱을 사용해야 합니다."
+  },
+  "privacy": {
+    "title": "개인정보 처리방침",
+    "sections": {
+      "collection": {
+        "title": "1. 수집하는 개인정보 항목 및 수집 목적",
+        "content": "QR 코드 생성 및 이메일 전송을 위해 최소한의 개인정보만 수집합니다.\n수집된 정보를 추가로 저장하거나 활용하지 않습니다."
+      },
+      "retention": {
+        "title": "2. 개인정보의 보관 및 삭제 정책",
+        "content": "계좌번호와 이메일 주소를 포함한 수집된 모든 데이터는 대기열에 등록된 후 이메일로 전송되며, 이메일이 전송되는 즉시 삭제됩니다.\n삭제된 정보는 복구되지 않으며, 서버에 저장되지 않습니다."
+      },
+      "sharing": {
+        "title": "3. 개인정보의 제3자 제공 및 위탁 처리",
+        "content": "서비스를 이용하는 사용자의 개인정보를 제3자에게 제공하지 않습니다. 단, 법적 요청이 있는 경우 예외적으로 제공될 수 있습니다."
+      },
+      "security": {
+        "title": "4. 개인정보 보호 및 보안 조치",
+        "content": "서버로 전송하는 모든 데이터 전송 과정에서 암호화를 적용합니다.\n관리자 외 대기열에 있는 개인정보에 접근할 수 없습니다."
+      },
+      "rights": {
+        "title": "5. 사용자의 권리 및 개인정보 보호 문의",
+        "content": "사용자는 개인정보 삭제 요청 및 처리 내역 확인이 가능합니다.\n문의 이메일: pass.connects.im@gmail.com"
+      }
+    }
+  }
+}

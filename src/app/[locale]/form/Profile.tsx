@@ -1,10 +1,14 @@
+"use client"
 import React, { useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Upload, CropIcon, ZoomIn, RotateCw } from 'lucide-react'
 import Cropper, { Point, Area } from 'react-easy-crop'
 import { useImageContext } from './ImageContext'
+import { useTranslations } from 'next-intl'
 
 export default function ProfilePictureUpload() {
+  const t = useTranslations('profile')
+  const tCommon = useTranslations('common')
   const [isOpen, setIsOpen] = useState(false)
   const [image, setImage] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -26,7 +30,7 @@ export default function ProfilePictureUpload() {
         'image/webp',
       ]
       if (!validImageTypes.includes(file.type)) {
-        alert('지원하지 않는 이미지 형식입니다.')
+        alert('Unsupported image format')
         return
       }
       reader.onload = (e) => {
@@ -36,11 +40,11 @@ export default function ProfilePictureUpload() {
         }
       }
       reader.onerror = (error) => {
-        console.error('파일을 읽는 중 오류가 발생했습니다:', error)
+        console.error('Error reading file:', error)
       }
       reader.readAsDataURL(file)
     } else {
-      console.log('선택된 파일이 없습니다')
+      console.log('No file selected')
     }
   }
 
@@ -82,40 +86,33 @@ export default function ProfilePictureUpload() {
 
     const { width, height, x, y } = pixelCrop
 
-    // 캔버스 크기를 크롭할 영역으로 설정
     canvas.width = width
     canvas.height = height
 
-    // 캔버스 중심으로 이동
     ctx.translate(width / 2, height / 2)
     ctx.rotate((rotation * Math.PI) / 180)
     ctx.translate(-width / 2, -height / 2)
 
-    // 원형 클리핑 경로 설정
     ctx.beginPath()
     ctx.arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI)
     ctx.closePath()
     ctx.clip()
 
-    // 이미지를 캔버스에 그림
     ctx.drawImage(
       image,
       x, y, width, height,
       0, 0, width, height
     )
 
-    // 캔버스를 180 x 180 px로 리사이즈
     const resizedCanvas = document.createElement('canvas')
     resizedCanvas.width = 180
     resizedCanvas.height = 180
     const resizedCtx = resizedCanvas.getContext('2d')
 
     if (resizedCtx) {
-      // 이미지 스무딩을 위한 설정
       resizedCtx.imageSmoothingEnabled = true
       resizedCtx.imageSmoothingQuality = 'high'
 
-      // 원본 캔버스의 내용을 리사이즈된 캔버스에 그림
       resizedCtx.drawImage(
         canvas,
         0, 0, width, height,
@@ -131,13 +128,13 @@ export default function ProfilePictureUpload() {
       try {
         const croppedImage = await getCroppedImg(image, croppedAreaPixels, rotation)
         setCroppedImage(croppedImage)
-        setImage(null) // 원본 이미지 제거
-        setIsOpen(false) // 모달 닫기
+        setImage(null)
+        setIsOpen(false)
       } catch (error) {
         console.error('Error:', error);
       }
     }
-  }, [croppedAreaPixels, image, rotation, setCroppedImage, getCroppedImg])
+  }, [croppedAreaPixels, image, rotation, setCroppedImage])
 
   return (
     <div className="flex justify-center">
@@ -147,7 +144,7 @@ export default function ProfilePictureUpload() {
         className="flex px-4 py-2 space-x-2 text-black dark:text-white bg-zinc-200 dark:bg-zinc-800 hover:bg-opacity-80 rounded-md transition-colors"
       >
         <Upload />
-        <label htmlFor="upload">프로필 사진 업로드</label>
+        <label htmlFor="upload">{t('upload')}</label>
       </button>
 
       <AnimatePresence>
@@ -165,7 +162,7 @@ export default function ProfilePictureUpload() {
               className="bg-zinc-200 dark:bg-zinc-800 rounded-lg w-96 overflow-hidden"
             >
               <div className="flex justify-between items-center p-4">
-                <h2 className="text-xl font-semibold">프로필 사진 업로드</h2>
+                <h2 className="text-xl font-semibold">{t('upload')}</h2>
               </div>
 
               <div className="p-6">
@@ -177,7 +174,7 @@ export default function ProfilePictureUpload() {
                     onClick={() => fileInputRef.current?.click()}
                   >
                     <Upload size={48} className="mx-auto text-gray-400 mb-4" />
-                    <p className="text-zinc-600 dark:text-zinc-400">클릭하거나 이미지를 여기에 드래그하세요</p>
+                    <p className="text-zinc-600 dark:text-zinc-400">Click or drag image here</p>
                     <input
                       type="file"
                       ref={fileInputRef}
@@ -237,12 +234,12 @@ export default function ProfilePictureUpload() {
                         className="flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-opacity-80 transition-colors"
                       >
                         <CropIcon size={20} className="mr-2" />
-                        이미지 자르기
+                        {t('cropTitle')}
                       </button>
                     </div>
                   </div>
                 )}
-                <small>heic, heif 등 아이폰 전용 이미지는 Safari 브라우저에서만 보일 수 있습니다.</small>
+                <small>HEIC, HEIF formats may only work in Safari browser.</small>
               </div>
 
               <div className="flex justify-end p-4">
@@ -257,7 +254,7 @@ export default function ProfilePictureUpload() {
                   }}
                   className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-opacity-80 transition-colors "
                 >
-                  취소
+                  {tCommon('close')}
                 </button>
               </div>
             </motion.div>
