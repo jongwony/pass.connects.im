@@ -1,7 +1,7 @@
 'use client'
 import { Suspense } from 'react';
 import GetInfo from './Info';
-import Sponsor from '@/app/Sponsor';
+import Sponsor from '@/app/[locale]/Sponsor';
 import EmailGuide from './Guide';
 
 

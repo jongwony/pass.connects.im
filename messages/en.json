@@ -1,0 +1,142 @@
+{
+  "metadata": {
+    "title": "Pass Connect",
+    "description": "Create QR codes for Toss, KakaoPay, LinkedIn, Instagram and add them to your Apple Wallet.",
+    "ogImageAlt": "Pass Connect - Send money with Toss"
+  },
+  "common": {
+    "close": "Close",
+    "back": "Go Back",
+    "processing": "Processing...",
+    "empty": "<empty>"
+  },
+  "hero": {
+    "title": "Pass Connect",
+    "subtitle": "Add to your Apple Wallet.",
+    "cta": "Create",
+    "states": {
+      "toss": "Your Toss Bank transfer code",
+      "linkedin": "Your LinkedIn profile",
+      "kakao": "Your KakaoPay transfer code",
+      "instagram": "Your Instagram profile"
+    }
+  },
+  "footer": {
+    "privacy": "Privacy Policy"
+  },
+  "template": {
+    "chooseCard": "Choose your card template",
+    "names": {
+      "tosspay1": "Toss: Centered logo template",
+      "kakaopay1": "KakaoPay: Centered logo template",
+      "linkedin3": "LinkedIn: Centered layout template",
+      "linkedin2": "LinkedIn: Role-focused template",
+      "linkedin1": "LinkedIn: Template with work period",
+      "insta_special": "Instagram: Colorful template",
+      "insta1": "Instagram: Clean template"
+    }
+  },
+  "form": {
+    "email": "Email",
+    "emailPlaceholder": "We'll send the pass to your email.",
+    "profileLink": "Profile Link",
+    "qrPlaceholder": "This will be saved as a QR Code.",
+    "submit": "Add to Queue",
+    "submitNote": "We'll send the result to your email soon. Please check on mobile.",
+    "submitError": "An error occurred while submitting.",
+    "toss": {
+      "accountLabel": "Bank Account",
+      "accountNote": "Account number will be deleted as soon as the email is sent.",
+      "guideTitle": "Home > Select Account > Copy Account Info",
+      "guideDesc": "Tap the account info on the balance screen and paste the copied account info here."
+    },
+    "kakao": {
+      "linkLabel": "Transfer Link",
+      "textLabel": "Text",
+      "guideTitle": "KakaoTalk More > Kakao Pay > Pay Money > Transfer Code > Copy Link",
+      "guideDesc": "Paste the copied transfer QR link here."
+    },
+    "instagram": {
+      "id": "Username",
+      "name": "Name",
+      "bio": "Bio"
+    },
+    "linkedin": {
+      "name": "Name",
+      "role": "Title",
+      "company": "Company",
+      "joinDate": "Work Period"
+    }
+  },
+  "profile": {
+    "upload": "Upload Profile Picture",
+    "change": "Change Photo",
+    "cropTitle": "Crop Image",
+    "confirm": "Confirm"
+  },
+  "success": {
+    "title": "Successfully added to queue",
+    "checkRequest": "Check your request details",
+    "issueCode": "Issue Code",
+    "loading": "Loading...",
+    "fetchError": "Failed to load profile data.",
+    "dataDeleted": "Email has been sent and data has been deleted.",
+    "contactNote": "If you haven't received the email, please contact",
+    "contactSuffix": ".",
+    "noImage": "No image attached!",
+    "emailGuide": {
+      "title": "You'll receive an email within a day.",
+      "checkMobile": "Please check your email on a mobile device.",
+      "tapAttachment": "Tap the attachment to add it to Apple Wallet without installing any app.",
+      "howToAdd": "How to add to Apple Wallet",
+      "step1": "Open the email on your <strong>iPhone or iPad</strong>.",
+      "step2": "Tap the attached file <em>PassConnect.pkpass</em>.",
+      "step3": "Tap the <strong>Add</strong> button in the top right corner to add it to Apple Wallet."
+    },
+    "cancel": {
+      "title": "If something is wrong, please recreate it",
+      "description": "You can delete the result before receiving the email.",
+      "button": "Delete",
+      "confirm": "Are you sure you want to delete?",
+      "warning": "This action cannot be undone.",
+      "yes": "Delete",
+      "no": "Cancel",
+      "deleted": "Deleted successfully.",
+      "deleteError": "Failed to delete. Please contact pass.connects.im@gmail.com"
+    }
+  },
+  "sponsor": {
+    "intro": "This project started from the following problem:",
+    "quote": "It's cumbersome for everyone to search for my username just to introduce my profile page.",
+    "cost": "However, we now bear the cost of running the service and $99 annual fee for the Apple Developer Program.",
+    "appeal": "We would greatly appreciate your warm support to keep this service running.",
+    "donateButton": "Donate 2,000 KRW via Toss",
+    "qrTitle": "Scan the QR code",
+    "qrDesc": "This feature requires the Toss app on a mobile device."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "sections": {
+      "collection": {
+        "title": "1. Personal Information Collected and Purpose",
+        "content": "We collect only the minimum personal information necessary for QR code generation and email delivery.\nCollected information is not stored or used for any other purpose."
+      },
+      "retention": {
+        "title": "2. Data Retention and Deletion Policy",
+        "content": "All collected data including account numbers and email addresses are sent via email after being queued, and are deleted immediately after the email is sent.\nDeleted information cannot be recovered and is not stored on the server."
+      },
+      "sharing": {
+        "title": "3. Third-Party Sharing and Processing",
+        "content": "We do not share users' personal information with third parties. However, exceptions may be made for legal requests."
+      },
+      "security": {
+        "title": "4. Privacy Protection and Security Measures",
+        "content": "All data transmitted to the server is encrypted.\nNo one except administrators can access personal information in the queue."
+      },
+      "rights": {
+        "title": "5. User Rights and Privacy Inquiries",
+        "content": "Users can request deletion of personal information and check processing history.\nContact email: pass.connects.im@gmail.com"
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Pass Connect (패스 커넥트) is a Korean-language Next.js application that generates Apple Wallet passes with QR codes for:
+Pass Connect (패스 커넥트) is a multilingual Next.js application that generates Apple Wallet passes with QR codes for:
 - Toss Pay (송금 계좌)
 - KakaoPay (송금 링크)
 - LinkedIn profiles
@@ -27,15 +27,51 @@ npm run lint     # Run ESLint
 - Tailwind CSS for styling
 - framer-motion for animations
 - react-easy-crop for profile image cropping
+- next-intl for internationalization
 - Deployed to GitHub Pages via `.github/workflows/nextjs.yml`
 
-### Route Structure
-- `/` - Landing page with animated hero showcasing pass types
-- `/form` - Multi-template form for creating passes
-- `/form/success` - Confirmation page after submission
-- `/privacy` - Privacy policy page
+### Internationalization (i18n)
+The app supports Korean (ko) and English (en) using next-intl with subpath routing:
 
-### Form System (`src/app/form/`)
+**Route Structure:**
+- `/` - Redirects to default locale (`/ko`)
+- `/ko`, `/en` - Localized landing pages
+- `/ko/form`, `/en/form` - Localized form pages
+- `/ko/form/success`, `/en/form/success` - Confirmation pages
+- `/ko/privacy`, `/en/privacy` - Privacy policy pages
+
+**Key i18n Files:**
+- `src/i18n/routing.ts` - Locale configuration (locales, defaultLocale)
+- `src/i18n/request.ts` - Message loading configuration
+- `src/i18n/navigation.ts` - Localized navigation hooks (Link, useRouter, usePathname)
+- `messages/ko.json`, `messages/en.json` - Translation files
+
+**Adding Translations:**
+1. Add keys to both `messages/ko.json` and `messages/en.json`
+2. Use `useTranslations('namespace')` hook in components
+3. Access translations with `t('key')` or `t('nested.key')`
+
+### Directory Structure
+```
+src/app/
+├── layout.tsx              # Root layout (minimal, returns children)
+├── page.tsx                # Root redirect to /ko
+├── globals.css
+├── fonts/
+└── [locale]/               # All localized content
+    ├── layout.tsx          # Locale layout with NextIntlClientProvider
+    ├── page.tsx            # Home page
+    ├── Hero.tsx, Footer.tsx, etc.
+    ├── form/
+    │   ├── page.tsx        # Form page
+    │   ├── Types.tsx       # Form type definitions
+    │   ├── Template.tsx    # Template selector
+    │   ├── ImageContext.tsx
+    │   └── success/
+    └── privacy/
+```
+
+### Form System (`src/app/[locale]/form/`)
 The form dynamically renders fields based on selected template type:
 - **Types.tsx** - TypeScript interfaces for each template type (`Insta1Form`, `Linkedin1Form`, `KakaopayForm`, `TosspayForm`, etc.) with union type `FormDataTypes`
 - **ImageContext.tsx** - React Context for managing cropped profile image state across components
@@ -52,6 +88,6 @@ Form submissions POST to different AWS API Gateway endpoints based on template t
 - TossPay: `.../passes/pass.com.passconnect/tosspay`
 
 ### Fonts
-Custom local fonts loaded in `layout.tsx`:
+Custom local fonts loaded in `[locale]/layout.tsx`:
 - Geist Sans/Mono (variable fonts)
 - Pretendard (Korean font family)

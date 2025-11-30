@@ -2,6 +2,7 @@
 
 import React, { useState, useLayoutEffect, useRef } from 'react'
 import Image from "next/image"
+import { useTranslations } from 'next-intl'
 
 
 interface TemplateProps {
@@ -11,6 +12,7 @@ interface TemplateProps {
 }
 
 export default function ChooseTemplate({ templates, onThemeChange, onTemplateChange }: TemplateProps) {
+  const t = useTranslations('template')
   const [currentTemplate, setCurrentTemplate] = useState(0);
   const [currentTheme, setCurrentTheme] = useState('dark');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -27,7 +29,6 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
       if (!child) return;
       const childStyle = getComputedStyle(child)
       const childWidth = child.offsetWidth + parseInt(childStyle.marginRight)
-      // const templateWidth = scrollContainerRef.current.clientWidth;
 
       const newCurrentTemplate = Math.round(scrollLeft / childWidth);
       setCurrentTemplate(newCurrentTemplate);
@@ -48,14 +49,18 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
   };
 
   const getThemeStyle = (theme: string) => {
-    return themeStyles[theme] || "border-transparent"; // 기본값 처리
+    return themeStyles[theme] || "border-transparent";
   };
+
+  const getTemplateName = (templateId: string) => {
+    return t(`names.${templateId}`)
+  }
 
   return (
     <div className="w-full max-w-md mx-auto space-y-8">
       <div className="relative rounded-2xl">
-        <h1 className="text-2xl font-bold m-2 text-center">원하는 카드를 골라주세요</h1>
-        <p className="text-sm mb-6 text-zinc-600 dark:text-zinc-400 text-center">{templates[currentTemplate].name}</p>
+        <h1 className="text-2xl font-bold m-2 text-center">{t('chooseCard')}</h1>
+        <p className="text-sm mb-6 text-zinc-600 dark:text-zinc-400 text-center">{getTemplateName(templates[currentTemplate].id)}</p>
 
         <div
           ref={scrollContainerRef}
@@ -72,7 +77,7 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
                       ? template.dark
                       : template.light
                 }
-                alt={template.name}
+                alt={getTemplateName(template.id)}
                 className="w-[282px] h-[568px] object-cover transition-colors duration-100"
                 width={282}
                 height={568}
@@ -80,9 +85,9 @@ export default function ChooseTemplate({ templates, onThemeChange, onTemplateCha
             </div>
           ))}
         </div>
-        {/* 왼쪽 fade-out 오버레이 */}
+        {/* Left fade-out overlay */}
         <div className="absolute top-0 left-0 h-full w-8 pointer-events-none bg-gradient-to-r from-white to-transparent dark:from-black"></div>
-        {/* 오른쪽 fade-out 오버레이 */}
+        {/* Right fade-out overlay */}
         <div className="absolute top-0 right-0 h-full w-8 pointer-events-none bg-gradient-to-l from-white to-transparent dark:from-black"></div>
       </div>
 

@@ -1,13 +1,6 @@
-"use client"
-import Hero from "./Hero";
-import GTM from "./GTM";
+import { redirect } from 'next/navigation';
+import { routing } from '@/i18n/routing';
 
-export default function Home() {
-  return (
-    <div>
-      <GTM />
-
-      <Hero />
-    </div>
-  );
+export default function RootPage() {
+  redirect(`/${routing.defaultLocale}`);
 }

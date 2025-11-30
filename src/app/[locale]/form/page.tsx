@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useRouter } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import { ImageProvider } from './ImageContext';
 import { DisplayCroppedImage } from './CropImage';
 import ProfilePictureUpload from './Profile';
@@ -63,6 +64,8 @@ const templates = [
 
 const FormPage = (): React.ReactElement => {
   const router = useRouter();
+  const t = useTranslations('form');
+  const tCommon = useTranslations('common');
   const [formData, setFormData] = useState<FormDataTypes>(() => ({} as FormDataTypes));
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -125,13 +128,13 @@ const FormPage = (): React.ReactElement => {
       router.push(`/form/success?issue_code=${data.issue_code}`);
     } catch (error) {
       console.error('Error:', error);
-      setErrorMessage('제출 중 문제가 발생했습니다.');
+      setErrorMessage(t('submitError'));
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // 타입 가드 함수 추가
+  // Type guard functions
   const isInstaForm = (data: FormDataTypes): data is Insta1Form | InstaSpecialForm => {
     return data.template === 'insta1' || data.template === 'insta_special';
   };
@@ -173,12 +176,12 @@ const FormPage = (): React.ReactElement => {
             )}
 
             <div className="items-center space-x-2">
-              <label htmlFor="email" className="m-2 whitespace-nowrap text-sm font-medium">이메일 <span className="text-red-500 font-semibold">*</span></label>
+              <label htmlFor="email" className="m-2 whitespace-nowrap text-sm font-medium">{t('email')} <span className="text-red-500 font-semibold">*</span></label>
               <input
                 id="email"
                 type="email"
                 name="email"
-                placeholder="이메일로 패스를 보내드립니다."
+                placeholder={t('emailPlaceholder')}
                 value={formData.email || ''}
                 onChange={handleChange}
                 className="w-full p-2 rounded-md placeholder-zinc-400 dark:placeholder-zinc-600 bg-zinc-200 dark:bg-zinc-800 border-zinc-500 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100"
@@ -190,7 +193,7 @@ const FormPage = (): React.ReactElement => {
                 {
                 isTossPayForm(formData) && (
                   <>
-                    송금 계좌
+                    {t('toss.accountLabel')}
                     <button
                       onClick={handlePopupToggle}
                       className="text-blue-500"
@@ -201,20 +204,19 @@ const FormPage = (): React.ReactElement => {
                     <span className="text-red-500 font-semibold"> * </span>
 
                     <span className="text-xs text-gray-500">
-                      이메일이 발송되는 즉시 계좌번호는 삭제됩니다.
+                      {t('toss.accountNote')}
                     </span>
 
-                    {/* 팝업 표시 */}
                     {showPopup && (
                       <div className="fixed inset-0 flex flex-col gap-4 items-center justify-center bg-opacity-70 backdrop-blur-sm">
-                        <Image src="/get_toss_url_guide.png" width={282} height={568} alt="Toss 계좌 정보 복사 가이드" />
+                        <Image src="/get_toss_url_guide.png" width={282} height={568} alt="Toss account info copy guide" />
 
                         <div className="text-center p-4 rounded-lg bg-zinc-200 dark:bg-zinc-800">
                           <p className="font-semibold mb-2">
-                            홈 &gt; 연결 계좌 선택 &gt; 계좌 정보 복사
+                            {t('toss.guideTitle')}
                           </p>
                           <p className="text-gray-500">
-                            잔액이 표시된 화면에서 계좌 정보를 눌러 <br/> 복사한 계좌 정보를 이곳에 붙여넣기 해주세요.
+                            {t('toss.guideDesc')}
                           </p>
                         </div>
 
@@ -223,7 +225,7 @@ const FormPage = (): React.ReactElement => {
                           className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-opacity-80 transition-colors"
                           type="button"
                         >
-                          닫기
+                          {tCommon('close')}
                         </button>
                       </div>
                     )}
@@ -232,7 +234,7 @@ const FormPage = (): React.ReactElement => {
 
                 {isKakaoPayForm(formData) && (
                   <>
-                    송금 링크
+                    {t('kakao.linkLabel')}
                     <button
                       onClick={handlePopupToggle}
                       className="text-blue-500"
@@ -243,7 +245,6 @@ const FormPage = (): React.ReactElement => {
                     <span className="text-red-500 font-semibold"> * </span>
                     <br />
 
-                    {/* 팝업 표시 */}
                     {showPopup && (
                       <div className="fixed inset-0 flex flex-col gap-4 items-center justify-center bg-opacity-70 backdrop-blur-sm">
                         <video className="rounded-2xl w-64 object-cover" autoPlay loop muted>
@@ -253,10 +254,10 @@ const FormPage = (): React.ReactElement => {
 
                         <div className="text-center p-4 rounded-lg bg-zinc-200 dark:bg-zinc-800">
                           <p className="font-semibold mb-2">
-                            카톡 더보기 &gt; Kakao Pay &gt; 페이머니 &gt; 송금코드 &gt; 링크복사
+                            {t('kakao.guideTitle')}
                           </p>
                           <p className="text-gray-500">
-                            복사한 송금 QR 링크를 이곳에 붙여넣기 해주세요.
+                            {t('kakao.guideDesc')}
                           </p>
                         </div>
 
@@ -265,7 +266,7 @@ const FormPage = (): React.ReactElement => {
                           className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-opacity-80 transition-colors"
                           type="button"
                         >
-                          닫기
+                          {tCommon('close')}
                         </button>
                       </div>
                     )}
@@ -274,7 +275,7 @@ const FormPage = (): React.ReactElement => {
 
                 {!isTossPayForm(formData) && !isKakaoPayForm(formData) && (
                   <>
-                    프로필 링크
+                    {t('profileLink')}
                     <span className="text-red-500 font-semibold"> *</span>
                   </>
                 )}
@@ -283,18 +284,18 @@ const FormPage = (): React.ReactElement => {
                 id="code"
                 name="code"
                 value={formData.code || ''}
-                placeholder="QR Code로 저장됩니다."
+                placeholder={t('qrPlaceholder')}
                 onChange={handleChange}
                 className="w-full p-2 rounded-md placeholder-zinc-400 dark:placeholder-zinc-600 bg-zinc-200 dark:bg-zinc-800 border-zinc-500 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100"
                 required={true}
               />
             </div>
 
-            {/* Kakao Pay 폼 필드 */}
+            {/* Kakao Pay form fields */}
             {isKakaoPayForm(formData) && (
               <>
                 <div className="items-center space-x-2">
-                  <label htmlFor="id" className="m-2 whitespace-nowrap text-sm font-medium">텍스트</label>
+                  <label htmlFor="id" className="m-2 whitespace-nowrap text-sm font-medium">{t('kakao.textLabel')}</label>
                   <input
                     id="text"
                     name="text"
@@ -306,11 +307,11 @@ const FormPage = (): React.ReactElement => {
               </>
             )}
 
-            {/* Insta 폼 필드 */}
+            {/* Instagram form fields */}
             {isInstaForm(formData) && (
               <>
                 <div className="items-center space-x-2">
-                  <label htmlFor="id" className="m-2 whitespace-nowrap text-sm font-medium">아이디</label>
+                  <label htmlFor="id" className="m-2 whitespace-nowrap text-sm font-medium">{t('instagram.id')}</label>
                   <input
                     id="id"
                     name="id"
@@ -320,7 +321,7 @@ const FormPage = (): React.ReactElement => {
                   />
                 </div>
                 <div className="items-center space-x-2">
-                  <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
+                  <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">{t('instagram.name')}</label>
                   <input
                     id="name"
                     name="name"
@@ -330,7 +331,7 @@ const FormPage = (): React.ReactElement => {
                   />
                 </div>
                 <div className="items-center space-x-2">
-                  <label htmlFor="bio" className="m-2 whitespace-nowrap text-sm font-medium">소개</label>
+                  <label htmlFor="bio" className="m-2 whitespace-nowrap text-sm font-medium">{t('instagram.bio')}</label>
                   <input
                     id="bio"
                     name="bio"
@@ -342,11 +343,11 @@ const FormPage = (): React.ReactElement => {
               </>
             )}
 
-            {/* LinkedIn 폼 필드 */}
+            {/* LinkedIn form fields */}
             {(isLinkedin1Form(formData) || isLinkedin2Form(formData)) && (
               <>
                 <div className="items-center space-x-2">
-                  <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
+                  <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">{t('linkedin.name')}</label>
                   <input
                     id="name"
                     name="name"
@@ -356,7 +357,7 @@ const FormPage = (): React.ReactElement => {
                   />
                 </div>
                 <div className="items-center space-x-2">
-                  <label htmlFor="role" className="m-2 whitespace-nowrap text-sm font-medium">직함</label>
+                  <label htmlFor="role" className="m-2 whitespace-nowrap text-sm font-medium">{t('linkedin.role')}</label>
                   <input
                     id="role"
                     name="role"
@@ -366,7 +367,7 @@ const FormPage = (): React.ReactElement => {
                   />
                 </div>
                 <div className="items-center space-x-2">
-                  <label htmlFor="company" className="m-2 whitespace-nowrap text-sm font-medium">회사</label>
+                  <label htmlFor="company" className="m-2 whitespace-nowrap text-sm font-medium">{t('linkedin.company')}</label>
                   <input
                     id="company"
                     name="company"
@@ -377,7 +378,7 @@ const FormPage = (): React.ReactElement => {
                 </div>
                 {isLinkedin1Form(formData) && (
                   <div className="items-center space-x-2">
-                    <label htmlFor="joinDate" className="m-2 whitespace-nowrap text-sm font-medium">근무 기간</label>
+                    <label htmlFor="joinDate" className="m-2 whitespace-nowrap text-sm font-medium">{t('linkedin.joinDate')}</label>
                     <input
                       id="joinDate"
                       name="joinDate"
@@ -396,9 +397,9 @@ const FormPage = (): React.ReactElement => {
                 type="submit"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? '처리 중...' : '대기열 등록하기'}
+                {isSubmitting ? tCommon('processing') : t('submit')}
               </button>
-              <small className="m-2">결과물을 곧 이메일로 보내드리니, 모바일에서 확인해보세요.</small>
+              <small className="m-2">{t('submitNote')}</small>
 
               {errorMessage && (
                 <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
