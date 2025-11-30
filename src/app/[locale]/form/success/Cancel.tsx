@@ -1,17 +1,20 @@
 "use client"
-import { useSearchParams } from 'next/navigation'
 import { useRouter } from '@/i18n/navigation'
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-const Cancel: React.FC = () => {
+type Props = {
+  issueCode: string;
+};
+
+const Cancel: React.FC<Props> = ({ issueCode }) => {
   const router = useRouter();
   const t = useTranslations('success.cancel')
-  const searchParams = useSearchParams();
-  const issueCode = searchParams.get('issue_code') || 'No code provided';
   const [showConfirmPopup, setShowConfirmPopup] = useState(false);
 
-  const handleCancel = async (issueCode: string) => {
+  const handleCancel = async () => {
+    if (!issueCode) return;
+
     try {
       const response = await fetch(
         `https://9e240d7v0k.execute-api.ap-northeast-2.amazonaws.com/api/pass_connect/${issueCode}`,
@@ -66,7 +69,7 @@ const Cancel: React.FC = () => {
               </button>
               <button
                 className={`px-4 py-2 bg-red-500 text-white rounded-md hover:bg-opacity-80 transition-colors`}
-                onClick={() => handleCancel(issueCode)}
+                onClick={handleCancel}
               >
                 {t('yes')}
               </button>

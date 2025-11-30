@@ -1,11 +1,13 @@
 "use client"
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
-import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import Cancel from './Cancel';
 
-const GetInfo: React.FC = () => {
+type Props = {
+  issueCode: string;
+};
+
+const GetInfo: React.FC<Props> = ({ issueCode }) => {
   const t = useTranslations('success')
   const tCommon = useTranslations('common')
   /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -13,10 +15,14 @@ const GetInfo: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const searchParams = useSearchParams()
-  const issueCode = searchParams.get('issue_code') || 'No code provided'
+  const displayIssueCode = issueCode || 'No code provided'
 
   useEffect(() => {
+    if (!issueCode) {
+      setIsLoading(false)
+      return
+    }
+
     const fetchProfileData = async () => {
       try {
         const response = await fetch(
@@ -78,7 +84,7 @@ const GetInfo: React.FC = () => {
       <div className="p-4 text-center">
         <h1 className="text-2xl font-bold">{t('title')}</h1>
         <h2 className="text-xl font-bold mt-4 text-center">{t('checkRequest')}</h2>
-        <p className="font-semibold text-center mt-2">{t('issueCode')}: {issueCode}</p>
+        <p className="font-semibold text-center mt-2">{t('issueCode')}: {displayIssueCode}</p>
       </div>
 
       <div className="border rounded-lg border-gray-400 p-8 w-full max-w-md">
@@ -111,8 +117,6 @@ const GetInfo: React.FC = () => {
             ))}
         </div>
       </div>
-
-      <Cancel />
     </>
   )
 }
