@@ -6,7 +6,7 @@ import { ImageProvider } from './ImageContext';
 import { DisplayCroppedImage } from './CropImage';
 import ProfilePictureUpload from './Profile';
 import ChooseTemplate from './Template';
-import { FormDataTypes, Insta1Form, InstaSpecialForm, Linkedin1Form, Linkedin2Form, KakaopayForm, TosspayForm } from './Types';
+import { FormDataTypes, Insta1Form, Linkedin1Form, Linkedin2Form, KakaopayForm, TosspayForm } from './Types';
 import { Info } from 'lucide-react';
 
 const templates = [
@@ -97,7 +97,6 @@ const FormPage = (): React.ReactElement => {
           endpoint = 'https://9e240d7v0k.execute-api.ap-northeast-2.amazonaws.com/api/v1/passes/pass.com.passconnect/linkedin';
           break;
         case 'kakaopay1':
-        case 'kakaopay2':
           endpoint = 'https://9e240d7v0k.execute-api.ap-northeast-2.amazonaws.com/api/v1/passes/pass.com.passconnect/kakaopay';
           break;
         case 'tosspay1':
@@ -132,7 +131,7 @@ const FormPage = (): React.ReactElement => {
   };
 
   // 타입 가드 함수 추가
-  const isInstaForm = (data: FormDataTypes): data is Insta1Form | InstaSpecialForm => {
+  const isInstaForm = (data: FormDataTypes): data is Insta1Form => {
     return data.template === 'insta1' || data.template === 'insta_special';
   };
 
@@ -141,7 +140,11 @@ const FormPage = (): React.ReactElement => {
   };
 
   const isLinkedin2Form = (data: FormDataTypes): data is Linkedin2Form => {
-    return data.template === 'linkedin2' || data.template === 'linkedin3';
+    return data.template === 'linkedin2';
+  };
+
+  const isLinkedin3Form = (data: FormDataTypes): data is Linkedin2Form => {
+    return data.template === 'linkedin3';
   };
 
   const isKakaoPayForm = (data: FormDataTypes): data is KakaopayForm => {
@@ -343,7 +346,7 @@ const FormPage = (): React.ReactElement => {
             )}
 
             {/* LinkedIn 폼 필드 */}
-            {(isLinkedin1Form(formData) || isLinkedin2Form(formData)) && (
+            {(isLinkedin1Form(formData) || isLinkedin2Form(formData) || isLinkedin3Form(formData)) && (
               <>
                 <div className="items-center space-x-2">
                   <label htmlFor="name" className="m-2 whitespace-nowrap text-sm font-medium">이름</label>
