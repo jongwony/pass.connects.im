@@ -9,17 +9,6 @@ export interface Insta1Form {
   theme: string;
 }
 
-export interface InstaSpecialForm {
-  template: string;
-  thumbnail?: string;
-  name?: string;
-  id?: string;
-  bio?: string;
-  code: string;
-  email: string;
-  theme: string;
-}
-
 export interface Linkedin1Form {
   template: string;
   thumbnail?: string;
@@ -59,4 +48,4 @@ export interface TosspayForm {
   theme: string;
 }
 
-export type FormDataTypes = Insta1Form | InstaSpecialForm | Linkedin1Form | Linkedin2Form | KakaopayForm | TosspayForm;
+export type FormDataTypes = Insta1Form | Linkedin1Form | Linkedin2Form | KakaopayForm | TosspayForm;
