@@ -29,35 +29,52 @@ No test files — type system provides safety.
 
 ## Architecture
 
+### Route Structure
+
+| Route | File | Purpose |
+|---|---|---|
+| `/form` | `form/page.tsx` | Redirects to `/form/basic` (backward-compatible) |
+| `/form/basic` | `form/basic/page.tsx` | Preset template form (7 templates) + preset/custom card chooser |
+| `/form/custom` | `form/custom/page.tsx` | Phase 2 placeholder ("coming soon") |
+| `/form/success` | `form/success/page.tsx` | Submission result + Apple Wallet guide |
+
 ### Core Data Flow
 
-The form page (`src/app/form/page.tsx`) is the single controller managing all state:
+The preset form page (`src/app/form/basic/page.tsx`) manages all form state:
 
-1. **Template selection** (`Template.tsx`) — horizontal snap-scroll through 7 templates, theme (dark/light) picker
-2. **Image upload** (`Profile.tsx` → `ImageContext.tsx` → `CropImage.tsx`) — `ImageProvider` Context shares crop state; converts to Base64 and syncs to `formData.thumbnail`
-3. **Form input** — type guard functions (`isInstaForm`, `isLinkedin1Form`, etc.) in `page.tsx` conditionally render service-specific fields
-4. **API submission** (`sendFormData`) — maps template ID to service endpoint (see below)
-5. **Success page** (`form/success/`) — redirects with `?issue_code=XXX` param
+1. **Route selection** — preset/custom card chooser UI (top of page, routes to `/form/custom`)
+2. **Template selection** (`Template.tsx`) — horizontal snap-scroll through 7 templates, theme (dark/light) picker
+3. **Image upload** (`Profile.tsx` → `ImageContext.tsx` → `CropImage.tsx`) — `ImageProvider` Context shares crop state; converts to Base64 and syncs to `formData.thumbnail`
+4. **Form input** — type guard functions (`isInstaForm`, `isLinkedin1Form`, etc.) in `basic/page.tsx` conditionally render service-specific fields
+5. **Ad interstitial** (`AdInterstitial.tsx`) — 5-second countdown sponsor overlay shown before submission
+6. **API submission** (`useFormSubmit` hook) — resolves endpoint from `templates.ts` config
+7. **Success page** (`form/success/`) — redirects with `?issue_code=XXX` param
 
-### Template ID → API Endpoint Mapping
+### Template Configuration
 
-Handled by the switch statement in `sendFormData` (`page.tsx`):
+`templates.ts` defines all template metadata with `TemplateConfig` interface:
 
-| Template ID | API Service |
-|---|---|
-| `insta1`, `insta_special` | `/instagram` |
-| `linkedin1`, `linkedin2`, `linkedin3` | `/linkedin` |
-| `kakaopay1` | `/kakaopay` |
-| `tosspay1` | `/tosspay` |
+```typescript
+{ id, name, src, dark, light, endpoint, category: 'preset' | 'custom' }
+```
+
+| Template ID | API Service | Category |
+|---|---|---|
+| `insta1`, `insta_special` | `/instagram` | preset |
+| `linkedin1`, `linkedin2`, `linkedin3` | `/linkedin` | preset |
+| `kakaopay1` | `/kakaopay` | preset |
+| `tosspay1` | `/tosspay` | preset |
 
 **Base URL:** `https://9e240d7v0k.execute-api.ap-northeast-2.amazonaws.com/api/v1/passes/pass.com.passconnect/{service}`
+
+Endpoint resolution: `getEndpointForTemplate(templateId)` in `templates.ts` (replaces switch statement).
 
 ### Type System
 
 `Types.tsx`: 5 form interfaces as a union type (`FormDataTypes`)
 - Common fields: `template`, `code`, `email`, `theme`
 - Service-specific: `thumbnail`, `name`, `id`, `bio`, `role`, `company`, `joinDate`, `text`
-- Type guard functions live in `page.tsx` (not Types.tsx — that file only has interfaces)
+- Type guard functions live in `basic/page.tsx` (not Types.tsx — that file only has interfaces)
 - Tosspay is the only template without image upload (`!isTossPayForm` excludes `ImageProvider`)
 
 ## Key Patterns
@@ -88,11 +105,10 @@ Handled by the switch statement in `sendFormData` (`page.tsx`):
 
 ## Adding a New Template
 
-1. Add entry to `templates` array in `src/app/form/page.tsx` (single image → `src`, light/dark variants → `dark`/`light`)
+1. Add entry to `templates` array in `src/app/form/templates.ts` (include `id`, `name`, `src`/`dark`/`light`, `endpoint`, `category`)
 2. Add preview images to `public/`
 3. Define new form interface in `Types.tsx` + add to `FormDataTypes` union
-4. Add type guard function in `page.tsx` + conditional form field rendering
-5. Add endpoint mapping in `sendFormData` switch statement
+4. Add type guard function in `basic/page.tsx` + conditional form field rendering
 
 ## External Services
 
